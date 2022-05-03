@@ -1,5 +1,6 @@
 package characters;
 
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -16,7 +17,6 @@ public class Character {
 		this.x = x;
 		this.y = y;
 	}
-	
 	public void draw(PApplet surface) {
 		if (image != null) surface.image(image, (float) x, (float) y);
 	}
