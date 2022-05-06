@@ -112,7 +112,7 @@ public class Level extends Screen {
 			
 		if (d.mouseButton == d.LEFT) {
 			boolean draw = true;
-			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float)(d.mouseY + 50), (float)(d.mouseY + 50));
+			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
 			
 			for(Platform platform : platforms) {
 				Rectangle r = new Rectangle(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
@@ -121,7 +121,23 @@ public class Level extends Screen {
 				}
 			}
 			portal1.setDrawn(draw);
-			    
+			portal1.setX(d.mouseX);
+			portal1.setY(d.mouseY);
+		}
+	 
+		if (d.mouseButton == d.RIGHT) {
+			boolean draw = true;
+			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
+			
+			for(Platform platform : platforms) {
+				Rectangle r = new Rectangle(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
+				if(sight.intersects(r)) {
+					draw = false;
+				}
+			}
+			portal2.setDrawn(draw);
+			portal2.setX(d.mouseX);
+			portal2.setY(d.mouseY);
 		}
 	 }
 
