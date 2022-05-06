@@ -30,9 +30,7 @@ public class Portal extends Rectangle2D.Double {
 
 	}
 	
-	public boolean getDrawn() {
-		return drawn;
-	}
+	
 	
 	public void setDrawn(boolean drawn) {
 		this.drawn = drawn;
@@ -46,6 +44,8 @@ public class Portal extends Rectangle2D.Double {
 		this.y = y;
 	}
 	
+	
+	
 	public double getX() {
 		return x;
 	}
@@ -54,9 +54,17 @@ public class Portal extends Rectangle2D.Double {
 		return y;
 	}
 	
+	public boolean getDrawn() {
+		return drawn;
+	}
+	
 	public Rectangle2D.Double getPortal() {
 		return body;
 	}
+	
+	
+	
+	
 	
 	public void draw(PApplet surface) {
 		if (image != null)
