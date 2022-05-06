@@ -1,7 +1,6 @@
 package screens;
 
 import core.DrawingSurface;
-import processing.core.PImage;
 
 public abstract class Screen {
 

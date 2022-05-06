@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import screens.Menu;
 import screens.Beginning;
-import screens.Level1;
+import screens.Level;
 import screens.Screen;
 import screens.ScreenSwitcher;
 
@@ -34,7 +34,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		Menu screen2 = new Menu(this);
 		screens.add(screen2);
 		
-		Level1 level1 = new Level1(this);
+		Level level1 = new Level(1, this);
 		screens.add(level1);
 		
 		activeScreen = screens.get(0);

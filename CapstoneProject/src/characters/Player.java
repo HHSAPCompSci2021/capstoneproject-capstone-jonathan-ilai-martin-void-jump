@@ -1,11 +1,14 @@
 package characters;
 
 import core.DrawingSurface;
+import processing.core.PImage;
 
 public class Player extends Person {
+	
+	public static double WIDTH = 70, HEIGHT = 100;
 
-	public Player(double width, double height, int x, int y) {
-		super(width, height, x, y);
+	public Player(PImage image, double x, double y) {
+		super(image, x, y, WIDTH, HEIGHT);
 	}
 	
 	public void setIcon(DrawingSurface surface) {
