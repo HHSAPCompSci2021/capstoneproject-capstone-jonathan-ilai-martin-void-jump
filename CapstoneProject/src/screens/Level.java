@@ -113,13 +113,16 @@ public class Level extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			
 		if (d.mouseButton == d.LEFT) {
-			Point center1 = new Point((int)(d.mouseX + 35), (int)(d.mouseY + 50));
+			boolean draw = true;
 			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float)(d.mouseY + 50), (float)(d.mouseY + 50));
 			
 			for(Platform platform : platforms) {
-				Rectangle r = new Rectangle();
+				Rectangle r = new Rectangle(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
+				if(sight.intersects(r)) {
+					draw = false;
+				}
 			}
-			portal1.setDrawn(true);
+			portal1.setDrawn(draw);
 			    
 		}
 	 }
