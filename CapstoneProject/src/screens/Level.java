@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import characters.Player;
 import core.DrawingSurface;
 import platforms.Platform;
+import processing.core.PApplet;
 import processing.core.PImage;
+import processing.event.MouseEvent;
 
 public class Level extends Screen {
 	
@@ -77,12 +79,22 @@ public class Level extends Screen {
 		 if (surface.isPressed(KeyEvent.VK_UP))
 				player.jump();
 		 player.act(platforms);
+		 
+		 
 	}
 	 
 	 public void mousePressed() {
-			Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-			if (returnButton.contains(p))
-				surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+			
+		PApplet d = new PApplet();
+		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
+		if (returnButton.contains(p))
+			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+			
+		if (d.mouseButton == d.LEFT) {
+			    
 		}
+
+	 
+
 
 }
