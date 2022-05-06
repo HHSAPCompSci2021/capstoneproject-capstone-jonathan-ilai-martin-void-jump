@@ -26,5 +26,9 @@ public class Player extends Person {
 	public void takeKey() {
 		hasKey = true;
 	}
+	
+	public void reset() {
+		hasKey = false;
+	}
 
 }

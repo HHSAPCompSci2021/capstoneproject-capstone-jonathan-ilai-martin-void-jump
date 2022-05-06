@@ -48,6 +48,11 @@ public class Level extends Screen {
 			gateY = 400;
 		}
 	}
+	 
+	public void reset() {
+		keyTaken = false;
+		player.reset();
+	}
 
 	public void setup() {
 		initializeLocations();
