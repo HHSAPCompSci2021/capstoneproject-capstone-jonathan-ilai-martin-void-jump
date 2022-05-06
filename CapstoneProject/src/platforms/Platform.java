@@ -26,4 +26,22 @@ public class Platform {
 	public Rectangle2D.Double getPlatform() {
 		return body;
 	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
+	public double getWidth() {
+		return width;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+	
+	
 }
