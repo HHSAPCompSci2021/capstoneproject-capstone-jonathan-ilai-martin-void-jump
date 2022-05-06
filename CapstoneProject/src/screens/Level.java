@@ -11,7 +11,6 @@ import platforms.Platform;
 import portals.Portal;
 import processing.core.PApplet;
 import processing.core.PImage;
-import processing.event.MouseEvent;
 
 public class Level extends Screen {
 	
@@ -37,7 +36,7 @@ public class Level extends Screen {
 		if (level == 1) {
 			startX = 50;
 			startY = 200;
-			keyX = 600;
+			keyX = 200;
 			keyY = 200;
 			gateX = 600;
 			gateY = 400;
