@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/processing_core.jar"/>
 	<classpathentry kind="lib" path="lib/shapes 10-27.jar"/>
+	<classpathentry kind="lib" path="lib/shapes.jat"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
