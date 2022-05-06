@@ -11,5 +11,13 @@ public class Player extends Person {
 		super(image, x, y, WIDTH, HEIGHT);
 	}
 	
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
 
 }

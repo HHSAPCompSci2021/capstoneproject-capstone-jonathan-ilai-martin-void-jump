@@ -2,6 +2,7 @@ package portals;
 
 import java.awt.geom.Rectangle2D;
 
+import characters.Player;
 import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -31,7 +32,13 @@ public class Portal extends Rectangle2D.Double {
 	}
 	
 	
-	
+	public boolean isInside(Player p) {
+		
+		Point p = new Point(p)
+		
+		
+		return false;
+	}
 	
 	
 	
