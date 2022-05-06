@@ -90,6 +90,9 @@ public class Level extends Screen {
 			 keyTaken = true;
 			 player.takeKey();
 		 }
+		 if (keyTaken && (player.contains(new Point((int) (gateX + gate.width / 2), (int) (gateY + gate.height / 2))))) {
+			 surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
+		 }
 		 if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(-1);
 		 if (surface.isPressed(KeyEvent.VK_RIGHT))
