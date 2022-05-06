@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import core.DrawingSurface;
 import platforms.Platform;
 import processing.core.PApplet;
 import processing.core.PImage;
