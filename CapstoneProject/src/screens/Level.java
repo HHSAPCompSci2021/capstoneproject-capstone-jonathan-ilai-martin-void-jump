@@ -13,8 +13,8 @@ import processing.core.PApplet;
 import platforms.SpikePlatform;
 import processing.core.PImage;
 import processing.event.MouseEvent;
-import ilaitm12.shapes.Line;
-import ilaitm12.shapes.Rectangle;
+import levi.shapes.Line;
+import levi.shapes.Rectangle;
 
 
 public class Level extends Screen {
