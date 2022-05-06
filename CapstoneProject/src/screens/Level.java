@@ -83,7 +83,7 @@ public class Level extends Screen {
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 		 }
-		 if (player.contains(new Point((int) keyX, (int) keyY))) {
+		 if (!keyTaken && player.contains(new Point((int) keyX, (int) keyY))) {
 			 keyTaken = true;
 			 player.takeKey();
 		 }
@@ -100,9 +100,7 @@ public class Level extends Screen {
 		 }
 		 if(portal2.getDrawn()) {
 			 portal2.draw(surface);
-		 }
-		 
-		 
+		 }	 
 	}
 	 
 	 public void mousePressed() {
