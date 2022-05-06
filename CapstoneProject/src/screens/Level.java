@@ -10,6 +10,7 @@ import core.DrawingSurface;
 import platforms.Platform;
 import portals.Portal;
 import processing.core.PApplet;
+import platforms.SpikePlatform;
 import processing.core.PImage;
 import processing.event.MouseEvent;
 import levi.shapes.Line;
@@ -67,6 +68,7 @@ public class Level extends Screen {
 				platform.resize(100, 30);
 				platforms.add(new Platform(platform, startX, startY, 150, 30));
 				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
+				platforms.add(new SpikePlatform(platform, 0, 560, 1000, 30));
 			}
 	 }
 		
