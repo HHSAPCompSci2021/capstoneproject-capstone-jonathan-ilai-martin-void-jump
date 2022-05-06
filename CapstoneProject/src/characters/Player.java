@@ -11,8 +11,5 @@ public class Player extends Person {
 		super(image, x, y, WIDTH, HEIGHT);
 	}
 	
-	public void setIcon(DrawingSurface surface) {
-		super.setIcon(surface, "img/Wizard.png");
-	}
 
 }

@@ -22,10 +22,6 @@ public class Person extends Rectangle2D.Double {
 		this.image = image;
 	}
 	
-	public void setIcon(DrawingSurface surface, String address) {
-		image = surface.loadImage(address);
-		image.resize(50, 80);
-	}
 	
 	public void draw(PApplet surface) {
 		if (image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);

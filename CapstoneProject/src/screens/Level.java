@@ -43,7 +43,6 @@ public class Level extends Screen {
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
 		returnIcon = surface.loadImage("img/return.png");
 		returnIcon.resize(50, 50);
-		player.setIcon(surface);
 		addPlatforms();
 		
 	 }
