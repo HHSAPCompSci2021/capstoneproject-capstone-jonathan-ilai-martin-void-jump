@@ -48,8 +48,7 @@ public class Person extends Rectangle2D.Double {
 		if (!standing(platforms)) {
 			ySpeed += GRAVITY;
 			xSpeed *= 0.9;
-		}
-		else {
+		} else {
 			ySpeed = 0;
 			xSpeed *= 0.6;
 		}
