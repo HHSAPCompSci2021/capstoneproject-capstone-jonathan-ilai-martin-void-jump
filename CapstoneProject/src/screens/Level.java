@@ -98,6 +98,7 @@ public class Level extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			
 		if (d.mouseButton == d.LEFT) {
+			    portal1.setDrawn(true);
 			    
 		}
 	 }
