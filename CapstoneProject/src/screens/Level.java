@@ -20,7 +20,7 @@ public class Level extends Screen {
 	 protected Ellipse2D returnButton;
 	 private Player player;
 	 private int level;
-	 
+	 private boolean keyTaken;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
@@ -66,12 +66,15 @@ public class Level extends Screen {
 		 surface.background(0);
 		 surface.image(returnIcon, 10, 10);
 		 surface.image(gate, (int) gateX, (int) gateY);
-		 surface.image(key, (int) keyX, (int) keyY);
+		 if (!keyTaken) surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 		 }
-		 
+		 if (player.contains(new Point((int) keyX, (int) keyY))) {
+			 keyTaken = true;
+			 player.takeKey();
+		 }
 		 if (surface.isPressed(KeyEvent.VK_LEFT))
 			player.walk(-1);
 		 if (surface.isPressed(KeyEvent.VK_RIGHT))
