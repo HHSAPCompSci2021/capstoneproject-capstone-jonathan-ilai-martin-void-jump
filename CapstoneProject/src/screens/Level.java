@@ -112,7 +112,10 @@ public class Level extends Screen {
 			
 		if (d.mouseButton == d.LEFT) {
 			Point center1 = new Point((int)(d.mouseX + 35), (int)(d.mouseY + 50));
-			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float)(d.mouseY + 50), (float)(d.mouseY + 50) );
+			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float)(d.mouseY + 50), (float)(d.mouseY + 50));
+			for(Platform platform : platforms) {
+				
+			}
 			portal1.setDrawn(true);
 			    
 		}
