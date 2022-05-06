@@ -83,7 +83,8 @@ public class Level extends Screen {
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 		 }
-		 if (!keyTaken && player.contains(new Point((int) keyX, (int) keyY))) {
+		 if (!keyTaken && (player.contains(new Point((int) keyX, (int) keyY))
+				 || player.contains(new Point((int) (keyX + key.width), (int) keyY)))) {
 			 keyTaken = true;
 			 player.takeKey();
 		 }
