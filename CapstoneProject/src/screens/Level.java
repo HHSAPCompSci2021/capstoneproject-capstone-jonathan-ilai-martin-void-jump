@@ -12,6 +12,7 @@ import portals.Portal;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.event.MouseEvent;
+import levi.shapes.Line;
 
 public class Level extends Screen {
 	
@@ -23,14 +24,15 @@ public class Level extends Screen {
 	 private int level;
 	 private boolean keyTaken;
 	 private Portal portal1, portal2;
+	 private PImage p1, p2;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
 		 this.level = level;
 		 platforms = new ArrayList<Platform>();
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
-		 portal1 = new Portal(null, 0, 0, false);
-		 portal2 = new Portal(null, 0, 0, false);
+		 portal1 = new Portal(p1, 0, 0, false);
+		 portal2 = new Portal(p2, 0, 0, false);
 	 }
 	 
 	 private void initializeLocations() {
@@ -54,6 +56,8 @@ public class Level extends Screen {
 		key = surface.loadImage("img/key.png");
 		key.resize(50, 50);
 		addPlatforms();
+		p1 = surface.loadImage("img/portalIn.png");
+		p2 = surface.loadImage("img/portalOut.png");
 		
 	 }
 
@@ -86,6 +90,13 @@ public class Level extends Screen {
 		 if (surface.isPressed(KeyEvent.VK_UP))
 				player.jump();
 		 player.act(platforms);
+		
+		 if(portal1.getDrawn()) {
+			portal1.draw(surface); 
+		 }
+		 if(portal2.getDrawn()) {
+			 portal2.draw(surface);
+		 }
 		 
 		 
 	}
@@ -98,7 +109,9 @@ public class Level extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			
 		if (d.mouseButton == d.LEFT) {
-			    portal1.setDrawn(true);
+			Point center1 = new Point((int)(d.mouseX + 35), (int)(d.mouseY + 50));
+			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float)(d.mouseY + 50), (float)(d.mouseY + 50) );
+			portal1.setDrawn(true);
 			    
 		}
 	 }
