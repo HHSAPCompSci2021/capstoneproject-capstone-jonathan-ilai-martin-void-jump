@@ -123,7 +123,8 @@ public class Level extends Screen {
 				}
 			}
 			portal1.setDrawn(draw);
-			    
+			portal1.setX(d.mouseX);
+			portal1.setY(d.mouseY);
 		}
 	 }
 
