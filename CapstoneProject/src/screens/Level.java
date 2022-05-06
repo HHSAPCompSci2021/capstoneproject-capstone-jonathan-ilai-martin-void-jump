@@ -14,7 +14,7 @@ public class Level extends Screen {
 	
 	 protected double startX, startY, keyX, keyY, gateX, gateY;
 	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon, gate;
+	 protected PImage returnIcon, gate, key;
 	 protected Ellipse2D returnButton;
 	 private Player player;
 	 private int level;
@@ -31,8 +31,8 @@ public class Level extends Screen {
 		if (level == 1) {
 			startX = 50;
 			startY = 200;
-			keyX = 500;
-			keyY = 50;
+			keyX = 600;
+			keyY = 200;
 			gateX = 600;
 			gateY = 400;
 		}
@@ -45,6 +45,8 @@ public class Level extends Screen {
 		returnIcon.resize(50, 50);
 		gate = surface.loadImage("img/gate.png");
 		gate.resize(100, 100); 
+		key = surface.loadImage("img/key.png");
+		key.resize(50, 50);
 		addPlatforms();
 		
 	 }
@@ -62,6 +64,7 @@ public class Level extends Screen {
 		 surface.background(0);
 		 surface.image(returnIcon, 10, 10);
 		 surface.image(gate, (int) gateX, (int) gateY);
+		 surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
