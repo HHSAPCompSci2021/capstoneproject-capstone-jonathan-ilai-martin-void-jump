@@ -34,6 +34,10 @@ public class Portal extends Rectangle2D.Double {
 		return drawn;
 	}
 	
+	public void setDrawn(boolean drawn) {
+		this.drawn = drawn;
+	}
+	
 	public Rectangle2D.Double getPortal() {
 		return body;
 	}

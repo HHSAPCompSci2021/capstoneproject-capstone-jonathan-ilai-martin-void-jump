@@ -29,8 +29,8 @@ public class Level extends Screen {
 		 this.level = level;
 		 platforms = new ArrayList<Platform>();
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
-		 portal1 = new Portal(null, 0, 0);
-		 portal2 = new Portal(null, 0, 0);
+		 portal1 = new Portal(null, 0, 0, false);
+		 portal2 = new Portal(null, 0, 0, false);
 	 }
 	 
 	 private void initializeLocations() {
