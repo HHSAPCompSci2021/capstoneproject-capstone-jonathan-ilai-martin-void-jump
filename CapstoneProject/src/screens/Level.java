@@ -54,6 +54,7 @@ public class Level extends Screen {
 				PImage platform = surface.loadImage("img/platform.png");
 				platform.resize(100, 30);
 				platforms.add(new Platform(platform, startX, startY, 150, 30));
+				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 			}
 	 }
 		
