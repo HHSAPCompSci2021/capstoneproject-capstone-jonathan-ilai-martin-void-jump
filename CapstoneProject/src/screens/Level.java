@@ -111,39 +111,59 @@ public class Level extends Screen {
 	 
 	 public void mousePressed() {
 			
-		PApplet d = new PApplet();
+		
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 		if (returnButton.contains(p))
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			
-		if (d.mouseButton == d.LEFT) {
+		if (surface.mouseButton == surface.LEFT) {
 			boolean draw = true;
-			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
+			Line sight = new Line((float)(surface.mouseX + 35),(float)(surface.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
 			
 			for(Platform platform : platforms) {
-				Rectangle r = new Rectangle(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
-				if(sight.intersects(r)) {
+				float x1 = (float)platform.getX();
+				float x2 = (float)(platform.getX() + platform.getHeight());
+				float y1 = (float)platform.getY();
+				float y2 = (float)(platform.getY() + platform.getHeight());
+				
+				Line l1 = new Line(x1, y1, x1, y2);
+				Line l2 = new Line(x1, y1, x2, y1);
+				Line l3 = new Line(x2, y1, x2, y2);
+				Line l4 = new Line(x1, y2, x2, y2);
+
+				
+				if(sight.intersects(l1) || sight.intersects(l2) || sight.intersects(l3) || sight.intersects(l4)) {
 					draw = false;
 				}
 			}
 			portal1.setDrawn(draw);
-			portal1.setX(d.mouseX);
-			portal1.setY(d.mouseY);
+			portal1.setX(surface.mouseX);
+			portal1.setY(surface.mouseY);
 		}
 	 
-		if (d.mouseButton == d.RIGHT) {
+		if (surface.mouseButton == surface.RIGHT) {
 			boolean draw = true;
-			Line sight = new Line((float)(d.mouseX + 35),(float)(d.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
+			Line sight = new Line((float)(surface.mouseX + 35),(float)(surface.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
 			
 			for(Platform platform : platforms) {
-				Rectangle r = new Rectangle(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
-				if(sight.intersects(r)) {
+				float x1 = (float)platform.getX();
+				float x2 = (float)(platform.getX() + platform.getHeight());
+				float y1 = (float)platform.getY();
+				float y2 = (float)(platform.getY() + platform.getHeight());
+				
+				Line l1 = new Line(x1, y1, x1, y2);
+				Line l2 = new Line(x1, y1, x2, y1);
+				Line l3 = new Line(x2, y1, x2, y2);
+				Line l4 = new Line(x1, y2, x2, y2);
+
+				
+				if(sight.intersects(l1) || sight.intersects(l2) || sight.intersects(l3) || sight.intersects(l4)) {
 					draw = false;
 				}
 			}
 			portal2.setDrawn(draw);
-			portal2.setX(d.mouseX);
-			portal2.setY(d.mouseY);
+			portal2.setX(surface.mouseX);
+			portal2.setY(surface.mouseY);
 		}
 	 }
 
