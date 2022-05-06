@@ -45,7 +45,10 @@ public class Person extends Rectangle2D.Double {
 	public void act(ArrayList<Platform> platforms) {
 		x += xSpeed;
 		y += ySpeed;
-		if (!standing(platforms)) ySpeed += GRAVITY;
+		if (!standing(platforms)) {
+			ySpeed += GRAVITY;
+			xSpeed *= 0.9;
+		}
 		else {
 			ySpeed = 0;
 			xSpeed *= 0.6;
