@@ -18,14 +18,20 @@ public class Portal extends Rectangle2D.Double {
 	public double x, y;
 	private PImage image;
 	private Rectangle2D.Double body;
+	private boolean drawn;
 
 	
-	public Portal(PImage image, double x, double y) {
+	public Portal(PImage image, double x, double y, boolean drawn) {
 		this.image = image;
 		this.x = x;
 		this.y = y;
 		body = new Rectangle2D.Double(x, y, WIDTH, HEIGHT);
+		this.drawn = drawn;
 
+	}
+	
+	public boolean getDrawn() {
+		return drawn;
 	}
 	
 	public Rectangle2D.Double getPortal() {

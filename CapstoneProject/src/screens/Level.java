@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import characters.Player;
 import core.DrawingSurface;
 import platforms.Platform;
+import portals.Portal;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.event.MouseEvent;
@@ -21,12 +22,15 @@ public class Level extends Screen {
 	 private Player player;
 	 private int level;
 	 private boolean keyTaken;
+	 private Portal portal1, portal2;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
 		 this.level = level;
 		 platforms = new ArrayList<Platform>();
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
+		 portal1 = new Portal(null, 0, 0);
+		 portal2 = new Portal(null, 0, 0);
 	 }
 	 
 	 private void initializeLocations() {
