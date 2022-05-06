@@ -14,7 +14,7 @@ public class Level extends Screen {
 	
 	 protected double startX, startY, keyX, keyY, gateX, gateY;
 	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon;
+	 protected PImage returnIcon, gate;
 	 protected Ellipse2D returnButton;
 	 private Player player;
 	 private int level;
@@ -43,6 +43,8 @@ public class Level extends Screen {
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
 		returnIcon = surface.loadImage("img/return.png");
 		returnIcon.resize(50, 50);
+		gate = surface.loadImage("img/gate.png");
+		gate.resize(100, 100); 
 		addPlatforms();
 		
 	 }
@@ -52,12 +54,14 @@ public class Level extends Screen {
 				PImage platform = surface.loadImage("img/platform.png");
 				platform.resize(100, 30);
 				platforms.add(new Platform(platform, startX, startY, 150, 30));
+				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 			}
 	 }
 		
 	 public void draw() {
 		 surface.background(0);
 		 surface.image(returnIcon, 10, 10);
+		 surface.image(gate, (int) gateX, (int) gateY);
 		 player.draw(surface);
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
