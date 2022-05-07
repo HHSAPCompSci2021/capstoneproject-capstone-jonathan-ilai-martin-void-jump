@@ -58,7 +58,8 @@ public class Menu extends Screen {
 		surface.image(returnIcon, 10, 10);
 		surface.textFont(surface.createFont("Skia-Regular_Bold", 80));
 		for (int i = 0 ; i < levelButtons.length ; i++) {
-			surface.fill(255, 255, 0);
+			if (Level.isCompleted(i)) surface.fill(0, 255, 0);
+			else surface.fill(255, 255, 0);
 			surface.circle((float) levelButtons[i].getCenterX(), 
 					(float) levelButtons[i].getCenterY(), 
 					(float) levelButtons[i].getWidth());

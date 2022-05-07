@@ -1,5 +1,10 @@
 package characters;
 
+import java.awt.Point;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
+import platforms.Platform;
 import processing.core.PImage;
 
 public class Player extends Person {
@@ -30,5 +35,6 @@ public class Player extends Person {
 	public void reset() {
 		hasKey = false;
 	}
+	
 
 }

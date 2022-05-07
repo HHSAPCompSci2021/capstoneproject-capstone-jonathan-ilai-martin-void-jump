@@ -21,6 +21,13 @@ public class Person extends Rectangle2D.Double {
 		this.image = image;
 	}
 	
+	public double getXSpeed() {
+		return xSpeed;
+	}
+	
+	public double getYSpeed() {
+		return ySpeed;
+	}
 	
 	public void draw(PApplet surface) {
 		if (image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);
@@ -28,18 +35,45 @@ public class Person extends Rectangle2D.Double {
 	
 	// METHODS
 	public void walk(int dir) {
+//		if (!inside) {
+//			if (Math.abs(xSpeed) <= 1) xSpeed += dir;
+//			else xSpeed = xSpeed > 0 ? 1 : -1;
+//		} else {
+//			if (dir > 0) x -= 0.1 * getWidth();
+//			else {
+//				double add = this instanceof Player ? 0.5 * getWidth() : 0.1 * getWidth();
+//				x += add;
+//			}
+//		}
 		if (Math.abs(xSpeed) <= 1) xSpeed += dir;
 		else xSpeed = xSpeed > 0 ? 1 : -1;
 	}
 
+
 	public void jump() {
-		if (!jumping) ySpeed -= 3;
+		if (!jumping) ySpeed -= 4;
 		jumping = true;
 	}
 	
 	public void act(ArrayList<Platform> platforms) {
+		//inside = false;
 		x += xSpeed;
 		y += ySpeed;
+		
+//		for (Platform platform : platforms) {
+//			int x = (int) (getX() + getWidth() * 0.1);
+//			int finalX = (int) (getX() + getWidth() * 0.9);
+//			int middleX = this instanceof Player ? (int) (getX() + getWidth() * 0.5) : finalX;
+//			int y = (int) (getY() + getHeight() * 0.1);
+//			int middleY = (int) (getY() + getHeight() * 0.5);
+//			int finalY = (int) (getY() + getHeight() * 0.9);
+//			Rectangle2D.Double body = platform.getPlatform();
+//			if (body.contains(new Point(x, y)) || body.contains(new Point(finalX, y))
+//					|| body.contains(new Point(x, finalY)) || body.contains(finalX, finalY)
+//					|| body.contains(new Point(x, middleY)) || body.contains(middleX, middleY))
+//				inside = true;
+//		}
+		
 		if (!standing(platforms)) {
 			ySpeed += GRAVITY;
 			xSpeed *= 0.9;
@@ -48,12 +82,16 @@ public class Person extends Rectangle2D.Double {
 			xSpeed *= 0.6;
 		}
 	}
+	
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
 
 	private boolean standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			int x = (int) getX();
 			int y = (int) getY();
-			int finalX = (int) (x + getWidth());
+			int finalX = this instanceof Player ? (int) (x + getWidth() / 2) : (int) (x + getWidth());
 			int finalY = (int) (y + getHeight());
 			Rectangle2D.Double platformBody = platform.getPlatform();
 			if (platformBody.contains(new Point(x, finalY))
@@ -64,7 +102,11 @@ public class Person extends Rectangle2D.Double {
 		}
 		return false;
 	}
-
+	
+	public void moveTo(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
 	
 	
 	
