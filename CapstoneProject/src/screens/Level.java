@@ -4,8 +4,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-
-import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import platforms.Platform;
@@ -41,7 +39,7 @@ public class Level extends Screen {
 			startX = 50;
 			startY = 200;
 			keyX = 200;
-			keyY = 200;
+			keyY = 300;
 			gateX = 600;
 			gateY = 400;
 		}
@@ -122,10 +120,8 @@ public class Level extends Screen {
 			 if (portal.getDrawn()) portal.draw(surface);
 		 }
 			 
-		 
 		 if (!canPortal) canPortal = canPortal();
 			
-		 
 		 for (int i = 0 ; i < portals.length ; i++) {
 			 Portal portal = portals[i];
 			 Portal other = i == 0 ? portals[1] : portals[0];
