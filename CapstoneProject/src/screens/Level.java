@@ -5,11 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
+import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import platforms.Platform;
 import portals.Portal;
-import platforms.SpikePlatform;
+import platforms.Spikes;
 import processing.core.PImage;
 import levi.shapes.Line;
 
@@ -73,10 +74,13 @@ public class Level extends Screen {
 	 protected void addPlatforms() {
 		 if (level == 1) {
 				PImage platform = surface.loadImage("img/platform.png");
+				PImage spikes = surface.loadImage("img/spikes.png");
+				spikes.resize(500, 30);
 				platform.resize(100, 30);
 				platforms.add(new Platform(platform, startX, startY, 150, 30));
 				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
-				platforms.add(new SpikePlatform(platform, 0, 560, 1000, 30));
+				platforms.add(new Spikes(spikes, 0, 560, 500, 30));
+				platforms.add(new Spikes(spikes, 500, 560, 500, 30));
 			}
 	 }
 		
@@ -88,6 +92,11 @@ public class Level extends Screen {
 		 player.draw(surface);
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
+			 if (platform instanceof Spikes) {
+				 if (platform.getPlatform().contains(new Point((int) (player.x + player.width), (int) (player.y + player.height)))) {
+					 reset();
+				 }
+			 }
 		 }
 		 if (!keyTaken && (player.contains(new Point((int) keyX, (int) keyY))
 				 || player.contains(new Point((int) (keyX + key.width), (int) keyY))
@@ -109,8 +118,10 @@ public class Level extends Screen {
 				player.jump();
 		 player.act(platforms);
 		
-		 for (Portal portal : portals)
-			 if (portal.getDrawn()) portal.draw(surface); 
+		 for (Portal portal : portals) {
+			 if (portal.getDrawn()) portal.draw(surface);
+		 }
+			 
 		 
 		 if (!canPortal) canPortal = canPortal();
 			

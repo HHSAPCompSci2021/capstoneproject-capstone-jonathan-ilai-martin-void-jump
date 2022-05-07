@@ -47,8 +47,25 @@ public class Person extends Rectangle2D.Double {
 //		}
 		if (Math.abs(xSpeed) <= 1) xSpeed += dir;
 		else xSpeed = xSpeed > 0 ? 1 : -1;
+		
 	}
 
+
+	private boolean inside(ArrayList<Platform> platforms) {
+		for (Platform platform : platforms) {
+			int x = (int) (getX() + xSpeed + getWidth() * 0.1);
+			int middleX = xSpeed > 0 ? (int) (x + getWidth() * 0.5) : (int) (x - getWidth() * 0.5);
+			int finalX = this instanceof Player ? middleX : xSpeed > 0 ? (int) (x + getWidth() * 0.9) : (int) (x - getWidth() * 0.9);
+			int y = (int) (getY() + ySpeed);
+			int middleY = (int) (y + getHeight() * 0.5);
+			int finalY = (int) (y + getHeight() * 0.9);
+			Rectangle2D.Double body = platform.getPlatform();
+			if (body.contains(new Point(x, y)) || body.contains(new Point(finalX, y))
+					|| body.contains(new Point(x, finalY)) || body.contains(finalX, finalY)
+					|| body.contains(new Point(x, middleY)) || body.contains(middleX, middleY)) return true;
+		}
+		return false;
+	}
 
 	public void jump() {
 		if (!jumping) ySpeed -= 4;
@@ -57,8 +74,11 @@ public class Person extends Rectangle2D.Double {
 	
 	public void act(ArrayList<Platform> platforms) {
 		//inside = false;
-		x += xSpeed;
-		y += ySpeed;
+		if (!inside(platforms)) {
+			x += xSpeed;
+			y += ySpeed;
+		} else xSpeed = 0;
+		
 		
 //		for (Platform platform : platforms) {
 //			int x = (int) (getX() + getWidth() * 0.1);
