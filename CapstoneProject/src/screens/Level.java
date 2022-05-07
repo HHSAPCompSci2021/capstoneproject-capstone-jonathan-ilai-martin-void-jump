@@ -117,7 +117,8 @@ public class Level extends Screen {
 		 player.act(platforms);
 		
 		 for (Portal portal : portals) {
-			 if (portal.getDrawn()) portal.draw(surface);
+			 if (portal.getDrawn() && !returnButton.contains(new Point((int)(portal.getX() + portal.getWidth()/2),(int) (portal.getY() + portal.getHeight()/2)))) 
+				 portal.draw(surface);
 		 }
 			 
 		 if (!canPortal) canPortal = canPortal();
