@@ -22,7 +22,7 @@ public class Level extends Screen {
 	 protected Ellipse2D returnButton;
 	 private Player player;
 	 private int level;
-	 private boolean keyTaken;
+	 private boolean keyTaken, canPortal;
 	 private Portal[] portals;
 	 private PImage p1, p2;
 	 private static boolean[] completed;
@@ -111,19 +111,28 @@ public class Level extends Screen {
 		
 		 for (Portal portal : portals)
 			 if (portal.getDrawn()) portal.draw(surface); 
+		 
+		 if (!canPortal) canPortal = canPortal();
 			
 		 
 		 for (int i = 0 ; i < portals.length ; i++) {
 			 Portal portal = portals[i];
 			 Portal other = i == 0 ? portals[1] : portals[0];
-			 if (portal.getDrawn() && other.getDrawn() && portal.intersects(player)) {
+			 if (portal.getDrawn() && other.getDrawn() && portal.intersects(player) && canPortal) {
 				 player.moveTo(other.getCenterX() - player.width / 2, other.getCenterY() - player.height / 2);
-				 other.setDrawn(false);
+				 canPortal = false;
 				 break;
 			 }
 		 }
 	}
 	 
+	private boolean canPortal() {
+		for (Portal portal : portals) {
+			if (portal.intersects(player)) return false;
+		}
+		return true;
+	}
+
 	public void mousePressed() {
 			
 		
