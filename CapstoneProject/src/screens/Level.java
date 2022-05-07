@@ -109,10 +109,8 @@ public class Level extends Screen {
 				player.jump();
 		 player.act(platforms);
 		
-		 for (Portal portal : portals) {
+		 for (Portal portal : portals)
 			 if (portal.getDrawn()) portal.draw(surface); 
-			 
-		 }
 			
 		 
 		 for (int i = 0 ; i < portals.length ; i++) {
