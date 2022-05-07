@@ -174,8 +174,8 @@ public class Level extends Screen {
 				}
 			}
 			portals[0].setDrawn(draw);
-			portals[0].setX(surface.mouseX);
-			portals[0].setY(surface.mouseY);
+			portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
+			portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
 		}
 	 
 		if (surface.mouseButton == surface.RIGHT) {
@@ -199,8 +199,8 @@ public class Level extends Screen {
 				}
 			}
 			portals[1].setDrawn(draw);
-			portals[1].setX(surface.mouseX);
-			portals[1].setY(surface.mouseY);
+			portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
+			portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
 		}
 	 }
 
