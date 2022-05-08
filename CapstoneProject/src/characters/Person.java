@@ -67,9 +67,11 @@ public class Person extends Rectangle2D.Double {
 		return false;
 	}
 
-	public void jump() {
-		if (!jumping) ySpeed -= 4;
-		jumping = true;
+	public void jump(ArrayList<Platform> platforms) {
+		if (standing(platforms)) {
+			if (!jumping) ySpeed -= 4;
+			jumping = true;
+		}
 	}
 	
 	public void act(ArrayList<Platform> platforms) {

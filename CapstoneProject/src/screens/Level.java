@@ -47,7 +47,7 @@ public class Level extends Screen {
 			startX = 600;
 			startY = 100;
 			keyX = 100;
-			keyY = 50;
+			keyY = 100;
 			gateX = 600;
 			gateY = 400;
 		}
@@ -93,6 +93,7 @@ public class Level extends Screen {
 		} else if (level == 2) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
+			platforms.add(new Platform(platform, keyX - 50, keyY + 50, 150, 30));
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
@@ -136,7 +137,7 @@ public class Level extends Screen {
 		 if (surface.isPressed(KeyEvent.VK_RIGHT))
 			player.walk(1);
 		 if (surface.isPressed(KeyEvent.VK_UP))
-				player.jump();
+				player.jump(platforms);
 		 player.act(platforms);
 		
 		 for (Portal portal : portals) {
@@ -185,10 +186,7 @@ public class Level extends Screen {
 				float x2 = (float)(platform.getX() + platform.getWidth());
 				float y1 = (float)(platform.getY() - platform.getHeight()/2);
 				float y2 = (float)(platform.getY() + platform.getHeight()/2);
-				
 
-				
-				
 				Line l1 = new Line(x1, y1, x1, y2);
 				Line l2 = new Line(x1, y1, x2, y1);
 				Line l3 = new Line(x2, y1, x2, y2);
