@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+
+import characters.Monster;
 import characters.Player;
 import core.DrawingSurface;
 import platforms.Platform;
@@ -21,6 +23,7 @@ public class Level extends Screen {
 	 protected PImage returnIcon, gate, key, dungeon;
 	 protected Ellipse2D returnButton, noPortalZone;
 	 private Player player;
+	 private Monster monster;
 	 private int level;
 	 private boolean keyTaken, canPortal;
 	 private Portal[] portals;
@@ -57,6 +60,7 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
+			monster = new Monster(surface.loadImage("img/Wizard.png"), keyX, keyY);
 		}
 	}
 	 
@@ -101,6 +105,11 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 			platforms.add(new Platform(platform, keyX - 50, keyY + 50, 150, 30));
+		}
+		else if(level == 3) {
+			platforms.add(new Platform(platform, startX, startY, 50, 30));
+			platforms.add(new Platform(platform, 200, 0, 30, 200));
+			
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
