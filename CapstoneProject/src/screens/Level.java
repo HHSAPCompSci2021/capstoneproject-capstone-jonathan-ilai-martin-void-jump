@@ -83,7 +83,7 @@ public class Level extends Screen {
 	 }
 		
 	 public void draw() {
-		 surface.background(0);
+		 surface.background(225);
 		 surface.image(returnIcon, 10, 10);
 		 surface.image(gate, (int) gateX, (int) gateY);
 		 if (!keyTaken) surface.image(key, (int) keyX, (int) keyY);
@@ -152,8 +152,9 @@ public class Level extends Screen {
 			
 		if (surface.mouseButton == surface.LEFT) {
 			boolean draw = true;
-			Line sight = new Line((float)(surface.mouseX + 35),(float)(surface.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
+			Line sight = new Line((float)(surface.mouseX),(float)(surface.mouseY), (float) (player.getX() + 35), (float)(player.getY() + 50));
 			
+			sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getHeight());
@@ -170,15 +171,20 @@ public class Level extends Screen {
 					draw = false;
 				}
 			}
+			
+			if(draw) {
+				portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
+				portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
+			}
+			
 			portals[0].setDrawn(draw);
-			portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
-			portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
+			
 		}
 	 
 		if (surface.mouseButton == surface.RIGHT) {
 			boolean draw = true;
-			Line sight = new Line((float)(surface.mouseX + 35),(float)(surface.mouseY + 50), (float) (player.getX() + 35), (float)(player.getY() + 50));
-			
+			Line sight = new Line((float)(surface.mouseX),(float)(surface.mouseY), (float) (player.getX() + 35), (float)(player.getY() + 50));
+			sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getHeight());
@@ -193,11 +199,15 @@ public class Level extends Screen {
 				
 				if(sight.intersects(l1) || sight.intersects(l2) || sight.intersects(l3) || sight.intersects(l4)) {
 					draw = false;
+					System.out.println("i like ilai");
 				}
 			}
+			if(draw) {
+				portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
+				portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
+			}
 			portals[1].setDrawn(draw);
-			portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
-			portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
+			
 		}
 	 }
 
