@@ -155,12 +155,14 @@ public class Level extends Screen {
 			boolean draw = true;
 			Line sight = new Line((float)(surface.mouseX),(float)(surface.mouseY), (float) (player.getX() + 35), (float)(player.getY() + 50));
 			
-			sight.draw(surface);
+			//sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getWidth());
 				float y1 = (float)(platform.getY() - platform.getHeight()/2);
 				float y2 = (float)(platform.getY() + platform.getHeight()/2);
+				
+
 				
 				
 				Line l1 = new Line(x1, y1, x1, y2);
@@ -168,10 +170,10 @@ public class Level extends Screen {
 				Line l3 = new Line(x2, y1, x2, y2);
 				Line l4 = new Line(x1, y2, x2, y2);
 				
-				l1.draw(surface);
-				l2.draw(surface);
-				l3.draw(surface);
-				l4.draw(surface);
+//				l1.draw(surface);
+//				l2.draw(surface);
+//				l3.draw(surface);
+//				l4.draw(surface);
 				
 				
 				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
@@ -182,9 +184,10 @@ public class Level extends Screen {
 			if(draw) {
 				portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
 				portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
+				portals[0].setDrawn(draw);
 			}
 			
-			portals[0].setDrawn(draw);
+			
 			
 		}
 	 
@@ -193,7 +196,7 @@ public class Level extends Screen {
 			Line sight = new Line((float)(surface.mouseX),(float)(surface.mouseY), (float) (player.getX() + 35), (float)(player.getY() + 50));
 
 
-			sight.draw(surface);
+		//	sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getWidth());
@@ -205,10 +208,10 @@ public class Level extends Screen {
 				Line l3 = new Line(x2, y1, x2, y2);
 				Line l4 = new Line(x1, y2, x2, y2);
 
-				l1.draw(surface);
-				l2.draw(surface);
-				l3.draw(surface);
-				l4.draw(surface);
+//				l1.draw(surface);
+//				l2.draw(surface);
+//				l3.draw(surface);
+//				l4.draw(surface);
 				
 				
 				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
@@ -220,8 +223,9 @@ public class Level extends Screen {
 			if(draw) {
 				portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
 				portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
+				portals[1].setDrawn(draw);
 			}
-			portals[1].setDrawn(draw);
+			
 			
 		}
 	 }
