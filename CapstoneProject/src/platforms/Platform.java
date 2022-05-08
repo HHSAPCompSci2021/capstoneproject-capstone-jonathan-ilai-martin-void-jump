@@ -20,7 +20,7 @@ public class Platform extends Rectangle2D.Double{
 	}
 	
 	public void draw(PApplet surface) {
-		if (image != null) surface.image(image, (float) x, (float) y, (float) width, (float) height);
+		if (image != null) surface.image(image, (float) body.x, (float) body.y, (float) body.width, (float) body.height);
 	}
 	
 	public Rectangle2D.Double getPlatform() {
@@ -28,19 +28,19 @@ public class Platform extends Rectangle2D.Double{
 	}
 	
 	public double getX() {
-		return x;
+		return body.x;
 	}
 	
 	public double getY() {
-		return y;
+		return body.y;
 	}
 	
 	public double getWidth() {
-		return width;
+		return body.width;
 	}
 	
 	public double getHeight() {
-		return height;
+		return body.height;
 	}
 	
 	
