@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Platform {
+public class Platform extends Rectangle2D.Double{
 	
 	private double x, y, width, height;
 	private PImage image;

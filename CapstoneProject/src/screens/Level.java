@@ -10,7 +10,8 @@ import platforms.Platform;
 import portals.Portal;
 import platforms.Spikes;
 import processing.core.PImage;
-import levi.shapes.Line;
+import portals.Line;
+
 
 
 public class Level extends Screen {
@@ -75,8 +76,8 @@ public class Level extends Screen {
 				PImage spikes = surface.loadImage("img/spikes.png");
 				spikes.resize(500, 30);
 				platform.resize(100, 30);
-				platforms.add(new Platform(platform, startX, startY, 150, 30));
-				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
+				platforms.add(new Platform(platform, startX, startY, 100, 30));
+				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 100, 30));
 				platforms.add(new Spikes(spikes, 0, 560, 500, 30));
 				platforms.add(new Spikes(spikes, 500, 560, 500, 30));
 			}
@@ -157,17 +158,23 @@ public class Level extends Screen {
 			sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
-				float x2 = (float)(platform.getX() + platform.getHeight());
-				float y1 = (float)platform.getY();
-				float y2 = (float)(platform.getY() + platform.getHeight());
+				float x2 = (float)(platform.getX() + platform.getWidth());
+				float y1 = (float)(platform.getY() - platform.getHeight()/2);
+				float y2 = (float)(platform.getY() + platform.getHeight()/2);
+				
 				
 				Line l1 = new Line(x1, y1, x1, y2);
 				Line l2 = new Line(x1, y1, x2, y1);
 				Line l3 = new Line(x2, y1, x2, y2);
 				Line l4 = new Line(x1, y2, x2, y2);
-
 				
-				if(sight.intersects(l1) || sight.intersects(l2) || sight.intersects(l3) || sight.intersects(l4)) {
+				l1.draw(surface);
+				l2.draw(surface);
+				l3.draw(surface);
+				l4.draw(surface);
+				
+				
+				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
 					draw = false;
 				}
 			}
@@ -184,23 +191,31 @@ public class Level extends Screen {
 		if (surface.mouseButton == surface.RIGHT) {
 			boolean draw = true;
 			Line sight = new Line((float)(surface.mouseX),(float)(surface.mouseY), (float) (player.getX() + 35), (float)(player.getY() + 50));
+
+
 			sight.draw(surface);
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
-				float x2 = (float)(platform.getX() + platform.getHeight());
-				float y1 = (float)platform.getY();
-				float y2 = (float)(platform.getY() + platform.getHeight());
+				float x2 = (float)(platform.getX() + platform.getWidth());
+				float y1 = (float)(platform.getY() - platform.getHeight()/2);
+				float y2 = (float)(platform.getY() + platform.getHeight()/2);
 				
 				Line l1 = new Line(x1, y1, x1, y2);
 				Line l2 = new Line(x1, y1, x2, y1);
 				Line l3 = new Line(x2, y1, x2, y2);
 				Line l4 = new Line(x1, y2, x2, y2);
 
+				l1.draw(surface);
+				l2.draw(surface);
+				l3.draw(surface);
+				l4.draw(surface);
 				
-				if(sight.intersects(l1) || sight.intersects(l2) || sight.intersects(l3) || sight.intersects(l4)) {
+				
+				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
+				
 					draw = false;
-					System.out.println("i like ilai");
 				}
+				
 			}
 			if(draw) {
 				portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
