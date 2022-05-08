@@ -35,16 +35,6 @@ public class Person extends Rectangle2D.Double {
 	
 	// METHODS
 	public void walk(int dir) {
-//		if (!inside) {
-//			if (Math.abs(xSpeed) <= 1) xSpeed += dir;
-//			else xSpeed = xSpeed > 0 ? 1 : -1;
-//		} else {
-//			if (dir > 0) x -= 0.1 * getWidth();
-//			else {
-//				double add = this instanceof Player ? 0.5 * getWidth() : 0.1 * getWidth();
-//				x += add;
-//			}
-//		}
 		if (Math.abs(xSpeed) <= 1) xSpeed += dir;
 		else xSpeed = xSpeed > 0 ? 1 : -1;
 		
@@ -82,20 +72,6 @@ public class Person extends Rectangle2D.Double {
 		} else xSpeed = 0;
 		
 		
-//		for (Platform platform : platforms) {
-//			int x = (int) (getX() + getWidth() * 0.1);
-//			int finalX = (int) (getX() + getWidth() * 0.9);
-//			int middleX = this instanceof Player ? (int) (getX() + getWidth() * 0.5) : finalX;
-//			int y = (int) (getY() + getHeight() * 0.1);
-//			int middleY = (int) (getY() + getHeight() * 0.5);
-//			int finalY = (int) (getY() + getHeight() * 0.9);
-//			Rectangle2D.Double body = platform.getPlatform();
-//			if (body.contains(new Point(x, y)) || body.contains(new Point(finalX, y))
-//					|| body.contains(new Point(x, finalY)) || body.contains(finalX, finalY)
-//					|| body.contains(new Point(x, middleY)) || body.contains(middleX, middleY))
-//				inside = true;
-//		}
-		
 		if (!standing(platforms)) {
 			ySpeed += GRAVITY;
 			xSpeed *= 0.9;
@@ -109,7 +85,7 @@ public class Person extends Rectangle2D.Double {
 		this.jumping = jumping;
 	}
 
-	private boolean standing(ArrayList<Platform> platforms) {
+	protected boolean standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			int x = (int) getX();
 			int y = (int) getY();
