@@ -50,6 +50,13 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
+		} else if (level == 3) {
+			startX = 50;
+			startY = 100;
+			keyX = 400;
+			keyY = 100;
+			gateX = 600;
+			gateY = 400;
 		}
 	}
 	 
@@ -184,8 +191,8 @@ public class Level extends Screen {
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getWidth());
-				float y1 = (float)(platform.getY() - platform.getHeight()/2);
-				float y2 = (float)(platform.getY() + platform.getHeight()/2);
+				float y1 = (float)(platform.getY());
+				float y2 = (float)(platform.getY() + platform.getHeight());
 
 				Line l1 = new Line(x1, y1, x1, y2);
 				Line l2 = new Line(x1, y1, x2, y1);
@@ -232,8 +239,8 @@ public class Level extends Screen {
 			for(Platform platform : platforms) {
 				float x1 = (float)platform.getX();
 				float x2 = (float)(platform.getX() + platform.getWidth());
-				float y1 = (float)(platform.getY() - platform.getHeight()/2);
-				float y2 = (float)(platform.getY() + platform.getHeight()/2);
+				float y1 = (float)(platform.getY());
+				float y2 = (float)(platform.getY() + platform.getHeight());
 				
 				Line l1 = new Line(x1, y1, x1, y2);
 				Line l2 = new Line(x1, y1, x2, y1);
@@ -247,7 +254,6 @@ public class Level extends Screen {
 				
 				
 				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
-				
 					draw = false;
 				}
 				

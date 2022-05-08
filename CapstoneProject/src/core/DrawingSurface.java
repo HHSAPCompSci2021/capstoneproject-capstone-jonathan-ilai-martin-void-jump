@@ -40,6 +40,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		Level level2 = new Level(2, this);
 		screens.add(level2);
 		
+		Level level3 = new Level(3, this);
+		screens.add(level3);
+		
 		activeScreen = screens.get(0);
 	}
 	
