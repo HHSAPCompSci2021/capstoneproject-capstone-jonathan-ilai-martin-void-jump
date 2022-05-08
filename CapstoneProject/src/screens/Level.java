@@ -77,7 +77,7 @@ public class Level extends Screen {
 				spikes.resize(500, 30);
 				platform.resize(100, 30);
 				platforms.add(new Platform(platform, startX, startY, 100, 30));
-				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 100, 30));
+				platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 				platforms.add(new Spikes(spikes, 0, 560, 500, 30));
 				platforms.add(new Spikes(spikes, 500, 560, 500, 30));
 			}
