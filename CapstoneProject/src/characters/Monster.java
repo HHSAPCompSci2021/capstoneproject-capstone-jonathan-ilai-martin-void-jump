@@ -9,9 +9,10 @@ import processing.core.PImage;
 public class Monster extends Person {
 	
 	
+	public static double WIDTH = 70, HEIGHT = 100;
 	
-	public Monster(PImage image, double x, double y, double width, double height) {
-		super(image, x, y, width, height);
+	public Monster(PImage image, double x, double y) {
+		super(image, x, y, WIDTH, HEIGHT);
 		
 	}
 	
@@ -19,8 +20,12 @@ public class Monster extends Person {
 	
 	public void act(ArrayList<Platform> platforms) {
 		super.act(platforms);
+		int dir = 1;
 		if(super.standing(platforms)) {
-			
+			super.walk(dir);
+		}
+		else {
+			dir = dir*(-1);
 		}
 	}
 	
