@@ -157,11 +157,13 @@ public class Level extends Screen {
 			 reset();
 		 }
 		 
-		 
-		 if (surface.isPressed(KeyEvent.VK_LEFT))
-			player.walk(-1);
-		 if (surface.isPressed(KeyEvent.VK_RIGHT))
-			player.walk(1);
+		 if (!player.touchingWall(platforms)) {
+			 if (surface.isPressed(KeyEvent.VK_LEFT))
+				player.walk(-1);
+			 if (surface.isPressed(KeyEvent.VK_RIGHT))
+				 player.walk(1);
+		 }
+		
 		 if (surface.isPressed(KeyEvent.VK_UP))
 				player.jump(platforms);
 		 player.act(platforms);

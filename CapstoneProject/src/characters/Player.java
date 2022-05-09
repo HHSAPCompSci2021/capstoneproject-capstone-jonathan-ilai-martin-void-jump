@@ -35,6 +35,8 @@ public class Player extends Person {
 	public void reset() {
 		hasKey = false;
 	}
+
+	
 	
 
 }
