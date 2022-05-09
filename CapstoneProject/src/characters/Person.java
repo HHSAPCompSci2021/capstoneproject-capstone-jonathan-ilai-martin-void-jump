@@ -25,6 +25,14 @@ public class Person extends Rectangle2D.Double {
 		return xSpeed;
 	}
 	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
 	public double getYSpeed() {
 		return ySpeed;
 	}
@@ -104,6 +112,17 @@ public class Person extends Rectangle2D.Double {
 	public void moveTo(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Platform getPlatform(ArrayList<Platform> platforms) {
+		for (Platform platform : platforms) {
+			ArrayList<Platform> platformBelow = new ArrayList<Platform>();
+			platformBelow.add(platform);
+			if (standing(platformBelow)) {
+				return platform;
+			}
+		}
+		return null;
 	}
 	
 	

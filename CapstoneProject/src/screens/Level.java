@@ -61,7 +61,7 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
-			monster = new Monster(surface.loadImage("img/Wizard.png"), keyX, keyY);
+			monster = new Monster(surface.loadImage("img/Wizard.png"), 350, 150, true);
 		}
 	}
 	 
@@ -125,17 +125,22 @@ public class Level extends Screen {
 	 }
 		
 	 public void draw() {
-		 surface.background(225);
-		 surface.image(dungeon, 0, 0);
-		 surface.image(returnIcon, 10, 10);
-		 surface.image(gate, (int) gateX, (int) gateY);
-		 surface.noFill();
-		 surface.stroke(255);
-		 surface.strokeWeight(6);
-		 surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
-		 if (!keyTaken) surface.image(key, (int) keyX, (int) keyY);
+		surface.background(225);
+		surface.image(dungeon, 0, 0);
+		surface.image(returnIcon, 10, 10);
+		surface.image(gate, (int) gateX, (int) gateY);
+		surface.noFill();
+		surface.stroke(255);
+		surface.strokeWeight(6);
+		surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
+		if (!keyTaken) 
+			surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
-		 monster.draw(surface);
+		if(monster != null) {
+			monster.draw(surface);
+			monster.act(platforms);
+			 	
+		}
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 			 if (platform instanceof Spikes) {
