@@ -14,7 +14,7 @@ public class Person extends Rectangle2D.Double {
 
 	private double xSpeed, ySpeed;
 	private PImage image;
-	private final double GRAVITY = 0.1;
+	private final double GRAVITY = 0.15;
 	private boolean jumping, drawn;
 	
 	public Person(PImage image, double x, double y, double width, double height) {
@@ -80,7 +80,7 @@ public class Person extends Rectangle2D.Double {
 
 	public void jump(ArrayList<Platform> platforms) {
 		if (standing(platforms)) {
-			if (!jumping) ySpeed -= 4;
+			if (!jumping) ySpeed -= 5;
 			jumping = true;
 		}
 	}

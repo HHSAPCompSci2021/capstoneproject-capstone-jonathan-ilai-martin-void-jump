@@ -77,6 +77,7 @@ public class Level extends Screen {
 		for (Person character : characters) 
 			character.reset();
 		player.moveTo(startX, startY - player.HEIGHT);
+		if (level == 3) monster.moveTo(350, 150);
 		for (Portal portal : portals) portal.setDrawn(false);
 	}
 
@@ -267,7 +268,7 @@ public class Level extends Screen {
 			}
 			
 			surface.stroke(255,165,0);
-			sight.draw(surface);
+			if (!returnButton.contains(new Point(surface.mouseX, surface.mouseY))) sight.draw(surface);
 			
 			if(draw) {
 				
@@ -275,11 +276,6 @@ public class Level extends Screen {
 				portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
 				portals[0].setDrawn(draw);
 			}
-			
-			
-			
-			
-			
 		}
 	 
 		if (surface.mouseButton == surface.RIGHT) {
