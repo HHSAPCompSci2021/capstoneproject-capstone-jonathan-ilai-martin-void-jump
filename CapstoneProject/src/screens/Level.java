@@ -96,7 +96,7 @@ public class Level extends Screen {
 
 	 protected void addPlatforms() {
 		 PImage platform = surface.loadImage("img/platform.png");
-		 PImage wall = surface.loadImage("img/wall.jpg");
+		 PImage wall = surface.loadImage("img/wall.png");
 		 PImage spikes = surface.loadImage("img/spikes.png");
 		 spikes.resize(500, 70);
 			platform.resize(100, 30);
@@ -162,10 +162,13 @@ public class Level extends Screen {
 			 reset();
 		 }
 		 
-		 if (surface.isPressed(KeyEvent.VK_LEFT))
-			player.walk(-1);
-		 if (surface.isPressed(KeyEvent.VK_RIGHT))
-			player.walk(1);
+		 if (!player.touchingWall(platforms)) {
+			 if (surface.isPressed(KeyEvent.VK_LEFT))
+				player.walk(-1);
+			 if (surface.isPressed(KeyEvent.VK_RIGHT))
+				 player.walk(1);
+		 }
+		
 		 if (surface.isPressed(KeyEvent.VK_UP))
 				player.jump(platforms);
 		 player.act(platforms);
