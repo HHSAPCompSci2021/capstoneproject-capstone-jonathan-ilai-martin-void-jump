@@ -11,6 +11,7 @@ import core.DrawingSurface;
 import platforms.Platform;
 import portals.Portal;
 import platforms.Spikes;
+import platforms.Wall;
 import processing.core.PImage;
 import portals.Line;
 
@@ -95,6 +96,7 @@ public class Level extends Screen {
 
 	 protected void addPlatforms() {
 		 PImage platform = surface.loadImage("img/platform.png");
+		 PImage wall = surface.loadImage("img/wall.jpg");
 		 PImage spikes = surface.loadImage("img/spikes.png");
 		 spikes.resize(500, 70);
 			platform.resize(100, 30);
@@ -108,12 +110,13 @@ public class Level extends Screen {
 		}
 		else if(level == 3) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
-			platforms.add(new Platform(platform, 200, 0, 30, 200));
+			platforms.add(new Wall(wall, 200, 0, 30, 200));
 			platforms.add(new Platform(platform, 150, 400, 50, 30));
 			platforms.add(new Platform(platform, 300, 250, 200, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 			
 
+			
 			
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
