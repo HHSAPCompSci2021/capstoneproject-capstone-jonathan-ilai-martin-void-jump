@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import characters.Monster;
 import characters.Player;
 import core.DrawingSurface;
+import ilaitm12.shapes.Line;
 import platforms.Platform;
+//import portals.LineIlai;
 import portals.Portal;
 import platforms.Spikes;
 import platforms.Wall;
 import processing.core.PImage;
-import portals.Line;
 
 
 
@@ -39,7 +40,7 @@ public class Level extends Screen {
 		 completed = new boolean[12];
 	 }
 	 
-	 private void initializeLocations() {
+	 private void initializeLevel() {
 		if (level == 1) {
 			startX = 50;
 			startY = 200;
@@ -61,7 +62,7 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
-			monster = new Monster(surface.loadImage("img/Wizard.png"), 350, 150, true);
+			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 		}
 	}
 	 
@@ -73,7 +74,7 @@ public class Level extends Screen {
 	}
 
 	public void setup() {
-		initializeLocations();
+		initializeLevel();
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
 		returnIcon = surface.loadImage("img/return.png");
 		returnIcon.resize(50, 50);
@@ -237,10 +238,11 @@ public class Level extends Screen {
 				}
 				
 				if (!draw) {
-					if (l1.intersects(sight)) sight.setPoint2(l1.getIntersectionX(sight), l1.getIntersectionY(sight));
-					else if (l2.intersects(sight)) sight.setPoint2(l2.getIntersectionX(sight), l2.getIntersectionY(sight));
-					else if (l3.intersects(sight)) sight.setPoint2(l3.getIntersectionX(sight), l3.getIntersectionY(sight));
-					else if (l4.intersects(sight)) sight.setPoint2(l4.getIntersectionX(sight), l4.getIntersectionY(sight));
+			
+					if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
+					else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
+					else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
+					else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
 				}
 			}
 			
@@ -284,10 +286,10 @@ public class Level extends Screen {
 				}
 				
 				if (!draw) {
-					if (l1.intersects(sight)) sight.setPoint2(l1.getIntersectionX(sight), l1.getIntersectionY(sight));
-					else if (l2.intersects(sight)) sight.setPoint2(l2.getIntersectionX(sight), l2.getIntersectionY(sight));
-					else if (l3.intersects(sight)) sight.setPoint2(l3.getIntersectionX(sight), l3.getIntersectionY(sight));
-					else if (l4.intersects(sight)) sight.setPoint2(l4.getIntersectionX(sight), l4.getIntersectionY(sight));
+					if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
+					else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
+					else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
+					else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
 				}
 				
 			}

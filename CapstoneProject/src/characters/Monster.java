@@ -9,7 +9,7 @@ import processing.core.PImage;
 public class Monster extends Person {
 	
 	
-	public static double WIDTH = 70, HEIGHT = 100;
+	public static double WIDTH = 50, HEIGHT = 100;
 	private boolean turnRight;
 	
 	public Monster(PImage image, double x, double y, boolean right) {
@@ -23,8 +23,8 @@ public class Monster extends Person {
 			if (turnRight) walk(1);
 			else walk(-1);
 			
-			if (Math.abs(getX() - (getPlatform(platforms).getX() + getPlatform(platforms).getWidth() - getWidth())) < 1) turnRight = !turnRight;
-			if (Math.abs(getX() - (getPlatform(platforms).getX())) < 1) turnRight = !turnRight;
+			if (turnRight && Math.abs(getX() - (getPlatform(platforms).getX() + getPlatform(platforms).getWidth() - getWidth())) < 1) turnRight = !turnRight;
+			if (!turnRight && Math.abs(getX() - (getPlatform(platforms).getX())) < 1) turnRight = !turnRight;
 			
 //			if(getX() < getPlatform(platforms).getX() + getPlatform(platforms).getWidth() - getWidth() && right) {
 //				super.walk(1);
