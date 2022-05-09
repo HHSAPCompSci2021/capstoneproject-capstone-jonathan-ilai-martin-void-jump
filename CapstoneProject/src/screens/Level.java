@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 import characters.Monster;
+import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
@@ -33,6 +34,7 @@ public class Level extends Screen {
 	 private Portal[] portals;
 	 private PImage p1, p2;
 	 private static boolean[] completed;
+	 private ArrayList<Person> characters;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
@@ -40,6 +42,7 @@ public class Level extends Screen {
 		 platforms = new ArrayList<Platform>();
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
 		 completed = new boolean[12];
+		 characters = new ArrayList<Person>();
 	 }
 	 
 	 private void initializeLevel() {
@@ -65,12 +68,14 @@ public class Level extends Screen {
 			gateX = 600;
 			gateY = 400;
 			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
+			 characters.add(monster);
 		}
 	}
 	 
 	public void reset() {
 		keyTaken = false;
-		player.reset();
+		for (Person character : characters) 
+			character.reset();
 		player.moveTo(startX, startY - player.HEIGHT);
 		for (Portal portal : portals) portal.setDrawn(false);
 	}
@@ -78,6 +83,7 @@ public class Level extends Screen {
 	public void setup() {
 		initializeLevel();
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
+		characters.add(player);
 		returnIcon = surface.loadImage("img/return.png");
 		returnIcon.resize(50, 50);
 		dungeon = surface.loadImage("img/dungeon.jpg");
@@ -147,9 +153,13 @@ public class Level extends Screen {
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 			 if (platform instanceof Spikes) {
-				 if (platform.getPlatform().contains(new Point((int) (player.x + player.width), (int) (player.y + player.height)))) {
-					 reset();
+				 for (Person character : characters) {
+					 if (platform.getPlatform().contains(new Point((int) (character.x + character.width), (int) (character.y + character.height)))) {
+						 character.disappear();
+						 if (character instanceof Player) reset();
+					 }
 				 }
+				 
 			 }
 		 }
 		 if (!keyTaken && (player.contains(new Point((int) keyX, (int) keyY))
@@ -187,17 +197,24 @@ public class Level extends Screen {
 		 for (int i = 0 ; i < portals.length ; i++) {
 			 Portal portal = portals[i];
 			 Portal other = i == 0 ? portals[1] : portals[0];
-			 if (portal.getDrawn() && other.getDrawn() && portal.intersects(player) && canPortal) {
-				 player.moveTo(other.getCenterX() - player.width / 2, other.getCenterY() - player.height / 2);
-				 canPortal = false;
-				 break;
+			 for (Person character : characters) {
+//				 Portal portal = portals[i];
+//				 Portal other = i == 0 ? portals[1] : portals[0];
+				 if (character != null && portal.getDrawn() && other.getDrawn() && portal.isInside(character) && canPortal) {
+					 character.moveTo(other.getCenterX() - character.width / 2, other.getCenterY() - character.height / 2);
+					 canPortal = false;
+					 break;
+				 }
 			 }
+			 
 		 }
 	}
 	 
 	private boolean canPortal() {
 		for (Portal portal : portals) {
-			if (portal.intersects(player)) return false;
+			for (Person character : characters) {
+				if (character != null && portal.intersects(character)) return false;
+			}
 		}
 		return true;
 	}
@@ -210,6 +227,7 @@ public class Level extends Screen {
 			reset();
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 		}
+		
 			
 		boolean draw = true;
 		Line sight = new Line((float) (player.getX() + 35), (float)(player.getY() + 50), (float)(surface.mouseX),(float)(surface.mouseY));

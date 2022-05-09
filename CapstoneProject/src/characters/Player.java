@@ -33,6 +33,7 @@ public class Player extends Person {
 	}
 	
 	public void reset() {
+		super.reset();
 		hasKey = false;
 	}
 

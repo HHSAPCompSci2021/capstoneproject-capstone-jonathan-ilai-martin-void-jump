@@ -15,11 +15,19 @@ public class Person extends Rectangle2D.Double {
 	private double xSpeed, ySpeed;
 	private PImage image;
 	private final double GRAVITY = 0.1;
-	private boolean jumping;
+	private boolean jumping, drawn;
 	
 	public Person(PImage image, double x, double y, double width, double height) {
 		super(x, y, width, height);
 		this.image = image;
+		drawn = true;
+	}
+	
+	public void reset() {
+		xSpeed = 0;
+		ySpeed = 0;
+		jumping = false;
+		drawn = true;
 	}
 	
 	public double getXSpeed() {
@@ -39,7 +47,11 @@ public class Person extends Rectangle2D.Double {
 	}
 	
 	public void draw(PApplet surface) {
-		if (image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);
+		if (drawn && image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);
+	}
+	
+	public void disappear() {
+		drawn = false;
 	}
 	
 	// METHODS

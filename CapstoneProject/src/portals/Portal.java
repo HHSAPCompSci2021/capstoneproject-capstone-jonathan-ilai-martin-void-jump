@@ -2,6 +2,7 @@ package portals;
 
 import java.awt.geom.Rectangle2D;
 
+import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import processing.core.PApplet;
@@ -56,9 +57,8 @@ public class Portal extends Rectangle2D.Double {
 	}
 	
 	
-	public boolean isInside(Player p) {
-		
-		Point center = new Point((int)(p.getX() + 35), (int)(p.getY() + 50));
+	public boolean isInside(Person p) {
+		Point center = new Point((int)(p.getX() + p.getWidth() / 2), (int)(p.getY() + p.getHeight() / 2));
 		return contains(center);
 	}
 	
