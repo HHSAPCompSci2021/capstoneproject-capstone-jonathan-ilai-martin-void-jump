@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
+
 import characters.Monster;
 import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
+//import ilaitm12.shapes.Line;
 import platforms.Platform;
 //import portals.LineIlai;
 import portals.Portal;
@@ -227,10 +229,10 @@ public class Level extends Screen {
 				Line l4 = new Line(x1, y2, x2, y2);
 				
 				
-				l1.draw(surface);
-				l2.draw(surface);
-				l3.draw(surface);
-				l4.draw(surface);
+//				l1.draw(surface);
+//				l2.draw(surface);
+//				l3.draw(surface);
+//				l4.draw(surface);
 				
 				
 				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
