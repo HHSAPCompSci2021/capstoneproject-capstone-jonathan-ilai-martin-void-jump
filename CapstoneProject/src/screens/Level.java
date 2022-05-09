@@ -227,10 +227,10 @@ public class Level extends Screen {
 				Line l4 = new Line(x1, y2, x2, y2);
 				
 				
-//				l1.draw(surface);
-//				l2.draw(surface);
-//				l3.draw(surface);
-//				l4.draw(surface);
+				l1.draw(surface);
+				l2.draw(surface);
+				l3.draw(surface);
+				l4.draw(surface);
 				
 				
 				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
