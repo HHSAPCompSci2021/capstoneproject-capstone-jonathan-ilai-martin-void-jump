@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import platforms.Platform;
+import platforms.Wall;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -92,11 +93,20 @@ public class Person extends Rectangle2D.Double {
 			int finalX = this instanceof Player ? (int) (x + getWidth() / 2) : (int) (x + getWidth());
 			int finalY = (int) (y + getHeight());
 			Rectangle2D.Double platformBody = platform.getPlatform();
-			if (platformBody.contains(new Point(x, finalY))
-					|| platformBody.contains(new Point(finalX, finalY))) {
+			if ((platformBody.contains(new Point(x, finalY)) 
+					|| platformBody.contains(new Point(finalX, finalY))) 
+					&& !(platform instanceof Wall)) {
 				jumping = false;
 				return true;
 			}
+//			else if ((platformBody.contains(new Point(x, finalY)) 
+//					|| platformBody.contains(new Point(finalX, finalY))) 
+//					&& (platform instanceof Wall)) {
+//				xSpeed = 0;
+//				ySpeed = 1;
+//				return false;
+//			}
+			
 		}
 		return false;
 	}
