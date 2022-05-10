@@ -187,15 +187,7 @@ public class Level extends Screen {
 		 player.draw(surface);
 
 
-		if(monster != null) {
-			monster.draw(surface);
-			monster.act(platforms);
-			
-			if(monster.kill(player)) {
-				reset();
-			}
-			 	
-		}
+	
 		
 		double x1 = player.x;
 		double x2 = player.x + player.width;
