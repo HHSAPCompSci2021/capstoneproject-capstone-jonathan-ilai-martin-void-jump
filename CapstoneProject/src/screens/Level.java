@@ -11,6 +11,7 @@ import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
+import platforms.ForceBarrier;
 //import ilaitm12.shapes.Line;
 import platforms.Platform;
 //import portals.LineIlai;
@@ -69,7 +70,15 @@ public class Level extends Screen {
 			gateY = 400;
 			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			 characters.add(monster);
+		} else if(level == 4) {
+			startX = 350;
+			startY = 100;
+			keyX = 375;
+			keyY = 300;
+			gateX = 350;
+			gateY = 400;
 		}
+		
 	}
 	 
 	public void reset() {
@@ -124,10 +133,15 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, 150, 400, 50, 30));
 			platforms.add(new Platform(platform, 300, 250, 200, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
-			
+		}
+		else if(level == 4) {
+			platforms.add(new Platform(platform, startX, startY, 100, 30));
+			platforms.add(new Platform(platform, startX - 275, startY + 250, 200, 30));
+			platforms.add(new Platform(platform, startX + 150, startY + 250, 200, 30));
+			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
+			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
+			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 
-			
-			
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
@@ -143,15 +157,18 @@ public class Level extends Screen {
 		surface.stroke(255);
 		surface.strokeWeight(6);
 		surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
-		if(monster.kill(player)) {
-			reset();
-		}
+		
+		
 		if (!keyTaken) 
 			surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
 		if(monster != null) {
 			monster.draw(surface);
 			monster.act(platforms);
+			
+			if(monster.kill(player)) {
+				reset();
+			}
 			 	
 		}
 		 for (Platform platform : platforms) {
@@ -180,6 +197,7 @@ public class Level extends Screen {
 		 }
 		 
 		 if (!player.touchingWall(platforms)) {
+			 
 			 if (surface.isPressed(KeyEvent.VK_LEFT))
 				player.walk(-1);
 			 if (surface.isPressed(KeyEvent.VK_RIGHT))

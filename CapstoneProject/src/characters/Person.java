@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import platforms.ForceBarrier;
 import platforms.Platform;
 import platforms.Wall;
 import processing.core.PApplet;
@@ -150,6 +151,7 @@ public class Person extends Rectangle2D.Double {
 	
 	public boolean touchingWall(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
+			if(platform instanceof ForceBarrier && platform.getPlatform().intersects(this)) return false;
 			if (platform instanceof Wall && platform.getPlatform().intersects(this)) return true;
 		}
 		return false;
