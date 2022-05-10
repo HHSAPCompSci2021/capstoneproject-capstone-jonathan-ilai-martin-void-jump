@@ -182,6 +182,20 @@ public class Level extends Screen {
 			}
 			 	
 		}
+		
+		double x1 = player.x;
+		double x2 = player.x + player.width;
+		double y1 = player.y;
+		double y2 = player.y + player.height;
+		Line down = new Line(x1, y2, x2, y2);
+		Line left = new Line(x1, y1, x1, y2);
+		Line up = new Line(x1, y1, x2, y1);
+		Line right = new Line(x2, y1, x2, y2);
+		if (down.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || right.intersects(lazer)) {
+			System.out.println("WHat");
+			reset();
+		}
+		
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 			 if (platform instanceof Spikes) {
