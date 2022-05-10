@@ -25,22 +25,17 @@ public class Monster extends Person {
 			
 			if (turnRight && Math.abs(getX() - (getPlatform(platforms).getX() + getPlatform(platforms).getWidth() - getWidth())) < 1) turnRight = !turnRight;
 			if (!turnRight && Math.abs(getX() - (getPlatform(platforms).getX())) < 1) turnRight = !turnRight;
-			
-//			if(getX() < getPlatform(platforms).getX() + getPlatform(platforms).getWidth() - getWidth() && right) {
-//				super.walk(1);
-//			}
-//			else {
-//				right = !right;
-//				super.walk(-1);
-//				right = false;
-//				if(getX() == getPlatform(platforms).getX())
-//					right = true;
-//			}
 		
 		}
 	}
 	
-	
+	public boolean kill(Player p) {
+		if (this.intersects(p)) {
+			p.disappear();
+			return true;
+		}
+		return false;
+	}
 	
 	
 	public void act(ArrayList<Platform> platforms) {

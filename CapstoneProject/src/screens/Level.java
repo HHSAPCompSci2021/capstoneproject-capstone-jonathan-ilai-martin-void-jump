@@ -143,6 +143,9 @@ public class Level extends Screen {
 		surface.stroke(255);
 		surface.strokeWeight(6);
 		surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
+		if(monster.kill(player)) {
+			reset();
+		}
 		if (!keyTaken) 
 			surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
