@@ -4,6 +4,7 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 import core.DrawingSurface;
 import processing.core.PImage;
@@ -43,6 +44,7 @@ public class Beginning extends Screen {
 		if (button.contains(p))
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 	}
+	
 
 
 
