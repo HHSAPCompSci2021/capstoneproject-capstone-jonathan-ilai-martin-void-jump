@@ -11,10 +11,13 @@ public class Monster extends Person {
 	
 	public static double WIDTH = 50, HEIGHT = 100;
 	private boolean turnRight;
+	private double startX, startY;
 	
 	public Monster(PImage image, double x, double y, boolean right) {
 		super(image, x, y, WIDTH, HEIGHT);
 		turnRight = right;
+		startX = x;
+		startY = y;
 	}
 	
 	
@@ -27,6 +30,14 @@ public class Monster extends Person {
 			if (!turnRight && Math.abs(getX() - (getPlatform(platforms).getX())) < 1) turnRight = !turnRight;
 		
 		}
+	}
+	
+	public double getStartX() {
+		return startX;
+	}
+	
+	public double getStartY() {
+		return startY;
 	}
 	
 	public boolean kill(Player p) {

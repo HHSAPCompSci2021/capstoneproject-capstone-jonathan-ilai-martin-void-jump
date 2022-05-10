@@ -29,7 +29,6 @@ public class Level extends Screen {
 	 protected PImage returnIcon, gate, key, dungeon, lazerIcon;
 	 protected Ellipse2D returnButton, noPortalZone;
 	 private Player player;
-	 private Monster monster;
 	 private int level;
 	 private boolean keyTaken, canPortal;
 	 private Portal[] portals;
@@ -69,8 +68,8 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
-			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
-			 characters.add(monster);
+			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
+			characters.add(monster);
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -78,6 +77,11 @@ public class Level extends Screen {
 			keyY = 300;
 			gateX = 350;
 			gateY = 400;
+			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 125, 250, true);
+			Monster monster1 = new Monster(surface.loadImage("img/zombie.png"), 550, 250, true);
+			characters.add(monster);
+			characters.add(monster1);
+
 		}
 		
 	}
@@ -87,7 +91,13 @@ public class Level extends Screen {
 		for (Person character : characters) 
 			character.reset();
 		player.moveTo(startX, startY - player.HEIGHT);
-		if (level == 3) monster.moveTo(350, 150);
+
+		for(Person p: characters) {
+			if(p instanceof Monster) {
+				Monster m = (Monster) p;
+				m.moveTo(m.getStartX(), m.getStartY());
+			}
+		}
 		for (Portal portal : portals) portal.setDrawn(false);
 	}
 
@@ -139,11 +149,11 @@ public class Level extends Screen {
 		}
 		else if(level == 4) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new Platform(platform, startX - 275, startY + 250, 200, 30));
-			platforms.add(new Platform(platform, startX + 150, startY + 250, 200, 30));
+			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
+			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
 			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
-			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
+		//	platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
@@ -165,6 +175,8 @@ public class Level extends Screen {
 		for (Person character : characters) {
 			if(character instanceof Monster) {
 				Monster monster = (Monster) character;
+				monster.draw(surface);
+				monster.act(platforms);
 				if (monster.kill(player))
 					reset();
 			}
@@ -173,15 +185,7 @@ public class Level extends Screen {
 		if (!keyTaken) 
 			surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
-		if(monster != null) {
-			monster.draw(surface);
-			monster.act(platforms);
-			
-			if(monster.kill(player)) {
-				reset();
-			}
-			 	
-		}
+
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 			 if (platform instanceof Spikes) {
