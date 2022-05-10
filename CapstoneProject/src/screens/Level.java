@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
-
+import characters.Lazer;
 import characters.Monster;
 import characters.Person;
 import characters.Player;
@@ -25,7 +25,7 @@ public class Level extends Screen {
 	
 	 protected double startX, startY, keyX, keyY, gateX, gateY;
 	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon, gate, key, dungeon;
+	 protected PImage returnIcon, gate, key, dungeon, lazerIcon;
 	 protected Ellipse2D returnButton, noPortalZone;
 	 private Player player;
 	 private Monster monster;
@@ -70,7 +70,6 @@ public class Level extends Screen {
 			gateY = 400;
 			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			 characters.add(monster);
-			 lazer = new Line(10, 200, 100, 400);
 		}
 	}
 	 
@@ -88,6 +87,8 @@ public class Level extends Screen {
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
 		characters.add(player);
 		returnIcon = surface.loadImage("img/return.png");
+		lazerIcon = surface.loadImage("img/lazer.png");
+		lazer = new Lazer(lazerIcon, 10, 200, 100, 400);
 		returnIcon.resize(50, 50);
 		dungeon = surface.loadImage("img/dungeon.jpg");
 		dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);

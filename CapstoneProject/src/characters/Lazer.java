@@ -14,12 +14,12 @@ public class Lazer extends Line {
 	public Lazer(PImage image, double x, double y, double angle, double length) {
 		super(x, y, x + length * Math.cos(angle * Math.PI / 180), y - length * Math.sin(angle * Math.PI / 180));
 		icon = image;
-		this.setColor(Color.WHITE, Color.WHITE);
-		this.setStrokeWeight(6);
+		this.angle = angle;
 	}
 	
 	public void draw(PApplet surface) {
 		surface.rotate((float) angle);
-		surface.image(icon, 0, 0);
+		surface.image(icon, (float) getX(), (float) getY());
+		surface.rotate((float) -angle);
 	}
 }
