@@ -35,6 +35,7 @@ public class Level extends Screen {
 	 private PImage p1, p2;
 	 private static boolean[] completed;
 	 private ArrayList<Person> characters;
+	 private Line lazer;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
@@ -69,6 +70,7 @@ public class Level extends Screen {
 			gateY = 400;
 			monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			 characters.add(monster);
+			 lazer = new Line(10, 200, 100, 400);
 		}
 	}
 	 
@@ -139,13 +141,19 @@ public class Level extends Screen {
 		surface.image(dungeon, 0, 0);
 		surface.image(returnIcon, 10, 10);
 		surface.image(gate, (int) gateX, (int) gateY);
+		if (lazer != null) lazer.draw(surface);
 		surface.noFill();
 		surface.stroke(255);
 		surface.strokeWeight(6);
 		surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
-		if(monster.kill(player)) {
-			reset();
+		for (Person character : characters) {
+			if(character instanceof Monster) {
+				Monster monster = (Monster) character;
+				if (monster.kill(player))
+					reset();
+			}
 		}
+		
 		if (!keyTaken) 
 			surface.image(key, (int) keyX, (int) keyY);
 		 player.draw(surface);
