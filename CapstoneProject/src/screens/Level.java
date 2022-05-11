@@ -27,7 +27,7 @@ public class Level extends Screen {
 	
 	 protected double startX, startY, keyX, keyY, gateX, gateY;
 	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon, gate, key, dungeon, lazerIcon;
+	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, cloud;
 	 protected Ellipse2D returnButton, noPortalZone;
 	 private Player player;
 	 private int level;
@@ -73,7 +73,8 @@ public class Level extends Screen {
 			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			characters.add(monster);
 			lazerIcon = surface.loadImage("img/lazer.png");
-			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 400));
+			lazerIcon.resize(290, lazerIcon.height);
+			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 300));
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -108,6 +109,7 @@ public class Level extends Screen {
 	public void setup() {
 		initializeLevel();
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
+		cloud = surface.loadImage("img/cloud.png");
 		characters.add(player);
 		returnIcon = surface.loadImage("img/return.png");
 		lazerIcon = surface.loadImage("img/lazer.png");
@@ -155,8 +157,8 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
-			platforms.add(new ForceBarrier(platform, startX - 50, -10, 30, 150));
-			platforms.add(new ForceBarrier(platform, startX + 125, -10, 30, 150));
+			platforms.add(new ForceBarrier(cloud, startX - 50, -10, 30, 150));
+			platforms.add(new ForceBarrier(cloud, startX + 125, -10, 30, 150));
 
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
@@ -181,8 +183,11 @@ public class Level extends Screen {
 				Monster monster = (Monster) character;
 				monster.draw(surface);
 				monster.act(platforms);
-				if (monster.kill(player))
+				if (monster.kill(player)) {
+					System.out.println("What");
 					reset();
+				}
+					
 			}
 		}
 		
@@ -204,6 +209,7 @@ public class Level extends Screen {
 		for (Lazer lazer : lazers) {
 			if (lazer != null) {
 				if (right.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || down.intersects(lazer)) {
+					System.out.println(lazer.getX2() + ", " + x1);
 					reset();
 				}
 			}

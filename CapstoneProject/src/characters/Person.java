@@ -55,6 +55,10 @@ public class Person extends Rectangle2D.Double {
 		drawn = false;
 	}
 	
+	public boolean getDrawn() {
+		return drawn;
+	}
+	
 	// METHODS
 	public void walk(int dir) {
 		if (Math.abs(xSpeed) <= 1) xSpeed += dir;
