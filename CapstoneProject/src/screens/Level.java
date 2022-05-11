@@ -86,6 +86,13 @@ public class Level extends Screen {
 			characters.add(monster);
 			characters.add(monster1);
 			
+		} else if(level == 5) {
+			startX = 50;
+			startY = 100;
+			keyX = 475;
+			keyY = 475;
+			gateX = 690;
+			gateY = 300;
 		}
 		
 	}
@@ -158,6 +165,11 @@ public class Level extends Screen {
 			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
 			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 
+		} else if(level == 5) {
+			platforms.add(new Platform(platform, startX, startY, 50, 30));
+			platforms.add(new Wall(wall, 337, 0, 30, 275));
+			platforms.add(new Wall(wall, 337, 425, 30, 300));
+			platforms.add(new Platform(platform, 250, 260, 215, 30));
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
