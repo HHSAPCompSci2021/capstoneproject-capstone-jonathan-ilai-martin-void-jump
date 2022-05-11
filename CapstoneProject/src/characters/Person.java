@@ -65,16 +65,18 @@ public class Person extends Rectangle2D.Double {
 
 	private boolean inside(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
-			int x = (int) (getX() + xSpeed + getWidth() * 0.1);
-			int middleX = xSpeed > 0 ? (int) (x + getWidth() * 0.5) : (int) (x - getWidth() * 0.5);
-			int finalX = this instanceof Player ? middleX : xSpeed > 0 ? (int) (x + getWidth() * 0.9) : (int) (x - getWidth() * 0.9);
-			int y = (int) (getY() + ySpeed);
-			int middleY = (int) (y + getHeight() * 0.5);
-			int finalY = (int) (y + getHeight() * 0.9);
-			Rectangle2D.Double body = platform.getPlatform();
-			if (body.contains(new Point(x, y)) || body.contains(new Point(finalX, y))
-					|| body.contains(new Point(x, finalY)) || body.contains(finalX, finalY)
-					|| body.contains(new Point(x, middleY)) || body.contains(middleX, middleY)) return true;
+			if (!(platform instanceof ForceBarrier)) {
+				int x = (int) (getX() + xSpeed + getWidth() * 0.1);
+				int middleX = xSpeed > 0 ? (int) (x + getWidth() * 0.5) : (int) (x - getWidth() * 0.5);
+				int finalX = this instanceof Player ? middleX : xSpeed > 0 ? (int) (x + getWidth() * 0.9) : (int) (x - getWidth() * 0.9);
+				int y = (int) (getY() + ySpeed);
+				int middleY = (int) (y + getHeight() * 0.5);
+				int finalY = (int) (y + getHeight() * 0.9);
+				Rectangle2D.Double body = platform.getPlatform();
+				if (body.contains(new Point(x, y)) || body.contains(new Point(finalX, y))
+						|| body.contains(new Point(x, finalY)) || body.contains(finalX, finalY)
+						|| body.contains(new Point(x, middleY)) || body.contains(middleX, middleY)) return true;
+			}
 		}
 		return false;
 	}
@@ -114,7 +116,7 @@ public class Person extends Rectangle2D.Double {
 			int finalX = this instanceof Player ? (int) (x + getWidth() / 2) : (int) (x + getWidth());
 			int finalY = (int) (y + getHeight());
 			Rectangle2D.Double platformBody = platform.getPlatform();
-			if ((platformBody.contains(new Point(x, finalY)) 
+			if (!(platform instanceof ForceBarrier) && (platformBody.contains(new Point(x, finalY)) 
 					|| platformBody.contains(new Point(finalX, finalY))) 
 					&& !(platform instanceof Wall)) {
 				jumping = false;
@@ -151,7 +153,7 @@ public class Person extends Rectangle2D.Double {
 	
 	public boolean touchingWall(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
-			if(platform instanceof ForceBarrier && platform.getPlatform().intersects(this)) return false;
+			//if(platform instanceof ForceBarrier && platform.getPlatform().intersects(this)) return false;
 			if (platform instanceof Wall && platform.getPlatform().intersects(this)) return true;
 		}
 		return false;

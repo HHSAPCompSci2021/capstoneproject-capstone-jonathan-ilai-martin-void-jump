@@ -155,8 +155,8 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
-			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
-			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
+			platforms.add(new ForceBarrier(platform, startX - 50, -10, 30, 150));
+			platforms.add(new ForceBarrier(platform, startX + 125, -10, 30, 150));
 
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
