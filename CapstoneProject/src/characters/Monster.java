@@ -41,7 +41,7 @@ public class Monster extends Person {
 	}
 	
 	public boolean kill(Player p) {
-		if (this.intersects(p)) {
+		if (this.intersects(p) && getDrawn()) {
 			p.disappear();
 			return true;
 		}
