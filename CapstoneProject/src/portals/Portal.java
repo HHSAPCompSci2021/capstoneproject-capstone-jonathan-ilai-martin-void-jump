@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
+import ilaitm12.shapes.Rectangle;
 import processing.core.PApplet;
 import processing.core.PImage;
 import java.awt.Point;
@@ -62,17 +63,5 @@ public class Portal extends Rectangle2D.Double {
 		return contains(center);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

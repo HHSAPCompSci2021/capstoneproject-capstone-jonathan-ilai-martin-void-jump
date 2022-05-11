@@ -11,6 +11,7 @@ import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
+import ilaitm12.shapes.Rectangle;
 import platforms.ForceBarrier;
 //import ilaitm12.shapes.Line;
 import platforms.Platform;
@@ -35,7 +36,7 @@ public class Level extends Screen {
 	 private PImage p1, p2;
 	 private static boolean[] completed;
 	 private ArrayList<Person> characters;
-	 private Line lazer;
+	 //private ArrayList<Lazer> lazers;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
@@ -44,6 +45,7 @@ public class Level extends Screen {
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
 		 completed = new boolean[12];
 		 characters = new ArrayList<Person>();
+		// lazers = new ArrayList<Lazer>();
 	 }
 	 
 	 private void initializeLevel() {
@@ -70,6 +72,8 @@ public class Level extends Screen {
 			gateY = 400;
 			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			characters.add(monster);
+			lazerIcon = surface.loadImage("img/lazer.png");
+			//lazers.add(new Lazer(lazerIcon, 10, 200, 0, 400));
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -81,7 +85,7 @@ public class Level extends Screen {
 			Monster monster1 = new Monster(surface.loadImage("img/zombie.png"), 550, 250, true);
 			characters.add(monster);
 			characters.add(monster1);
-
+			
 		}
 		
 	}
@@ -107,7 +111,6 @@ public class Level extends Screen {
 		characters.add(player);
 		returnIcon = surface.loadImage("img/return.png");
 		lazerIcon = surface.loadImage("img/lazer.png");
-		lazer = new Lazer(lazerIcon, 10, 200, 100, 400);
 		returnIcon.resize(50, 50);
 		dungeon = surface.loadImage("img/dungeon.jpg");
 		dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
@@ -166,7 +169,8 @@ public class Level extends Screen {
 		surface.image(dungeon, 0, 0);
 		surface.image(returnIcon, 10, 10);
 		surface.image(gate, (int) gateX, (int) gateY);
-		if (lazer != null) lazer.draw(surface);
+//		for (Lazer lazer : lazers)
+//			if (lazer != null) lazer.draw(surface);
 		surface.noFill();
 		surface.stroke(255);
 		surface.strokeWeight(6);
@@ -197,10 +201,14 @@ public class Level extends Screen {
 		Line left = new Line(x1, y1, x1, y2);
 		Line up = new Line(x1, y1, x2, y1);
 		Line right = new Line(x2, y1, x2, y2);
-		if (down.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || right.intersects(lazer)) {
-			System.out.println("WHat");
-			reset();
-		}
+//		for (Lazer lazer : lazers) {
+//			if (lazer != null) {
+//				if (right.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || down.intersects(lazer)) {
+//					reset();
+//				}
+//			}
+//		}
+		
 		
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
@@ -259,6 +267,28 @@ public class Level extends Screen {
 					 break;
 				 }
 			 }
+//			 for (int j = 0 ; j < lazers.size() ; j++) {
+//				 Lazer lazer = lazers.get(j);
+//				 if (lazer != null && portal.getDrawn() && other.getDrawn()) {
+//					 Rectangle portalBody = new Rectangle(portal.getX(), portal.getY(), portal.width, portal.height);
+//					 if (lazer.intersects(portalBody)) {
+//						 //System.out.println("Yes");
+//						 Lazer second = ((Lazer) lazer).breakLine(portal.getCenterX(), portal.getCenterY());
+//						 double secondX = lazer.getX() > portal.getX() ? portal.getMaxX() + 10 : portal.getMinX() - 10;
+//						 //double secondY = lazer.getY() > portal.getY() ? portal.getMaxY() + 10 : portal.getMinY() - 10;
+//						 double firstX = lazer.getX() < portal.getX() ? other.getMaxX() + 10 : other.getMinX() - 10;
+//						 //double firstY = lazer.getY() > portal.getY() ? other.getMaxY() + 10 : other.getMinY() - 10;
+//						 System.out.println("Before: " + lazer.getX2());
+//						 lazer.setPoint2((int) secondX, (int) portal.getCenterY());
+//						 System.out.println("After: " + lazer.getX2());
+//						 lazers.remove(j);
+//						 second.setPoint(firstX, other.getCenterY());
+//						 lazers.add(new Lazer(lazerIcon, lazer.getX(), lazer.getY(), 0, lazer.getX2() - lazer.getX()));
+//						 lazers.add(second);
+//					 }
+//				 }
+//			 }
+			 
 			 
 		 }
 	}
