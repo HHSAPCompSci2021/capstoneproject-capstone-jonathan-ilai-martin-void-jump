@@ -36,7 +36,7 @@ public class Level extends Screen {
 	 private PImage p1, p2;
 	 private static boolean[] completed;
 	 private ArrayList<Person> characters;
-	 //private ArrayList<Lazer> lazers;
+	 private ArrayList<Lazer> lazers;
 	 
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
@@ -45,7 +45,7 @@ public class Level extends Screen {
 		 returnButton = new Ellipse2D.Double(10, 10, 50, 50);
 		 completed = new boolean[12];
 		 characters = new ArrayList<Person>();
-		// lazers = new ArrayList<Lazer>();
+		lazers = new ArrayList<Lazer>();
 	 }
 	 
 	 private void initializeLevel() {
@@ -73,7 +73,7 @@ public class Level extends Screen {
 			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			characters.add(monster);
 			lazerIcon = surface.loadImage("img/lazer.png");
-			//lazers.add(new Lazer(lazerIcon, 10, 200, 0, 400));
+			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 400));
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -156,7 +156,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
 			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
-		//	platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
+			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
@@ -169,8 +169,8 @@ public class Level extends Screen {
 		surface.image(dungeon, 0, 0);
 		surface.image(returnIcon, 10, 10);
 		surface.image(gate, (int) gateX, (int) gateY);
-//		for (Lazer lazer : lazers)
-//			if (lazer != null) lazer.draw(surface);
+		for (Lazer lazer : lazers)
+			if (lazer != null) lazer.draw(surface);
 		surface.noFill();
 		surface.stroke(255);
 		surface.strokeWeight(6);
@@ -201,13 +201,13 @@ public class Level extends Screen {
 		Line left = new Line(x1, y1, x1, y2);
 		Line up = new Line(x1, y1, x2, y1);
 		Line right = new Line(x2, y1, x2, y2);
-//		for (Lazer lazer : lazers) {
-//			if (lazer != null) {
-//				if (right.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || down.intersects(lazer)) {
-//					reset();
-//				}
-//			}
-//		}
+		for (Lazer lazer : lazers) {
+			if (lazer != null) {
+				if (right.intersects(lazer) || left.intersects(lazer) || up.intersects(lazer) || down.intersects(lazer)) {
+					reset();
+				}
+			}
+		}
 		
 		
 		 for (Platform platform : platforms) {
