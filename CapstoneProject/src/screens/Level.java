@@ -156,9 +156,19 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
 			platforms.add(new ForceBarrier(platform, startX - 75, -10, 30, 150));
+<<<<<<< HEAD
 		//	platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 			platforms.add(new ForceBarrier(platform, startX + 140, -10, 30, 150));
+			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
+=======
+			platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
 
+		} else if(level == 5) {
+			platforms.add(new Platform(platform, startX, startY, 50, 30));
+			platforms.add(new Wall(wall, 337, 0, 30, 275));
+			platforms.add(new Wall(wall, 337, 425, 30, 300));
+			platforms.add(new Platform(platform, 250, 260, 215, 30));
+>>>>>>> parent of 1ab3d9e (Merge branch 'main' of https://github.com/HHSAPCompSci2021/capstoneproject-capstone-jonathan-ilai-martin-void-jump)
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
