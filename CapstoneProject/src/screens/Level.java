@@ -33,7 +33,7 @@ public class Level extends Screen {
 	 private int level;
 	 private boolean keyTaken, canPortal;
 	 private Portal[] portals;
-	 private PImage p1, p2;
+	 private PImage p1, p2, platform, wall, spikes, zombie, wizard;
 	 private static boolean[] completed;
 	 private ArrayList<Person> characters;
 	 private ArrayList<Lazer> lazers;
@@ -70,10 +70,9 @@ public class Level extends Screen {
 			keyY = 100;
 			gateX = 600;
 			gateY = 400;
-			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
+			Monster monster = new Monster(zombie, 350, 150, true);
 			characters.add(monster);
-			lazerIcon = surface.loadImage("img/lazer.png");
-			lazerIcon.resize(190, lazerIcon.height);
+			
 			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 200));
 		} else if(level == 4) {
 			startX = 350;
@@ -82,8 +81,8 @@ public class Level extends Screen {
 			keyY = 300;
 			gateX = 350;
 			gateY = 400;
-			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 125, 250, true);
-			Monster monster1 = new Monster(surface.loadImage("img/zombie.png"), 550, 250, true);
+			Monster monster = new Monster(zombie, 125, 250, true);
+			Monster monster1 = new Monster(zombie, 550, 250, true);
 			characters.add(monster);
 			characters.add(monster1);
 			
@@ -107,20 +106,19 @@ public class Level extends Screen {
 	}
 
 	public void setup() {
+		loadImages();
 		initializeLevel();
-		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
+		player = new Player(wizard, startX, startY - player.HEIGHT);
 		characters.add(player);
-		returnIcon = surface.loadImage("img/return.png");
-		returnIcon.resize(50, 50);
-		dungeon = surface.loadImage("img/dungeon.jpg");
-		dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
-		gate = surface.loadImage("img/gate.png");
-		gate.resize(100, 100); 
-		key = surface.loadImage("img/key.png");
-		key.resize(50, 50);
+		//resize(50, 50);
+		//dungeon = surface.loadImage("img/dungeon.jpg");
+		//dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
+		
+		//gate.resize(100, 100); 
+		
+		//key.resize(50, 50);
 		addPlatforms();
-		p1 = surface.loadImage("img/portalIn.png");
-		p2 = surface.loadImage("img/portalOut.png");
+		
 		portals = new Portal[2];
 		portals[0] = new Portal(p1, 0, 0, false);
 		portals[1] = new Portal(p2, 0, 0, false);
@@ -129,10 +127,31 @@ public class Level extends Screen {
 		noPortalZone = new Ellipse2D.Double(centerX - 150, centerY - 150, 300, 300);
 	 }
 
-	 protected void addPlatforms() {
-		 PImage platform = surface.loadImage("img/platform.png");
-		 PImage wall = surface.loadImage("img/wall.png");
-		 PImage spikes = surface.loadImage("img/spikes.png");
+	 private void loadImages() {
+		 platform = surface.loadImage("img/platform.png");
+		 wall = surface.loadImage("img/wall.png");
+		 spikes = surface.loadImage("img/spikes.png");
+		 zombie = surface.loadImage("img/zombie.png");
+		 wizard = surface.loadImage("img/Wizard.png");
+		 p1 = surface.loadImage("img/portalIn.png");
+		 p2 = surface.loadImage("img/portalOut.png");
+		 lazerIcon = surface.loadImage("img/lazer.png");
+		
+		 returnIcon = surface.loadImage("img/return.png");
+		 returnIcon.resize(50, 50);
+		 
+		 dungeon = surface.loadImage("img/dungeon.jpg");
+		 dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
+		 
+		 gate = surface.loadImage("img/gate.png");
+		 gate.resize(100, 100); 
+		 
+		 key = surface.loadImage("img/key.png");
+		 key.resize(50, 50);
+	}
+
+	protected void addPlatforms() {
+		 
 		 spikes.resize(500, 70);
 			platform.resize(100, 30);
 		 if (level == 1) {
