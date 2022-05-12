@@ -73,7 +73,8 @@ public class Level extends Screen {
 			Monster monster = new Monster(surface.loadImage("img/zombie.png"), 350, 150, true);
 			characters.add(monster);
 			lazerIcon = surface.loadImage("img/lazer.png");
-			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 400));
+			lazerIcon.resize(190, lazerIcon.height);
+			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 200));
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -110,7 +111,6 @@ public class Level extends Screen {
 		player = new Player(surface.loadImage("img/Wizard.png"), startX, startY - player.HEIGHT);
 		characters.add(player);
 		returnIcon = surface.loadImage("img/return.png");
-		lazerIcon = surface.loadImage("img/lazer.png");
 		returnIcon.resize(50, 50);
 		dungeon = surface.loadImage("img/dungeon.jpg");
 		dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
