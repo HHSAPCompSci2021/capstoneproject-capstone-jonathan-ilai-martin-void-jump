@@ -176,11 +176,8 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
-			platforms.add(new ForceBarrier(clouds, startX - 75, -10, 50, 150));
-		//	platforms.add(new ForceBarrier(platform, startX + 150, -10, 30, 150));
-		//	platforms.add(new ForceBarrier(clouds, startX + 140, -10, 30, 150));
-		//	platforms.add(new ForceBarrier(clouds, startX + 150, -10, 30, 150));
-			platforms.add(new ForceBarrier(clouds, startX + 150, -10, 50, 150));
+			platforms.add(new ForceBarrier(clouds, startX - 50, -10, 50, 150));
+			platforms.add(new ForceBarrier(clouds, startX + 100, -10, 50, 150));
 
 		} else if(level == 5) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
