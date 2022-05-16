@@ -16,7 +16,7 @@ public class Menu extends Screen {
 
 	public Menu(DrawingSurface surface) {
 		super(800,600, surface);
-		this.surface = surface;
+		//this.surface = surface;
 		levelButtons = new Ellipse2D[12];
 		returnButton = new Ellipse2D.Double(10, 10, 50, 50);
 		addLevelButtonsToArray();
