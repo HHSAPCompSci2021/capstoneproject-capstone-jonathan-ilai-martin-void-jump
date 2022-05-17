@@ -12,6 +12,7 @@ import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
 import ilaitm12.shapes.Rectangle;
+import platforms.BoostPlatform;
 import platforms.ForceBarrier;
 //import ilaitm12.shapes.Line;
 import platforms.Platform;
@@ -104,9 +105,9 @@ public class Level extends Screen {
 		else if (level == 7) {
 			startX = 50;
 			startY = 300;
-			keyX = 450;
+			keyX = 375;
 			keyY = 150;
-			gateX = 700;
+			gateX = 650;
 			gateY = 200;
 			
 		} else if (level == 8) {
@@ -171,6 +172,9 @@ public class Level extends Screen {
 		 leftBoostPlatform = surface.loadImage("img/leftBoostPlatform.png");
 		 returnIcon = surface.loadImage("img/return.png");
 		 returnIcon.resize(50, 50);
+		
+		
+		leftBoostPlatform.resize(100, 300);
 		 
 		 dungeon = surface.loadImage("img/dungeon.jpg");
 		 dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
@@ -184,9 +188,11 @@ public class Level extends Screen {
 	}
 
 	protected void addPlatforms() {
-		 
-		 spikes.resize(500, 70);
-			platform.resize(100, 30);
+		platform.resize(100, 30);
+		spikes.resize(500, 70);
+
+		
+		
 		 if (level == 1) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
@@ -223,7 +229,8 @@ public class Level extends Screen {
 	
 		else if(level == 7) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
-			platforms.add(new Platform(rightBoostPlatform, 350, 300, 200, 30));
+			platforms.add(new BoostPlatform(rightBoostPlatform, 310, 300, 200, 30, true));
+		//	rightBoostPlatform.resize(200, 30);
 			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
 		 
