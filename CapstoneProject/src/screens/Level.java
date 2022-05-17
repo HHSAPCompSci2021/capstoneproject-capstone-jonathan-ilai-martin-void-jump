@@ -101,6 +101,10 @@ public class Level extends Screen {
 		} else if (level == 6) {
 			startX = 10;
 			startY = 450;
+			keyX = 10;
+			keyY = 50;
+			gateX = 700;
+			gateY = 300;
 		}
 		
 		else if (level == 7) {
