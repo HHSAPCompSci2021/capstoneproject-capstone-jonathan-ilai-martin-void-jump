@@ -136,7 +136,7 @@ public class Level extends Screen {
 		double centerX = gateX + gate.width / 2;
 		double centerY = gateY + gate.height / 2;
 		noPortalZone.add(new Ellipse2D.Double(centerX - 150, centerY - 150, 300, 300));
-		noPortalZone.add(new Ellipse2D.Double(player.x - 10, player.y - 10, player.width * 1.5, player.height * 1.5));
+		noPortalZone.add(new Ellipse2D.Double(player.x - 50, player.y - 50, player.width * 2, player.height * 2));
 	 }
 
 	 private void loadImages() {
@@ -267,8 +267,10 @@ public class Level extends Screen {
 		surface.noFill();
 		surface.stroke(255);
 		surface.strokeWeight(6);
-		surface.circle((float) noPortalZone.get(0).getCenterX(), (float) noPortalZone.get(0).getCenterY(), (float) noPortalZone.get(0).getWidth());
-
+		for (Ellipse2D zone : noPortalZone) {
+			surface.circle((float) zone.getCenterX(), (float) zone.getCenterY(), (float) zone.getWidth());
+		}
+		
 		for (Person character : characters) {
 			if(character instanceof Monster) {
 				Monster monster = (Monster) character;
@@ -342,9 +344,11 @@ public class Level extends Screen {
 		
 		 for (Portal portal : portals) {
 			 Point center = new Point((int)(portal.getX() + portal.getWidth()/2),(int) (portal.getY() + portal.getHeight()/2));
-			 if (portal.getDrawn() && !returnButton.contains(center) && !noPortalZone.contains(center)) 
+			 if (portal.getDrawn() && !returnButton.contains(center) && !noPortalZone.get(0).contains(center)) 
 				 portal.draw(surface);
 		 }
+		 
+		 noPortalZone.set(1, new Ellipse2D.Double(player.x - 50, player.y - 50, player.width * 2, player.height * 2));
 			 
 		 if (!canPortal) canPortal = canPortal();
 			
@@ -405,99 +409,102 @@ public class Level extends Screen {
 		}
 		
 			
-		boolean draw = true;
-		Line sight = new Line((float) (player.getX() + 35), (float)(player.getY() + 50), (float)(surface.mouseX),(float)(surface.mouseY));
+		if (!noPortalZone.get(1).contains(new Point(surface.mouseX, surface.mouseY))) {
+			boolean draw = true;
+			Line sight = new Line((float) (player.getX() + 35), (float)(player.getY() + 50), (float)(surface.mouseX),(float)(surface.mouseY));
+			
+			if (surface.mouseButton == surface.LEFT) {
+				
+				
+				for(Platform platform : platforms) {
+					float x1 = (float) platform.getX();
+					float x2 = (float)(platform.getX() + platform.getWidth());
+					float y1 = (float)(platform.getY());
+					float y2 = (float)(platform.getY() + platform.getHeight());
+
+					Line l1 = new Line(x1, y1, x1, y2);
+					Line l2 = new Line(x1, y1, x2, y1);
+					Line l3 = new Line(x2, y1, x2, y2);
+					Line l4 = new Line(x1, y2, x2, y2);
+					
+					
+//					l1.draw(surface);
+//					l2.draw(surface);
+//					l3.draw(surface);
+//					l4.draw(surface);
+					
+					
+					if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
+						draw = false;
+					}
+					
+					if (!draw) {
+				
+						if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
+						else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
+						else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
+						else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
+					}
+				}
+				
+				surface.stroke(255,165,0);
+				if (!returnButton.contains(new Point(surface.mouseX, surface.mouseY))) sight.draw(surface);
+				
+				if(draw) {
+					
+					portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
+					portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
+					portals[0].setDrawn(draw);
+				}
+			}
+		 
+			if (surface.mouseButton == surface.RIGHT) {
+				
+				for(Platform platform : platforms) {
+					float x1 = (float)platform.getX();
+					float x2 = (float)(platform.getX() + platform.getWidth());
+					float y1 = (float)(platform.getY());
+					float y2 = (float)(platform.getY() + platform.getHeight());
+					
+					Line l1 = new Line(x1, y1, x1, y2);
+					Line l2 = new Line(x1, y1, x2, y1);
+					Line l3 = new Line(x2, y1, x2, y2);
+					Line l4 = new Line(x1, y2, x2, y2);
+
+//					l1.draw(surface);
+//					l2.draw(surface);
+//					l3.draw(surface);
+//					l4.draw(surface);
+					
+					
+					if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
+						draw = false;
+					}
+					
+					if (!draw) {
+						if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
+						else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
+						else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
+						else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
+					}
+					
+				}
+				
+				surface.stroke(173, 216, 230);
+				sight.draw(surface);
+				
+				if(draw) {
+
+					portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
+					portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
+					portals[1].setDrawn(draw);
+				}
+				
+				
+				
+				
+			}
 		
-		if (surface.mouseButton == surface.LEFT) {
-			
-			
-			for(Platform platform : platforms) {
-				float x1 = (float) platform.getX();
-				float x2 = (float)(platform.getX() + platform.getWidth());
-				float y1 = (float)(platform.getY());
-				float y2 = (float)(platform.getY() + platform.getHeight());
-
-				Line l1 = new Line(x1, y1, x1, y2);
-				Line l2 = new Line(x1, y1, x2, y1);
-				Line l3 = new Line(x2, y1, x2, y2);
-				Line l4 = new Line(x1, y2, x2, y2);
-				
-				
-//				l1.draw(surface);
-//				l2.draw(surface);
-//				l3.draw(surface);
-//				l4.draw(surface);
-				
-				
-				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
-					draw = false;
-				}
-				
-				if (!draw) {
-			
-					if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
-					else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
-					else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
-					else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
-				}
-			}
-			
-			surface.stroke(255,165,0);
-			if (!returnButton.contains(new Point(surface.mouseX, surface.mouseY))) sight.draw(surface);
-			
-			if(draw) {
-				
-				portals[0].setX(surface.mouseX - portals[0].getWidth()/2);
-				portals[0].setY(surface.mouseY - portals[0].getHeight()/2);
-				portals[0].setDrawn(draw);
-			}
-		}
-	 
-		if (surface.mouseButton == surface.RIGHT) {
-			
-			for(Platform platform : platforms) {
-				float x1 = (float)platform.getX();
-				float x2 = (float)(platform.getX() + platform.getWidth());
-				float y1 = (float)(platform.getY());
-				float y2 = (float)(platform.getY() + platform.getHeight());
-				
-				Line l1 = new Line(x1, y1, x1, y2);
-				Line l2 = new Line(x1, y1, x2, y1);
-				Line l3 = new Line(x2, y1, x2, y2);
-				Line l4 = new Line(x1, y2, x2, y2);
-
-//				l1.draw(surface);
-//				l2.draw(surface);
-//				l3.draw(surface);
-//				l4.draw(surface);
-				
-				
-				if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
-					draw = false;
-				}
-				
-				if (!draw) {
-					if (l1.intersects(sight)) sight.setPoint2((int) l1.getIntersectionX(sight), (int) l1.getIntersectionY(sight));
-					else if (l2.intersects(sight)) sight.setPoint2((int) l2.getIntersectionX(sight), (int) l2.getIntersectionY(sight));
-					else if (l3.intersects(sight)) sight.setPoint2((int) l3.getIntersectionX(sight), (int) l3.getIntersectionY(sight));
-					else if (l4.intersects(sight)) sight.setPoint2((int) l4.getIntersectionX(sight), (int) l4.getIntersectionY(sight));
-				}
-				
-			}
-			
-			surface.stroke(173, 216, 230);
-			sight.draw(surface);
-			
-			if(draw) {
-
-				portals[1].setX(surface.mouseX - portals[1].getWidth()/2);
-				portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
-				portals[1].setDrawn(draw);
-			}
-			
-			
-			
-			
 		}
 	 }
 
