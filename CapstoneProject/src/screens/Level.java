@@ -256,7 +256,7 @@ public class Level extends Screen {
 		 
 		else if(level == 8) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new Platform(rightBoostPlatform, 250, startY, 250, 30));
+			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
 		}
 		 
 		 
