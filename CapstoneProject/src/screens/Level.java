@@ -220,7 +220,31 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
 		 
-	
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		else if(level == 8) {
+			
+		}
+		 
+		 
+		 
 		 
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
