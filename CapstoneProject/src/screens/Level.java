@@ -195,6 +195,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, 250, 165, 215, 30));
 			platforms.add(new Platform(platform, 250, 355, 180, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
+			platforms.add(new ForceBarrier(clouds, 200, 165, 50, 200));
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
