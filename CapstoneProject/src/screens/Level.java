@@ -212,60 +212,14 @@ public class Level extends Screen {
 			platforms.add(new ForceBarrier(clouds, 200, 165, 50, 200));
 		}
 		
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+	
 		else if(level == 7) {
-			
-			
-			
-			
-			
+			platforms.add(new Platform(platform, startX, startY, 50, 30));
+			platforms.add(new Platform(spikes, 350, 300, 200, 30));
+			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
 		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+	
 		 
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
