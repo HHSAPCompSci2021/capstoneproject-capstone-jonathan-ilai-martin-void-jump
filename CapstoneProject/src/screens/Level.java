@@ -28,7 +28,8 @@ public class Level extends Screen {
 	 protected double startX, startY, keyX, keyY, gateX, gateY;
 	 protected ArrayList<Platform> platforms;
 	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, clouds;
-	 protected Ellipse2D returnButton, noPortalZone;
+	 protected Ellipse2D returnButton;
+	 private ArrayList<Ellipse2D> noPortalZone;
 	 private Player player;
 	 private int level;
 	 private boolean keyTaken, canPortal;
@@ -46,6 +47,7 @@ public class Level extends Screen {
 		 completed = new boolean[12];
 		 characters = new ArrayList<Person>();
 		 lazers = new ArrayList<Lazer>();
+		 noPortalZone = new ArrayList<Ellipse2D>();
 	 }
 	 
 	 private void initializeLevel() {
@@ -133,7 +135,8 @@ public class Level extends Screen {
 		portals[1] = new Portal(p2, 0, 0, false);
 		double centerX = gateX + gate.width / 2;
 		double centerY = gateY + gate.height / 2;
-		noPortalZone = new Ellipse2D.Double(centerX - 150, centerY - 150, 300, 300);
+		noPortalZone.add(new Ellipse2D.Double(centerX - 150, centerY - 150, 300, 300));
+		noPortalZone.add(new Ellipse2D.Double(player.x - 10, player.y - 10, player.width * 1.5, player.height * 1.5));
 	 }
 
 	 private void loadImages() {
@@ -212,7 +215,7 @@ public class Level extends Screen {
 		surface.noFill();
 		surface.stroke(255);
 		surface.strokeWeight(6);
-		surface.circle((float) noPortalZone.getCenterX(), (float) noPortalZone.getCenterY(), (float) noPortalZone.getWidth());
+		surface.circle((float) noPortalZone.get(0).getCenterX(), (float) noPortalZone.get(0).getCenterY(), (float) noPortalZone.get(0).getWidth());
 
 		for (Person character : characters) {
 			if(character instanceof Monster) {
