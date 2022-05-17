@@ -97,6 +97,17 @@ public class Level extends Screen {
 			characters.add(monster);
 		}
 		
+		
+		
+		else if (level == 7) {
+			startX = 50;
+			startY = 300;
+			keyX = 450;
+			keyY = 150;
+			gateX = 700;
+			gateY = 200;
+			
+		}
 	}
 	 
 	public void reset() {
@@ -222,7 +233,11 @@ public class Level extends Screen {
 		 
 		 
 		else if(level == 7) {
-			 
+			
+			
+			
+			
+			
 		 }
 		 
 		 
