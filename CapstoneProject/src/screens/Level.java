@@ -91,7 +91,7 @@ public class Level extends Screen {
 		} else if(level == 5) {
 			startX = 50;
 			startY = 100;
-			keyX = 425;
+			keyX = 450;
 			keyY = 475;
 			gateX = 690;
 			gateY = 300;
