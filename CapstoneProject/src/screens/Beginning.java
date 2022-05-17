@@ -1,7 +1,5 @@
 package screens;
 
-
-
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -40,7 +38,7 @@ public class Beginning extends Screen {
 		float w = surface.textWidth(str);
 		surface.text(str, start.x+start.width/2-w/2, start.y+start.height/4 * 3);
 		
-		surface.textFont(surface.createFont("SignPainter", 60));
+		surface.textFont(surface.createFont("SignPainter", 40));
 		str = "HOW TO PLAY";
 		w = surface.textWidth(str);
 		surface.text(str, instructions.x+instructions.width/2-w/2, instructions.y + instructions.height/8 * 5);
@@ -53,12 +51,5 @@ public class Beginning extends Screen {
 		if (instructions.contains(p))
 			surface.switchScreen(ScreenSwitcher.INSTRUCTIONS);
 	}
-	
-
-
-
-
-	
-
 }
 

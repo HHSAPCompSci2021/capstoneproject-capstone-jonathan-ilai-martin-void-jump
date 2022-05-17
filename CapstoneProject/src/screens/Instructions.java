@@ -29,8 +29,6 @@ public class Instructions extends Screen {
 		surface.background(255,255,255);
 		surface.image(background, 0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 		surface.image(returnIcon, 10, 10);
-		surface.textFont(surface.createFont("Skia-Regular_Bold", 80));
-		
 	}
 	
 	public void mousePressed() {
