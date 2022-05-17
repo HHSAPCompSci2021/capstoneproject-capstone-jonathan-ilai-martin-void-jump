@@ -34,7 +34,7 @@ public class Level extends Screen {
 	 private int level;
 	 private boolean keyTaken, canPortal;
 	 private Portal[] portals;
-	 private PImage p1, p2, platform, wall, spikes, zombie, wizard;
+	 private PImage p1, p2, platform, wall, spikes, zombie, wizard, rightBoostPlatform, leftBoostPlatform;
 	 private static boolean[] completed;
 	 private ArrayList<Person> characters;
 	 private ArrayList<Lazer> lazers;
@@ -160,7 +160,8 @@ public class Level extends Screen {
 		 p2 = surface.loadImage("img/portalOut.png");
 		 lazerIcon = surface.loadImage("img/lazer.png");
 		 clouds = surface.loadImage("img/clouds.png");
-		
+		 rightBoostPlatform = surface.loadImage("img/rightBoostPlatform.png");
+		 leftBoostPlatform = surface.loadImage("img/leftBoostPlatform.png");
 		 returnIcon = surface.loadImage("img/return.png");
 		 returnIcon.resize(50, 50);
 		 
@@ -215,7 +216,7 @@ public class Level extends Screen {
 	
 		else if(level == 7) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
-			platforms.add(new Platform(spikes, 350, 300, 200, 30));
+			platforms.add(new Platform(rightBoostPlatform, 350, 300, 200, 30));
 			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
 		 
