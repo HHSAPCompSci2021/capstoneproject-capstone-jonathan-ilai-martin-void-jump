@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import platforms.BoostPlatform;
 import platforms.ForceBarrier;
 import platforms.Platform;
 import platforms.Wall;
@@ -29,6 +30,10 @@ public class Person extends Rectangle2D.Double {
 		ySpeed = 0;
 		jumping = false;
 		drawn = true;
+	}
+	
+	public void setXSpeed(double x) {
+		xSpeed = x;
 	}
 	
 	public double getXSpeed() {
@@ -141,6 +146,7 @@ public class Person extends Rectangle2D.Double {
 			if (standing(platformBelow)) {
 				return platform;
 			}
+			
 		}
 		return null;
 	}
@@ -149,6 +155,11 @@ public class Person extends Rectangle2D.Double {
 	public boolean touchingWall(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if(platform instanceof ForceBarrier && platform.getPlatform().intersects(this)) return false;
+			if(platform instanceof BoostPlatform && platform.getPlatform().intersects(this)) {
+				BoostPlatform boostPlatform = (BoostPlatform) platform;
+				boostPlatform.boost(this);
+				return true;
+			}
 			if (platform instanceof Wall && platform.getPlatform().intersects(this)) return true;
 		}
 		return false;
