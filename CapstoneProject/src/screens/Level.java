@@ -97,9 +97,10 @@ public class Level extends Screen {
 			gateY = 300;
 			Monster monster = new Monster(zombie, 300, 220, true);
 			characters.add(monster);
+		} else if (level == 6) {
+			startX = 10;
+			startY = 450;
 		}
-		
-		
 		
 		else if (level == 7) {
 			startX = 50;
