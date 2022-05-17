@@ -106,14 +106,15 @@ public class Person extends Rectangle2D.Double {
 			ySpeed += GRAVITY;
 			xSpeed *= 0.9;
 		} else {
+			jumping = false;
 			ySpeed = 0;
 			xSpeed *= 0.6;
 		}
 	}
 	
-	public void setJumping(boolean jumping) {
-		this.jumping = jumping;
-	}
+//	public void setJumping(boolean jumping) {
+//		this.jumping = jumping;
+//	}
 
 	protected boolean standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
@@ -126,7 +127,6 @@ public class Person extends Rectangle2D.Double {
 				if ((platformBody.contains(new Point(x, finalY)) 
 						|| platformBody.contains(new Point(finalX, finalY))) 
 						&& !(platform instanceof Wall)) {
-					jumping = false;
 					return true;
 				}
 			}
