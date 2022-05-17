@@ -86,6 +86,15 @@ public class Level extends Screen {
 			characters.add(monster);
 			characters.add(monster1);
 			
+		} else if(level == 5) {
+			startX = 50;
+			startY = 100;
+			keyX = 425;
+			keyY = 475;
+			gateX = 690;
+			gateY = 300;
+			Monster monster = new Monster(zombie, 300, 220, true);
+			characters.add(monster);
 		}
 		
 	}
@@ -181,9 +190,11 @@ public class Level extends Screen {
 
 		} else if(level == 5) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
-			platforms.add(new Wall(wall, 337, 0, 30, 275));
-			platforms.add(new Wall(wall, 337, 425, 30, 300));
-			platforms.add(new Platform(platform, 250, 260, 215, 30));
+			platforms.add(new Wall(wall, 337, 0, 30, 180));
+			platforms.add(new Wall(wall, 337, 360, 30, 400));
+			platforms.add(new Platform(platform, 250, 165, 215, 30));
+			platforms.add(new Platform(platform, 250, 355, 180, 30));
+			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 		}
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
