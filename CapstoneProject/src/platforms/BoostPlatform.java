@@ -7,17 +7,18 @@ import processing.core.PImage;
 
 public class BoostPlatform extends Platform {
 
-	
-	public BoostPlatform(PImage image, double x, double y, double width, double height) {
+	boolean isRight;
+	public BoostPlatform(PImage image, double x, double y, double width, double height, boolean isRight) {
 		super(image, x, y, width, height);
+		this.isRight = isRight;
 	}
 
 	public void boost(Person p) {
 		double xSpeed = p.getXSpeed();
-		if(xSpeed < 0) {
+		if(isRight) {
 			p.setXSpeed(xSpeed + 10);
 		}
-		else if(xSpeed > 0) {
+		else{
 			p.setXSpeed(xSpeed - 10);
 		}
 	}
