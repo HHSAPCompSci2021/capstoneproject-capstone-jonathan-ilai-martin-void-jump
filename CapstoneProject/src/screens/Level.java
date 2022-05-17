@@ -109,6 +109,13 @@ public class Level extends Screen {
 			gateX = 700;
 			gateY = 200;
 			
+		} else if (level == 8) {
+			startX = 150;
+			startY = 100;
+			keyX = 310;
+			keyY = 225;
+			gateX = 600;
+			gateY = 400;
 		}
 	}
 	 
@@ -240,7 +247,8 @@ public class Level extends Screen {
 		 
 		 
 		else if(level == 8) {
-			
+			platforms.add(new Platform(platform, startX, startY, 100, 30));
+			platforms.add(new Platform(rightBoostPlatform, 250, startY, 250, 30));
 		}
 		 
 		 
