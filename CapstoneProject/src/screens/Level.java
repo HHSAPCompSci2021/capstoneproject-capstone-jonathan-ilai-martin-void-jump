@@ -83,7 +83,7 @@ public class Level extends Screen {
 			keyY = 300;
 			gateX = 350;
 			gateY = 400;
-			Monster monster = new Monster(zombie, 125, 250, true);
+			Monster monster = new Monster(zombie, 175, 250, true);
 			Monster monster1 = new Monster(zombie, 550, 250, true);
 			characters.add(monster);
 			characters.add(monster1);
@@ -219,7 +219,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
 			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
-			platforms.add(new Platform(platform, startX - 75, startY + 400, 250, 30));
+			platforms.add(new Platform(platform, startX - 50, startY + 400, 250, 30));
 			platforms.add(new ForceBarrier(clouds, startX - 50, -10, 50, 150));
 			platforms.add(new ForceBarrier(clouds, startX + 100, -10, 50, 150));
 
@@ -243,7 +243,6 @@ public class Level extends Screen {
 		else if(level == 7) {
 			platforms.add(new Platform(platform, startX, startY, 50, 30));
 			platforms.add(new BoostPlatform(rightBoostPlatform, 310, 300, 200, 30, true));
-		//	rightBoostPlatform.resize(200, 30);
 			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
 
@@ -252,9 +251,7 @@ public class Level extends Screen {
 			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
 		}
 		 
-		 
-		 
-		 
+
 		 for (int i = 0 ;i < 4 ; i++) {
 				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
 			}
@@ -364,37 +361,12 @@ public class Level extends Screen {
 			 Portal portal = portals[i];
 			 Portal other = i == 0 ? portals[1] : portals[0];
 			 for (Person character : characters) {
-//				 Portal portal = portals[i];
-//				 Portal other = i == 0 ? portals[1] : portals[0];
 				 if (character != null && portal.getDrawn() && other.getDrawn() && portal.isInside(character) && canPortal) {
 					 character.moveTo(other.getCenterX() - character.width / 2, other.getCenterY() - character.height / 2);
 					 canPortal = false;
 					 break;
 				 }
-			 }
-//			 for (int j = 0 ; j < lazers.size() ; j++) {
-//				 Lazer lazer = lazers.get(j);
-//				 if (lazer != null && portal.getDrawn() && other.getDrawn()) {
-//					 Rectangle portalBody = new Rectangle(portal.getX(), portal.getY(), portal.width, portal.height);
-//					 if (lazer.intersects(portalBody)) {
-//						 //System.out.println("Yes");
-//						 Lazer second = ((Lazer) lazer).breakLine(portal.getCenterX(), portal.getCenterY());
-//						 double secondX = lazer.getX() > portal.getX() ? portal.getMaxX() + 10 : portal.getMinX() - 10;
-//						 //double secondY = lazer.getY() > portal.getY() ? portal.getMaxY() + 10 : portal.getMinY() - 10;
-//						 double firstX = lazer.getX() < portal.getX() ? other.getMaxX() + 10 : other.getMinX() - 10;
-//						 //double firstY = lazer.getY() > portal.getY() ? other.getMaxY() + 10 : other.getMinY() - 10;
-//						 System.out.println("Before: " + lazer.getX2());
-//						 lazer.setPoint2((int) secondX, (int) portal.getCenterY());
-//						 System.out.println("After: " + lazers.get(j).getX2());
-//						 //lazers.remove(j);
-//						 second.setPoint(firstX, other.getCenterY());
-//						 //lazers.add(new Lazer(lazerIcon, lazer.getX(), lazer.getY(), 0, lazer.getX2() - lazer.getX()));
-//						 lazers.add(second);
-//					 }
-//				 }
-//			 }
-			 
-			 
+			 }	 
 		 }
 	}
 	 
@@ -435,13 +407,6 @@ public class Level extends Screen {
 					Line l3 = new Line(x2, y1, x2, y2);
 					Line l4 = new Line(x1, y2, x2, y2);
 					
-					
-//					l1.draw(surface);
-//					l2.draw(surface);
-//					l3.draw(surface);
-//					l4.draw(surface);
-					
-					
 					if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
 						draw = false;
 					}
@@ -478,12 +443,6 @@ public class Level extends Screen {
 					Line l2 = new Line(x1, y1, x2, y1);
 					Line l3 = new Line(x2, y1, x2, y2);
 					Line l4 = new Line(x1, y2, x2, y2);
-
-//					l1.draw(surface);
-//					l2.draw(surface);
-//					l3.draw(surface);
-//					l4.draw(surface);
-					
 					
 					if(l1.intersects(sight) || l2.intersects(sight) || l3.intersects(sight) || l4.intersects(sight)) {
 						draw = false;
@@ -507,19 +466,11 @@ public class Level extends Screen {
 					portals[1].setY(surface.mouseY - portals[1].getHeight()/2);
 					portals[1].setDrawn(draw);
 				}
-				
-				
-				
-				
 			}
-		
 		}
 	 }
 
 	 public static boolean isCompleted(int level) {
 		 return completed[level];
 	 }
-	 
-
-
 }
