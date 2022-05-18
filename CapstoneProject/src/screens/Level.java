@@ -140,6 +140,8 @@ public class Level extends Screen {
 			}
 		}
 		for (Portal portal : portals) portal.setDrawn(false);
+		platforms = new ArrayList<Platform>();
+		addPlatforms();
 	}
 
 	public void setup() {
