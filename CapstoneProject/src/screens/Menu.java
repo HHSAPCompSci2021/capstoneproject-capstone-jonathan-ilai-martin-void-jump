@@ -74,14 +74,6 @@ public class Menu extends Screen {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 		if (levelButtons[0].contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL1);
-		if (Level.isCompleted(0)) {
-			if (levelButtons[1].contains(p))
-				surface.switchScreen(ScreenSwitcher.LEVEL2);
-			if (Level.isCompleted(1)) {
-				if (levelButtons[2].contains(p))
-					surface.switchScreen(ScreenSwitcher.LEVEL3);
-			}
-		}
 		if (levelButtons[1].contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL2);
 		if (levelButtons[2].contains(p))
@@ -90,7 +82,6 @@ public class Menu extends Screen {
 			surface.switchScreen(ScreenSwitcher.LEVEL4);
 		if(levelButtons[4].contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL5);
-
 		if(levelButtons[5].contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL6);
 		if(levelButtons[6].contains(p))
