@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import platforms.Platform;
 import processing.core.PImage;
 
-
 public class Monster extends Person {
 	
 

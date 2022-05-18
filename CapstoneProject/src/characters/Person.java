@@ -12,6 +12,13 @@ import platforms.Wall;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * This class represents any person (player or monster) that appears in the game. A
+ * person can change speed and direction and jump. Objects of this class can't get
+ * inside of platforms, and they can use portals.
+ * @author Ilai Tamari
+ * 
+ */
 public class Person extends Rectangle2D.Double {
 
 	private double xSpeed, ySpeed;
@@ -19,12 +26,24 @@ public class Person extends Rectangle2D.Double {
 	private final double GRAVITY = 0.1;
 	private boolean jumping, drawn;
 	
+	/**
+	 * Construct a new person at a given position with a given size.
+	 * @param image		Icon
+	 * @param x			X-coordinate of top-left corner
+	 * @param y			Y-coordinate of top-left corner
+	 * @param width		Width of person
+	 * @param height	Height of person
+	 */
 	public Person(PImage image, double x, double y, double width, double height) {
 		super(x, y, width, height);
 		this.image = image;
 		drawn = true;
 	}
 	
+	/**
+	 * Reset the person's speed and boolean attributes.
+	 * @post	The player stops
+	 */
 	public void reset() {
 		xSpeed = 0;
 		ySpeed = 0;
@@ -32,41 +51,69 @@ public class Person extends Rectangle2D.Double {
 		drawn = true;
 	}
 	
+	/**
+	 * Change the person's horizontal speed
+	 * @param x	new speed
+	 * @post	Person's speed changes
+	 */
 	public void setXSpeed(double x) {
 		xSpeed = x;
 	}
 	
+	/**
+	 * @return the person's horizontal speed
+	 */
 	public double getXSpeed() {
 		return xSpeed;
 	}
 	
+	/**
+	 * @return the person's current x-location
+	 */
 	public double getX() {
 		return x;
 	}
 	
-	public double getY() {
-		return y;
-	}
-	
+	/**
+	 * @return the person's vertical speed
+	 */
 	public double getYSpeed() {
 		return ySpeed;
 	}
 	
+	/**
+	 * @return the person's current y-location
+	 */
+	public double getY() {
+		return y;
+	}
+	
+	/**
+	 * Draw the person's icon where needed
+	 * @param surface
+	 */
 	public void draw(PApplet surface) {
 		if (drawn && image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);
 	}
 	
+	/**
+	 * Make the person unseenable
+	 * @post Person is not drawn
+	 */
 	public void disappear() {
 		drawn = false;
 	}
 	
-	// METHODS
+	/**
+	 * Change horizontal speed
+	 * @param dir	Amount by which to increase speed
+	 * @post	Sppeed changes
+	 */
 	public void walk(int dir) {
 		if (Math.abs(xSpeed) <= 1) xSpeed += dir;
 		else xSpeed = xSpeed > 0 ? 1 : -1;
 		
 	}
-
 
 	private boolean inside(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
@@ -87,6 +134,11 @@ public class Person extends Rectangle2D.Double {
 		return false;
 	}
 
+	/**
+	 * Decrease y-speed
+	 * @param platforms	Platfomrs in the game
+	 * @post	Y-speed changes
+	 */
 	public void jump(ArrayList<Platform> platforms) {
 		if (standing(platforms)) {
 			if (!jumping) ySpeed -= 4;
@@ -94,6 +146,11 @@ public class Person extends Rectangle2D.Double {
 		}
 	}
 	
+	/**
+	 * If possible, change location according to speed. Then, obey to gavity and reduce
+	 * horizontal speed if moving on platform.
+	 * @param platforms
+	 */
 	public void act(ArrayList<Platform> platforms) {
 		//inside = false;
 		if (!inside(platforms)) {
@@ -112,11 +169,8 @@ public class Person extends Rectangle2D.Double {
 		}
 	}
 	
-//	public void setJumping(boolean jumping) {
-//		this.jumping = jumping;
-//	}
 
-	protected boolean standing(ArrayList<Platform> platforms) {
+	private boolean standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if (!(platform instanceof ForceBarrier)) {
 				int x = (int) getX();
@@ -134,11 +188,22 @@ public class Person extends Rectangle2D.Double {
 		return false;
 	}
 	
+	/**
+	 * Move person to a new location
+	 * @param x	New x-location
+	 * @param y	New y-location
+	 * @post	Person is drawn at a different location
+	 */
 	public void moveTo(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * Search for the platform on which the person stands
+	 * @param platforms	All platforms in the game
+	 * @return	platform on which the person stands
+	 */
 	public Platform getPlatform(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			ArrayList<Platform> platformBelow = new ArrayList<Platform>();
@@ -151,7 +216,11 @@ public class Person extends Rectangle2D.Double {
 		return null;
 	}
 	
-	
+	/**
+	 * Check if the person is touching any wall
+	 * @param platforms	All platforms in the game
+	 * @return true if the player is touching any wall
+	 */
 	public boolean touchingWall(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if(platform instanceof ForceBarrier && platform.getPlatform().intersects(this)) return false;
@@ -164,7 +233,4 @@ public class Person extends Rectangle2D.Double {
 		}
 		return false;
 	}
-	
-	
-	
 }

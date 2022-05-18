@@ -5,7 +5,8 @@ import processing.core.PImage;
 
 public class BoostPlatform extends Platform {
 
-	boolean isRight;
+	private boolean isRight;
+	
 	public BoostPlatform(PImage image, double x, double y, double width, double height, boolean isRight) {
 		super(image, x, y, width, height);
 		this.isRight = isRight;
