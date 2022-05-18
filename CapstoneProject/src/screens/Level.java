@@ -83,7 +83,7 @@ public class Level extends Screen {
 			keyY = 300;
 			gateX = 350;
 			gateY = 400;
-			Monster monster = new Monster(zombie, 175, 250, true);
+			Monster monster = new Monster(zombie, 250, 250, true);
 			Monster monster1 = new Monster(zombie, 550, 250, true);
 			characters.add(monster);
 			characters.add(monster1);
@@ -217,8 +217,8 @@ public class Level extends Screen {
 		}
 		else if(level == 4) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new Platform(platform, startX - 175, startY + 250, 100, 30));
-			platforms.add(new Platform(platform, startX + 150, startY + 250, 100, 30));
+			platforms.add(new Platform(platform, startX - 125, startY + 250, 150, 30));
+			platforms.add(new Platform(platform, startX + 100, startY + 250, 200, 30));
 			platforms.add(new Platform(platform, startX - 50, startY + 400, 250, 30));
 			platforms.add(new ForceBarrier(clouds, startX - 50, -10, 50, 150));
 			platforms.add(new ForceBarrier(clouds, startX + 100, -10, 50, 150));
@@ -316,6 +316,10 @@ public class Level extends Screen {
 				 }
 				 
 			 }
+			 if(platform instanceof BoostPlatform && platform.getPlatform().intersects(player)) {
+				BoostPlatform boostPlatform = (BoostPlatform) platform;
+				boostPlatform.boost(player);
+			}
 		 }
 		 
 		 if (level == 6 && keyTaken && platforms.size() == 9) {
