@@ -43,5 +43,8 @@ public class Platform {
 		return body.height;
 	}
 	
+	public void setY(double y) {
+		body.y = y;
+	}
 	
 }
