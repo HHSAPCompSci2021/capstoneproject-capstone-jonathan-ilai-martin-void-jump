@@ -75,8 +75,7 @@ public class Level extends Screen {
 			gateY = 400;
 			Monster monster = new Monster(zombie, 350, 150, true);
 			characters.add(monster);
-			
-			lazers.add(new Lazer(lazerIcon, 10, 200, 0, 200));
+			lazers.add(new Lazer(lazerIcon, 10, 200, 200));
 		} else if(level == 4) {
 			startX = 350;
 			startY = 100;
@@ -101,10 +100,13 @@ public class Level extends Screen {
 		} else if (level == 6) {
 			startX = 10;
 			startY = 450;
-			keyX = 10;
+			keyX = 40;
 			keyY = 50;
 			gateX = 700;
 			gateY = 300;
+			lazers.add(new Lazer(lazerIcon, 400, 415, 300));
+			Monster monster = new Monster(zombie, 250, 300, true);
+			characters.add(monster);
 		}
 		
 		else if (level == 7) {
@@ -231,6 +233,10 @@ public class Level extends Screen {
 			platforms.add(new ForceBarrier(clouds, 200, 165, 50, 200));
 		} else if (level == 6) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
+			platforms.add(new ForceBarrier(clouds, 150, 10, 50, 200));
+			platforms.add(new ForceBarrier(clouds, 150, 210, 50, 200));
+			platforms.add(new Platform(platform, 200, 400, 200, 30));
+			platforms.add(new Platform(platform, 700, 400, 100, 30));
 		}
 		
 	
@@ -333,6 +339,11 @@ public class Level extends Screen {
 				 
 			 }
 		 }
+		 
+		 if (level == 6 && keyTaken && platforms.size() == 9) {
+			 platforms.add(new Platform(platform, 10, 200, 100, 30));
+		 }
+		 
 		 if (!keyTaken && (player.contains(new Point((int) keyX, (int) keyY))
 				 || player.contains(new Point((int) (keyX + key.width), (int) keyY))
 				 || player.contains(new Point((int) (keyX), (int) keyY + key.height))
