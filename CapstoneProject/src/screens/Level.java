@@ -149,13 +149,6 @@ public class Level extends Screen {
 		initializeLevel();
 		player = new Player(wizard, startX, startY - Player.HEIGHT);
 		characters.add(player);
-		//resize(50, 50);
-		//dungeon = surface.loadImage("img/dungeon.jpg");
-		//dungeon.resize(DRAWING_WIDTH, DRAWING_HEIGHT);
-		
-		//gate.resize(100, 100); 
-		
-		//key.resize(50, 50);
 		addPlatforms();
 		
 		portals = new Portal[2];
