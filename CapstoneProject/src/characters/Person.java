@@ -126,8 +126,8 @@ public class Person extends Rectangle2D.Double {
 		for (Platform platform : platforms) {
 			if (!(platform instanceof ForceBarrier)) {
 				int x = (int) (getX() + xSpeed + getWidth() * 0.1);
-				int middleX = xSpeed > 0 ? (int) (x + getWidth() * 0.5) : (int) (x - getWidth() * 0.5);
-				int finalX = this instanceof Player ? middleX : xSpeed > 0 ? (int) (x + getWidth() * 0.9) : (int) (x - getWidth() * 0.9);
+				int middleX = (int) (x + getWidth() * 0.5);
+				int finalX = this instanceof Player ? middleX : (int) (x + getWidth() * 0.9);
 				int y = (int) (getY() + ySpeed);
 				int middleY = (int) (y + getHeight() * 0.5);
 				int finalY = (int) (y + getHeight() * 0.9);
