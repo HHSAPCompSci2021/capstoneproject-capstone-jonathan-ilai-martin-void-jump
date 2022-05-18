@@ -258,6 +258,7 @@ public class Level extends Screen {
 	 }
 		
 	 public void draw() {
+        // Draw items
 		surface.background(225);
 		surface.image(dungeon, 0, 0);
 		surface.image(returnIcon, 10, 10);
@@ -270,24 +271,20 @@ public class Level extends Screen {
 		for (Ellipse2D zone : noPortalZone) {
 			surface.circle((float) zone.getCenterX(), (float) zone.getCenterY(), (float) zone.getWidth());
 		}
+		if (!keyTaken) surface.image(key, (int) keyX, (int) keyY);
 		
+		// Draw characters and kill player if possible
 		for (Person character : characters) {
-			if(character instanceof Monster) {
+			character.draw(surface);
+			character.act(platforms);
+			if (character instanceof Monster) {
 				Monster monster = (Monster) character;
-				monster.draw(surface);
-				monster.act(platforms);
 				if (monster.kill(player))
 					reset();
 			}
 		}
 		
-		if (!keyTaken) 
-			surface.image(key, (int) keyX, (int) keyY);
-		 player.draw(surface);
-
-
-	
-		
+		// Kill player if touching lazer
 		double x1 = player.x;
 		double x2 = player.x + player.width;
 		double y1 = player.y;
@@ -304,7 +301,7 @@ public class Level extends Screen {
 			}
 		}
 		
-		
+		// React to special platforms
 		 for (Platform platform : platforms) {
 			 if (platform != null) platform.draw(surface);
 			 if (platform instanceof Spikes) {
@@ -322,10 +319,12 @@ public class Level extends Screen {
 			}
 		 }
 		 
+		 // Level-specific features
 		 if (level == 6 && keyTaken && platforms.size() == 9) {
 			 platforms.add(new Platform(platform, 10, 200, 100, 30));
 		 }
 		 
+		 // Take key
 		 if (!keyTaken && (player.contains(new Point((int) keyX, (int) keyY))
 				 || player.contains(new Point((int) (keyX + key.width), (int) keyY))
 				 || player.contains(new Point((int) (keyX), (int) keyY + key.height))
@@ -333,12 +332,14 @@ public class Level extends Screen {
 			 keyTaken = true;
 			 player.takeKey();
 		 }
+		 // Complete level by opening gate with key
 		 if (keyTaken && (player.contains(new Point((int) (gateX + gate.width / 2), (int) (gateY + gate.height / 2))))) {
 			 surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 			 completed[level - 1] = true;
 			 reset();
 		 }
 		 
+		 // React to keys if not inside walls
 		 if (!player.touchingWall(platforms)) {
 			 if (surface.isPressed(KeyEvent.VK_LEFT))
 				player.walk(-1);
@@ -350,23 +351,15 @@ public class Level extends Screen {
 				 else player.moveTo(player.getX() + 1, player.getY());
 			 }
 		 }
-		
 		 if (surface.isPressed(KeyEvent.VK_UP))
 				player.jump(platforms);
-		 player.act(platforms);
 		
-		 for (Portal portal : portals) {
+		 // Take care of portals
+		 for (int i = 0 ; i < portals.length ; i++) {
+			 Portal portal = portals[i];
 			 Point center = new Point((int)(portal.getX() + portal.getWidth()/2),(int) (portal.getY() + portal.getHeight()/2));
 			 if (portal.getDrawn() && !returnButton.contains(center) && !noPortalZone.get(0).contains(center)) 
 				 portal.draw(surface);
-		 }
-		 
-		 noPortalZone.set(1, new Ellipse2D.Double(player.x - 50, player.y - 50, player.width * 2, player.height * 2));
-			 
-		 if (!canPortal) canPortal = canPortal();
-			
-		 for (int i = 0 ; i < portals.length ; i++) {
-			 Portal portal = portals[i];
 			 Portal other = i == 0 ? portals[1] : portals[0];
 			 for (Person character : characters) {
 				 if (character != null && portal.getDrawn() && other.getDrawn() && portal.isInside(character) && canPortal) {
@@ -376,6 +369,9 @@ public class Level extends Screen {
 				 }
 			 }	 
 		 }
+		 
+		 noPortalZone.set(1, new Ellipse2D.Double(player.x - 50, player.y - 50, player.width * 2, player.height * 2));
+		 if (!canPortal) canPortal = canPortal();
 	}
 	 
 	private boolean canPortal() {
