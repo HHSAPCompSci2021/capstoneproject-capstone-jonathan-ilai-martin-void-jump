@@ -340,11 +340,15 @@ public class Level extends Screen {
 		 }
 		 
 		 if (!player.touchingWall(platforms)) {
-			 
 			 if (surface.isPressed(KeyEvent.VK_LEFT))
 				player.walk(-1);
 			 if (surface.isPressed(KeyEvent.VK_RIGHT))
 				 player.walk(1);
+		 } else {
+			 while(player.touchingWall(platforms)) {
+				 if (player.getXSpeed() > 0) player.moveTo(player.getX() - 1, player.getY());
+				 else player.moveTo(player.getX() + 1, player.getY());
+			 }
 		 }
 		
 		 if (surface.isPressed(KeyEvent.VK_UP))
