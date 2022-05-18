@@ -1,7 +1,5 @@
 package platforms;
 
-import java.util.ArrayList;
-
 import characters.Person;
 import processing.core.PImage;
 

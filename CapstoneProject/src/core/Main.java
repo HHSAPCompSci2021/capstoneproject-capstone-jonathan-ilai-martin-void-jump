@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
-import java.awt.geom.Rectangle2D;
 
 public class Main {
 

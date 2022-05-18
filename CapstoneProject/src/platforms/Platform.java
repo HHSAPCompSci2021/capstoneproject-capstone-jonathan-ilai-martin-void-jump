@@ -6,16 +6,16 @@ import processing.core.PImage;
 
 public class Platform {
 	
-	private double x, y, width, height;
+	//private double x, y, width, height;
 	private PImage image;
 	private Rectangle2D.Double body;
 	
 	public Platform(PImage image, double x, double y, double width, double height) {
 		this.image = image;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+//		this.x = x;
+//		this.y = y;
+//		this.width = width;
+//		this.height = height;
 		body = new Rectangle2D.Double(x, y, width, height);
 	}
 	

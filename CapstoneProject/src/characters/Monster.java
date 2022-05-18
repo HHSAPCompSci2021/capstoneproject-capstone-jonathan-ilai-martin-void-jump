@@ -8,7 +8,7 @@ import processing.core.PImage;
 
 public class Monster extends Person {
 	
-	
+
 	public static double WIDTH = 50, HEIGHT = 100;
 	private boolean turnRight;
 	private double startX, startY;

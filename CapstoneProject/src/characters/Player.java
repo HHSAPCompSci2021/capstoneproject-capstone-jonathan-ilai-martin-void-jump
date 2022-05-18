@@ -1,15 +1,11 @@
 package characters;
 
-import java.awt.Point;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
-import platforms.Platform;
 import processing.core.PImage;
 
 public class Player extends Person {
 	
-	public static double WIDTH = 70, HEIGHT = 100;
+	public static double WIDTH = 70;
+	public static double HEIGHT = 100;
 	private boolean hasKey;
 
 	public Player(PImage image, double x, double y) {

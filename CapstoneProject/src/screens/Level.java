@@ -11,7 +11,6 @@ import characters.Person;
 import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
-import ilaitm12.shapes.Rectangle;
 import platforms.BoostPlatform;
 import platforms.ForceBarrier;
 //import ilaitm12.shapes.Line;
@@ -20,6 +19,7 @@ import platforms.Platform;
 import portals.Portal;
 import platforms.Spikes;
 import platforms.Wall;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 
@@ -104,8 +104,8 @@ public class Level extends Screen {
 			keyY = 50;
 			gateX = 700;
 			gateY = 300;
-			lazers.add(new Lazer(lazerIcon, 400, 415, 300));
-			Monster monster = new Monster(zombie, 250, 300, true);
+			lazers.add(new Lazer(lazerIcon, 450, 415, 250));
+			Monster monster = new Monster(zombie, 300, 300, true);
 			characters.add(monster);
 		}
 		
@@ -131,7 +131,7 @@ public class Level extends Screen {
 		keyTaken = false;
 		for (Person character : characters) 
 			character.reset();
-		player.moveTo(startX, startY - player.HEIGHT);
+		player.moveTo(startX, startY - Player.HEIGHT);
 
 		for(Person p: characters) {
 			if(p instanceof Monster) {
@@ -145,7 +145,7 @@ public class Level extends Screen {
 	public void setup() {
 		loadImages();
 		initializeLevel();
-		player = new Player(wizard, startX, startY - player.HEIGHT);
+		player = new Player(wizard, startX, startY - Player.HEIGHT);
 		characters.add(player);
 		//resize(50, 50);
 		//dungeon = surface.loadImage("img/dungeon.jpg");
@@ -233,9 +233,9 @@ public class Level extends Screen {
 			platforms.add(new ForceBarrier(clouds, 200, 165, 50, 200));
 		} else if (level == 6) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new ForceBarrier(clouds, 150, 10, 50, 200));
-			platforms.add(new ForceBarrier(clouds, 150, 210, 50, 200));
-			platforms.add(new Platform(platform, 200, 400, 200, 30));
+			platforms.add(new ForceBarrier(clouds, 200, 10, 50, 200));
+			platforms.add(new ForceBarrier(clouds, 200, 210, 50, 200));
+			platforms.add(new Platform(platform, 250, 400, 200, 30));
 			platforms.add(new Platform(platform, 700, 400, 100, 30));
 		}
 		
@@ -246,26 +246,7 @@ public class Level extends Screen {
 		//	rightBoostPlatform.resize(200, 30);
 			platforms.add(new Platform(platform, 650, 300, 100, 30));
 		 }
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+
 		else if(level == 8) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
@@ -440,7 +421,7 @@ public class Level extends Screen {
 			boolean draw = true;
 			Line sight = new Line((float) (player.getX() + 35), (float)(player.getY() + 50), (float)(surface.mouseX),(float)(surface.mouseY));
 			
-			if (surface.mouseButton == surface.LEFT) {
+			if (surface.mouseButton == PConstants.LEFT) {
 				
 				
 				for(Platform platform : platforms) {
@@ -485,7 +466,7 @@ public class Level extends Screen {
 				}
 			}
 		 
-			if (surface.mouseButton == surface.RIGHT) {
+			if (surface.mouseButton == PConstants.RIGHT) {
 				
 				for(Platform platform : platforms) {
 					float x1 = (float)platform.getX();

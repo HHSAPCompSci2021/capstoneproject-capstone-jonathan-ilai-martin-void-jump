@@ -2,7 +2,6 @@ package screens;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 
 import core.DrawingSurface;
 import processing.core.PImage;

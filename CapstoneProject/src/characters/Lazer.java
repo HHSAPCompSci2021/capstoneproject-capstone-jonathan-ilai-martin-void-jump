@@ -1,7 +1,5 @@
 package characters;
 
-import java.awt.Color;
-
 import ilaitm12.shapes.Line;
 import processing.core.PApplet;
 import processing.core.PImage;
