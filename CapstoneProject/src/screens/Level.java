@@ -324,7 +324,7 @@ public class Level extends Screen {
 				 }
 				 
 			 }
-			 if(platform instanceof BoostPlatform && platform.getPlatform().intersects(player)) {
+			 if(platform instanceof BoostPlatform && player.standing(platforms) instanceof BoostPlatform) {
 				BoostPlatform boostPlatform = (BoostPlatform) platform;
 				boostPlatform.boost(player);
 			}
@@ -355,7 +355,7 @@ public class Level extends Screen {
 		 }
 		 
 		 // React to keys if not inside walls
-		 if (!player.touchingWall(platforms)) {
+		 if (!player.touchingWall(platforms) && !(player.standing(platforms) instanceof BoostPlatform)) {
 			 if (surface.isPressed(KeyEvent.VK_LEFT))
 				player.walk(-1);
 			 if (surface.isPressed(KeyEvent.VK_RIGHT))

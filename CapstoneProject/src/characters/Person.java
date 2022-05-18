@@ -147,7 +147,7 @@ public class Person extends Rectangle2D.Double {
 	 * @post	Y-speed changes
 	 */
 	public void jump(ArrayList<Platform> platforms) {
-		if (standing(platforms)) {
+		if (standing(platforms) != null) {
 			if (!jumping) ySpeed -= 4;
 			jumping = true;
 		}
@@ -166,7 +166,7 @@ public class Person extends Rectangle2D.Double {
 		} else xSpeed = 0;
 		
 		
-		if (!standing(platforms)) {
+		if (standing(platforms) == null) {
 			ySpeed += GRAVITY;
 			xSpeed *= 0.9;
 		} else {
@@ -176,7 +176,7 @@ public class Person extends Rectangle2D.Double {
 		}
 	}
 	
-	private boolean standing(ArrayList<Platform> platforms) {
+	public Platform standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if (!(platform instanceof ForceBarrier)) {
 				int x = (int) getX();
@@ -187,12 +187,14 @@ public class Person extends Rectangle2D.Double {
 				if ((platformBody.contains(new Point(x, finalY)) 
 						|| platformBody.contains(new Point(finalX, finalY))) 
 						&& !(platform instanceof Wall)) {
-					return true;
+					return platform;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
+	
+	
 	
 	/**
 	 * Move person to a new location
@@ -214,7 +216,7 @@ public class Person extends Rectangle2D.Double {
 		for (Platform platform : platforms) {
 			ArrayList<Platform> platformBelow = new ArrayList<Platform>();
 			platformBelow.add(platform);
-			if (standing(platformBelow)) {
+			if (standing(platformBelow) != null) {
 				return platform;
 			}
 			
