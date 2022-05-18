@@ -259,7 +259,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
 			platforms.add(new Platform(platform, 50, 450, 200, 30));
 			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
-			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 200, startY, 150, 30, false));
+			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 200, startY, 100, 30, false));
 		}
 		 
 
