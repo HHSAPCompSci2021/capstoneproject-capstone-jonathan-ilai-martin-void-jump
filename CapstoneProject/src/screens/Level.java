@@ -120,7 +120,7 @@ public class Level extends Screen {
 		} else if (level == 8) {
 			startX = 150;
 			startY = 100;
-			keyX = 310;
+			keyX = 260;
 			keyY = 225;
 			gateX = 600;
 			gateY = 400;
@@ -253,8 +253,17 @@ public class Level extends Screen {
 		 }
 
 		else if(level == 8) {
-			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
+			platforms.add(new Platform(platform, startX, startY, 150, 30));
+			platforms.add(new BoostPlatform(rightBoostPlatform, 300, startY, 160, 30, true));
+			platforms.add(new Platform(platform, 460, startY, 40, 30));
+			platforms.add(new ForceBarrier(clouds, 495, 0, 5, 300));
+			platforms.add(new Platform(platform, 500, 130, 200, 30));
+			platforms.add(new Platform(platform, 500, 300, 200, 30));
+			platforms.add(new BoostPlatform(leftBoostPlatform, 350, 300, 150, 30, false));
+			platforms.add(new Platform(platform, 170, 300, 180, 30));
+			platforms.add(new Wall(wall, 170, 130, 30, 200));
+			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
+			
 		} else if (level == 9) {
 			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
 			platforms.add(new Platform(platform, 50, 450, 200, 30));
