@@ -12,6 +12,7 @@ import characters.Player;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
 import platforms.BoostPlatform;
+import platforms.FallingPlatform;
 import platforms.ForceBarrier;
 //import ilaitm12.shapes.Line;
 import platforms.Platform;
@@ -328,6 +329,11 @@ public class Level extends Screen {
 				BoostPlatform boostPlatform = (BoostPlatform) platform;
 				boostPlatform.boost(player);
 			}
+			if(platform instanceof FallingPlatform && platform.getPlatform().intersects(player)) {
+				FallingPlatform fallingPlatform = (FallingPlatform) platform;
+				fallingPlatform.fall();
+				}
+			 
 		 }
 		 
 		 // Level-specific features
