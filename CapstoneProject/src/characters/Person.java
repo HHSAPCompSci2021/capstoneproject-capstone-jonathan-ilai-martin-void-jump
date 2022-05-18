@@ -41,6 +41,13 @@ public class Person extends Rectangle2D.Double {
 	}
 	
 	/**
+	 * @return true if person needs to be drawn
+	 */
+	public boolean isDrawn() {
+		return drawn;
+	}
+	
+	/**
 	 * Reset the person's speed and boolean attributes.
 	 * @post	The player stops
 	 */
@@ -169,7 +176,6 @@ public class Person extends Rectangle2D.Double {
 		}
 	}
 	
-
 	private boolean standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if (!(platform instanceof ForceBarrier)) {

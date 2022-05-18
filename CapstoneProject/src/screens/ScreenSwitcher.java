@@ -14,6 +14,7 @@ public interface ScreenSwitcher {
 	public static final int LEVEL6 = 8;
 	public static final int LEVEL7 = 9;
 	public static final int LEVEL8 = 10;
+	public static final int LEVEL9 = 11;
 	
 	public void switchScreen(int i);
 }

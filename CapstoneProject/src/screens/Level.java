@@ -124,6 +124,15 @@ public class Level extends Screen {
 			keyY = 225;
 			gateX = 600;
 			gateY = 400;
+		} else if (level == 9) {
+			startX = 400;
+			startY = 300;
+			keyX = 100;
+			keyY = 400;
+			gateX = 700;
+			gateY = 200;
+			Monster monster = new Monster(zombie, keyX, 350, true);
+			characters.add(monster);
 		}
 	}
 	 
@@ -246,6 +255,11 @@ public class Level extends Screen {
 		else if(level == 8) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
+		} else if (level == 9) {
+			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
+			platforms.add(new Platform(platform, 50, 450, 200, 30));
+			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
+			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 200, startY, 150, 30, false));
 		}
 		 
 
@@ -319,6 +333,10 @@ public class Level extends Screen {
 		 // Level-specific features
 		 if (level == 6 && keyTaken && platforms.size() == 9) {
 			 platforms.add(new Platform(platform, 10, 200, 100, 30));
+		 }
+		 if (level == 9 && !keyTaken && characters.get(0).isDrawn()) {
+			 keyX = characters.get(0).getX();
+			 keyY = characters.get(0).getY();
 		 }
 		 
 		 // Take key
