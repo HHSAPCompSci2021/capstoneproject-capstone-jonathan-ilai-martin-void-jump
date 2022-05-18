@@ -9,6 +9,7 @@ import characters.Lazer;
 import characters.Monster;
 import characters.Person;
 import characters.Player;
+import characters.Teleporter;
 import core.DrawingSurface;
 import ilaitm12.shapes.Line;
 import platforms.BoostPlatform;
@@ -27,7 +28,7 @@ import processing.core.PImage;
 
 public class Level extends Screen {
 	
-	 protected double startX, startY, keyX, keyY, gateX, gateY;
+	 protected double startX, startY, keyX, keyY, gateX, gateY, clock;
 	 protected ArrayList<Platform> platforms;
 	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, clouds;
 	 protected Ellipse2D returnButton;
@@ -50,6 +51,7 @@ public class Level extends Screen {
 		 characters = new ArrayList<Person>();
 		 lazers = new ArrayList<Lazer>();
 		 noPortalZone = new ArrayList<Ellipse2D>();
+		 clock = 0;
 	 }
 	 
 	 private void initializeLevel() {
@@ -121,7 +123,7 @@ public class Level extends Screen {
 		} else if (level == 8) {
 			startX = 150;
 			startY = 100;
-			keyX = 310;
+			keyX = 260;
 			keyY = 225;
 			gateX = 600;
 			gateY = 400;
@@ -133,6 +135,17 @@ public class Level extends Screen {
 			gateX = 700;
 			gateY = 200;
 			Monster monster = new Monster(zombie, keyX, 350, true);
+			characters.add(monster);
+		}
+		
+		else if(level == 10) {
+			startX = 400;
+			startY = 100;
+			keyX = 400;
+			keyY = 300;
+			gateX = 700;
+			gateY = 200;
+			Monster monster = new Monster(zombie, 400, 500, true);
 			characters.add(monster);
 		}
 	}
@@ -254,14 +267,26 @@ public class Level extends Screen {
 		 }
 
 		else if(level == 8) {
-			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new BoostPlatform(rightBoostPlatform, 250, startY, 250, 30, true));
+			platforms.add(new Platform(platform, startX, startY, 150, 30));
+			platforms.add(new BoostPlatform(rightBoostPlatform, 300, startY, 160, 30, true));
+			platforms.add(new Platform(platform, 460, startY, 40, 30));
+			platforms.add(new ForceBarrier(clouds, 495, 0, 5, 300));
+			platforms.add(new Platform(platform, 500, 130, 200, 30));
+			platforms.add(new Platform(platform, 500, 300, 200, 30));
+			platforms.add(new BoostPlatform(leftBoostPlatform, 350, 300, 150, 30, false));
+			platforms.add(new Platform(platform, 170, 300, 180, 30));
+			platforms.add(new Wall(wall, 170, 130, 30, 200));
+			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
+			
 		} else if (level == 9) {
 			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
 			platforms.add(new Platform(platform, 50, 450, 200, 30));
 			platforms.add(new Wall(wall, startX - 50, startY - 100, 30, 100));
 			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
 			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 150, startY - 100, 100, 30, false));
+		}
+		else if(level == 10) {
+			platforms.add(new FallingPlatform(platform, startX - 100, startY, 100, 30));
 		}
 		 
 
@@ -272,6 +297,7 @@ public class Level extends Screen {
 		
 	 public void draw() {
         // Draw items
+		clock++;
 		surface.background(225);
 		surface.image(dungeon, 0, 0);
 		surface.image(returnIcon, 10, 10);
@@ -294,6 +320,12 @@ public class Level extends Screen {
 				Monster monster = (Monster) character;
 				if (monster.kill(player))
 					reset();
+				if(monster instanceof Teleporter) {
+					if(clock % 2 == 0) {
+						Teleporter t = (Teleporter) monster;
+						t.teleport();
+					}
+				}
 			}
 		}
 		
