@@ -233,7 +233,7 @@ public class Person extends Rectangle2D.Double {
 	 */
 	public boolean touchingWall(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
-			if (platform instanceof Wall && platform.getPlatform().intersects(this)) 
+			if (platform instanceof Wall && platform.getPlatform().intersects(this))
 				return true;
 		}
 		return false;
