@@ -95,6 +95,8 @@ public class Person extends Rectangle2D.Double {
 		return y;
 	}
 	
+	
+	
 	/**
 	 * Draw the person's icon where needed
 	 * @param surface
