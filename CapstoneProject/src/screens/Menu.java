@@ -90,7 +90,8 @@ public class Menu extends Screen {
 			surface.switchScreen(ScreenSwitcher.LEVEL8);
 		if(levelButtons[8].contains(p))
 			surface.switchScreen(ScreenSwitcher.LEVEL9);
-
+		if(levelButtons[9].contains(p))
+			surface.switchScreen(ScreenSwitcher.LEVEL10);
 		
 		if (returnButton.contains(p))
 			surface.switchScreen(ScreenSwitcher.BEGINNING_SCREEN);
