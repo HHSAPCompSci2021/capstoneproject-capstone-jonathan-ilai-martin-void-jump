@@ -21,7 +21,7 @@ import processing.core.PImage;
  */
 public class Person extends Rectangle2D.Double {
 
-	private double xSpeed, ySpeed;
+	private double xSpeed, ySpeed, xStart, yStart;
 	private PImage image;
 	private final double GRAVITY = 0.1;
 	private boolean jumping, drawn, falling;
@@ -38,6 +38,8 @@ public class Person extends Rectangle2D.Double {
 		super(x, y, width, height);
 		this.image = image;
 		drawn = true;
+		xStart = x;
+		yStart = y;
 	}
 	
 	/**
@@ -56,6 +58,8 @@ public class Person extends Rectangle2D.Double {
 		ySpeed = 0;
 		jumping = false;
 		drawn = true;
+		x = xStart;
+		y = yStart;
 	}
 	
 	/**

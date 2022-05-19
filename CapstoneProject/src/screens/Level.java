@@ -88,10 +88,11 @@ public class Level extends Screen {
 			gateX = 350;
 			gateY = 400;
 			Monster monster = new Monster(zombie, 250, 250, true);
-			Monster monster1 = new Monster(zombie, 550, 250, true);
+			Monster monster1 = new Monster(zombie, 400, 250, true);
 			characters.add(monster);
 			characters.add(monster1);
-			
+			lazers.add(new Lazer(lazerIcon, 0, startY + 250, startX - 300));
+			lazers.add(new Lazer(lazerIcon, startX + 250, startY + 250, 500));
 		} else if(level == 5) {
 			startX = 50;
 			startY = 100;
@@ -155,14 +156,14 @@ public class Level extends Screen {
 		keyTaken = false;
 		for (Person character : characters) 
 			character.reset();
-		player.moveTo(startX, startY - Player.HEIGHT);
+		//moveTo(startX, startY - Player.HEIGHT);
 
-		for(Person p: characters) {
-			if(p instanceof Monster) {
-				Monster m = (Monster) p;
-				m.moveTo(m.getStartX(), m.getStartY());
-			}
-		}
+//		for(Person p: characters) {
+//			if(p instanceof Monster) {
+//				Monster m = (Monster) p;
+//				m.moveTo(m.getStartX(), m.getStartY());
+//			}
+//		}
 		for (Portal portal : portals) portal.setDrawn(false);
 		platforms = new ArrayList<Platform>();
 		addPlatforms();
@@ -236,9 +237,9 @@ public class Level extends Screen {
 		}
 		else if(level == 4) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
-			platforms.add(new Platform(platform, startX - 125, startY + 250, 150, 30));
-			platforms.add(new Platform(platform, startX + 100, startY + 250, 200, 30));
-			platforms.add(new Platform(platform, startX - 50, startY + 400, 250, 30));
+			platforms.add(new Platform(platform, startX - 125, startY + 250, 170, 30));
+			platforms.add(new Platform(platform, startX + 50, startY + 250, 200, 30));
+			platforms.add(new Platform(platform, startX - 350, startY + 400, 850, 30));
 			platforms.add(new ForceBarrier(clouds, startX - 50, -10, 50, 150));
 			platforms.add(new ForceBarrier(clouds, startX + 100, -10, 50, 150));
 
