@@ -31,7 +31,7 @@ public class Level extends Screen {
 	
 	 protected double startX, startY, keyX, keyY, gateX, gateY, clock;
 	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, clouds;
+	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, clouds, teleporter;
 	 protected Ellipse2D returnButton;
 	 private ArrayList<Ellipse2D> noPortalZone;
 	 private Player player;
@@ -148,7 +148,10 @@ public class Level extends Screen {
 			gateX = 700;
 			gateY = 200;
 			Monster monster = new Monster(zombie, 400, 500, true);
+			Teleporter t = new Teleporter(teleporter, 0, 0, true, 220, 150);
 			characters.add(monster);
+			characters.add(t);
+			lazers.add(new Lazer(lazerIcon, 260, 230, 295));
 		}
 	}
 	 
@@ -195,6 +198,7 @@ public class Level extends Screen {
 		 p2 = surface.loadImage("img/portalOut.png");
 		 lazerIcon = surface.loadImage("img/lazer.png");
 		 clouds = surface.loadImage("img/clouds.png");
+		 teleporter = surface.loadImage("img/teleporter.gif");
 		 rightBoostPlatform = surface.loadImage("img/rightBoostPlatform.png");
 		 leftBoostPlatform = surface.loadImage("img/leftBoostPlatform.png");
 		 returnIcon = surface.loadImage("img/return.png");
@@ -292,7 +296,10 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
 		}
 		else if(level == 10) {
-			platforms.add(new FallingPlatform(platform, startX - 100, startY, 100, 30));
+			platforms.add(new FallingPlatform(platform, 300, startY, 235, 30));
+			platforms.add(new ForceBarrier(clouds, 260, 0, 20, 150));
+			platforms.add(new ForceBarrier(clouds, 555, 0, 20, 150));
+			
 		}
 		 
 

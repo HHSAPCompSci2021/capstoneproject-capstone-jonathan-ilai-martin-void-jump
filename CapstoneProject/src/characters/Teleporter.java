@@ -1,5 +1,8 @@
 package characters;
 
+import java.util.ArrayList;
+
+import platforms.Platform;
 import processing.core.PImage;
 
 public class Teleporter extends Monster {
@@ -22,11 +25,27 @@ public class Teleporter extends Monster {
 	public void teleport() {
 		double rHeight = Math.random() * height + 1;
 		double rWidth = Math.random() * width + 1;
+		if(rHeight >= y && rHeight <= height && rWidth >= x && rWidth <= width) {
+			setX(rWidth);
+			setY(rHeight);
+		}
 		
-		setX(rWidth);
-		setY(rHeight);
 	}
 	
+	public void act(ArrayList<Platform> platforms) {
+		
+		
+		//System.out.println(jumping);
+		
+//		if (standing(platforms) == null) {
+//			ySpeed += GRAVITY;
+//			xSpeed *= 0.9;
+//		} else {
+//			jumping = false;
+//			ySpeed = 0;
+//			xSpeed *= 0.6;
+//		}
+	}
 	
 	
 
