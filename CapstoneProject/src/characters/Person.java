@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import platforms.BoostPlatform;
+import platforms.FallingPlatform;
 import platforms.ForceBarrier;
 import platforms.Platform;
 import platforms.Wall;
@@ -149,9 +149,15 @@ public class Person extends Rectangle2D.Double {
 	 * @post	Y-speed changes
 	 */
 	public void jump(ArrayList<Platform> platforms) {
-		if (standing(platforms) != null) {
-			if (!jumping) ySpeed -= 4;
-			jumping = true;
+		if (!jumping) {
+			Platform platform = standing(platforms);
+			if (platform instanceof FallingPlatform) {
+				ySpeed -= 9;
+				jumping = true;
+			} else if (platform != null) {
+				ySpeed -= 4;
+				jumping = true;
+			}
 		}
 	}
 	
@@ -192,6 +198,7 @@ public class Person extends Rectangle2D.Double {
 					return platform;
 				}
 			}
+			
 		}
 		return null;
 	}

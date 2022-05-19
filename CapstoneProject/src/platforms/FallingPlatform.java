@@ -1,5 +1,6 @@
 package platforms;
 
+import characters.Player;
 import processing.core.PImage;
 
 public class FallingPlatform extends Platform{
@@ -8,10 +9,7 @@ public class FallingPlatform extends Platform{
 		super(image, x, y, width, height);
 	}
 
-	
-	
-	public void fall() {
-		while(getY() <= 0) 
-			super.setY(getY() - 5);
+	public void fall(Player player) {
+		setY(getY() + 5);
 	}
 }

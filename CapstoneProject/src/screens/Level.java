@@ -130,7 +130,7 @@ public class Level extends Screen {
 			gateY = 400;
 		} else if (level == 9) {
 			startX = 400;
-			startY = 300;
+			startY = 250;
 			keyX = 100;
 			keyY = 400;
 			gateX = 700;
@@ -280,11 +280,12 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
 			
 		} else if (level == 9) {
-			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
+			platforms.add(new FallingPlatform(platform, startX - 50, startY, 150, 30));
 			platforms.add(new Platform(platform, 50, 450, 200, 30));
 			platforms.add(new Wall(wall, startX - 50, startY - 100, 30, 100));
 			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
 			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 150, startY - 100, 100, 30, false));
+			platforms.add(new FallingPlatform(platform, 300, 450, 100, 30));
 		}
 		else if(level == 10) {
 			platforms.add(new FallingPlatform(platform, startX - 100, startY, 100, 30));
@@ -363,10 +364,10 @@ public class Level extends Screen {
 				BoostPlatform boostPlatform = (BoostPlatform) platform;
 				boostPlatform.boost(player);
 			}
-			if(platform instanceof FallingPlatform && platform.getPlatform().intersects(player)) {
+			if(platform instanceof FallingPlatform && player.standing(platforms) instanceof FallingPlatform) {
 				FallingPlatform fallingPlatform = (FallingPlatform) platform;
-				fallingPlatform.fall();
-				}
+				fallingPlatform.fall(player);
+			}
 			 
 		 }
 		 
