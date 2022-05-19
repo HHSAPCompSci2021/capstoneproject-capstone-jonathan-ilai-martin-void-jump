@@ -364,7 +364,7 @@ public class Level extends Screen {
 				 }
 				 
 			 }
-			 if(platform instanceof BoostPlatform && player.standing(platforms) instanceof BoostPlatform) {
+			 if(platform instanceof BoostPlatform && player.standing(platforms) != null && player.standing(platforms).equals(platform)) {
 				BoostPlatform boostPlatform = (BoostPlatform) platform;
 				boostPlatform.boost(player);
 			}
