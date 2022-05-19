@@ -17,25 +17,25 @@ public class Menu extends Screen {
 	public Menu(DrawingSurface surface) {
 		super(800,600, surface);
 		//this.surface = surface;
-		levelButtons = new Ellipse2D[12];
+		levelButtons = new Ellipse2D[10];
 		returnButton = new Ellipse2D.Double(10, 10, 50, 50);
 		addLevelButtonsToArray();
 	}
 
 
 	private void addLevelButtonsToArray() {
-		levelButtons[0] = new Ellipse2D.Double(50, 300, 100, 100);
-		levelButtons[1] = new Ellipse2D.Double(175, 300, 100, 100);
-		levelButtons[2] = new Ellipse2D.Double(300, 300, 100, 100);
-		levelButtons[3] = new Ellipse2D.Double(425, 300, 100, 100);
-		levelButtons[4] = new Ellipse2D.Double(550, 300, 100, 100);
-		levelButtons[5] = new Ellipse2D.Double(675, 300, 100, 100);
-		levelButtons[6] = new Ellipse2D.Double(50, 450, 100, 100);
-		levelButtons[7] = new Ellipse2D.Double(175, 450, 100, 100);
-		levelButtons[8] = new Ellipse2D.Double(300, 450, 100, 100);
-		levelButtons[9] = new Ellipse2D.Double(425, 450, 100, 100);
-		levelButtons[10] = new Ellipse2D.Double(550, 450, 100, 100);
-		levelButtons[11] = new Ellipse2D.Double(675, 450, 100, 100);
+		levelButtons[0] = new Ellipse2D.Double(100, 300, 100, 100);
+		levelButtons[1] = new Ellipse2D.Double(225, 300, 100, 100);
+		levelButtons[2] = new Ellipse2D.Double(350, 300, 100, 100);
+		levelButtons[3] = new Ellipse2D.Double(475, 300, 100, 100);
+		levelButtons[4] = new Ellipse2D.Double(600, 300, 100, 100);
+		levelButtons[5] = new Ellipse2D.Double(100, 450, 100, 100);
+		levelButtons[6] = new Ellipse2D.Double(225, 450, 100, 100);
+		levelButtons[7] = new Ellipse2D.Double(350, 450, 100, 100);
+		levelButtons[8] = new Ellipse2D.Double(475, 450, 100, 100);
+		levelButtons[9] = new Ellipse2D.Double(600, 450, 100, 100);
+		//levelButtons[10] = new Ellipse2D.Double(550, 450, 100, 100);
+		//levelButtons[11] = new Ellipse2D.Double(675, 450, 100, 100);
 	}
 
 
