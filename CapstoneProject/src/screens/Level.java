@@ -3,6 +3,7 @@ package screens;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import characters.Lazer;
@@ -446,7 +447,17 @@ public class Level extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 		}
 		
+		Point upRight = new Point((int) (surface.mouseX - Portal.WIDTH / 4), (int) (surface.mouseY - Portal.WIDTH / 4));
+		Point upLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 4), (int) (surface.mouseY - Portal.WIDTH / 4));
+		Point downRight = new Point((int) (surface.mouseX - Portal.WIDTH / 4), (int) (surface.mouseY + Portal.WIDTH / 4));
+		Point downLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 4), (int) (surface.mouseY + Portal.WIDTH / 4));
+		for (Platform platform : platforms) {
+			Rectangle2D body = platform.getPlatform();
+			if (body.contains(upLeft) || body.contains(upRight) || body.contains(downLeft) || body.contains(downRight))
+				return;
+		}
 			
+		
 		if (!noPortalZone.get(1).contains(new Point(surface.mouseX, surface.mouseY))) {
 			boolean draw = true;
 			Line sight = new Line((float) (player.getX() + 35), (float)(player.getY() + 50), (float)(surface.mouseX),(float)(surface.mouseY));
