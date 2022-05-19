@@ -7,11 +7,13 @@ import processing.core.PImage;
 
 public class Teleporter extends Monster {
 
-	private double width, height;
+	private double width, height, startX, startY;
 	public Teleporter(PImage image, double x, double y, boolean right, double width, double height) {
 		super(image, x, y, right);
 		this.width = width;
 		this.height = height;
+		this.startX = x;
+		this.startY = y;
 	}
 	
 	public void setX(double x) {
@@ -22,15 +24,19 @@ public class Teleporter extends Monster {
 		this.y = y;
 	}
 	
+	
 	public void teleport() {
 		double rHeight = Math.random() * height + 1;
+		rHeight += startY;
 		double rWidth = Math.random() * width + 1;
-		if(rHeight >= y && rHeight <= height && rWidth >= x && rWidth <= width) {
+		rWidth += startX;
+		if(rHeight >= startY && rHeight <= height + startY && rWidth >= startX && rWidth <= width + startX) {
 			setX(rWidth);
 			setY(rHeight);
 		}
 		
 	}
+	
 	
 	public void act(ArrayList<Platform> platforms) {
 		

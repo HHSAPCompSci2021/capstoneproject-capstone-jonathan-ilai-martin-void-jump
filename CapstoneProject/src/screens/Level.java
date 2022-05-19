@@ -147,12 +147,12 @@ public class Level extends Screen {
 			startY = 100;
 			keyX = 400;
 			keyY = 300;
-			gateX = 700;
-			gateY = 200;
-			Monster monster = new Monster(zombie, 400, 500, true);
+			gateX = 373;
+			gateY = 415;
 			Teleporter t = new Teleporter(teleporter, 0, 0, true, 220, 150);
-			characters.add(monster);
+			Teleporter t1 = new Teleporter(teleporter, 560, 0, true, 220, 150);
 			characters.add(t);
+			characters.add(t1);
 			lazers.add(new Lazer(lazerIcon, 260, 230, 295));
 		}
 	}
@@ -301,7 +301,11 @@ public class Level extends Screen {
 			platforms.add(new FallingPlatform(platform, 300, startY, 235, 30));
 			platforms.add(new ForceBarrier(clouds, 260, 0, 20, 150));
 			platforms.add(new ForceBarrier(clouds, 555, 0, 20, 150));
-			
+			platforms.add(new Platform(platform, 0, 230, 220, 30));
+			platforms.add(new Platform(platform, 585, 230, 220, 30));
+			platforms.add(new Platform(platform, 260, 500, 295, 30));
+
+
 		}
 		 
 
@@ -336,7 +340,7 @@ public class Level extends Screen {
 				if (monster.isDrawn() && monster.kill(player))
 					reset();
 				if(monster instanceof Teleporter) {
-					if(clock % 2 == 0) {
+					if(clock % 25 == 0) {
 						Teleporter t = (Teleporter) monster;
 						t.teleport();
 					}
