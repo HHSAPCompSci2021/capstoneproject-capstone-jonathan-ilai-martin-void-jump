@@ -299,8 +299,8 @@ public class Level extends Screen {
 		}
 		else if(level == 10) {
 			platforms.add(new FallingPlatform(platform, 300, startY, 235, 30));
-			platforms.add(new ForceBarrier(clouds, 260, 0, 20, 150));
-			platforms.add(new ForceBarrier(clouds, 555, 0, 20, 150));
+			platforms.add(new ForceBarrier(clouds, 260, 0, 50, 250));
+			platforms.add(new ForceBarrier(clouds, 500, 0, 50, 250));
 			platforms.add(new Platform(platform, 0, 230, 220, 30));
 			platforms.add(new Platform(platform, 585, 230, 220, 30));
 			platforms.add(new Platform(platform, 260, 500, 295, 30));
