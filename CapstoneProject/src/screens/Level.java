@@ -132,9 +132,9 @@ public class Level extends Screen {
 			startX = 400;
 			startY = 250;
 			keyX = 100;
-			keyY = 400;
+			keyY = 350;
 			gateX = 700;
-			gateY = 200;
+			gateY = 150;
 			Monster monster = new Monster(zombie, keyX, 350, true);
 			characters.add(monster);
 		}
@@ -280,12 +280,15 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
 			
 		} else if (level == 9) {
-			platforms.add(new FallingPlatform(platform, startX - 50, startY, 150, 30));
-			platforms.add(new Platform(platform, 50, 450, 200, 30));
+			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
+			platforms.add(new Platform(platform, 100, 450, 200, 30));
 			platforms.add(new Wall(wall, startX - 50, startY - 100, 30, 100));
 			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
 			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 150, startY - 100, 100, 30, false));
-			platforms.add(new FallingPlatform(platform, 300, 450, 100, 30));
+			platforms.add(new FallingPlatform(platform, 350, 450, 100, 30));
+			platforms.add(new FallingPlatform(platform, 500, 450, 100, 30));
+			platforms.add(new FallingPlatform(platform, 650, 450, 100, 30));
+			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
 		}
 		else if(level == 10) {
 			platforms.add(new FallingPlatform(platform, startX - 100, startY, 100, 30));
@@ -320,7 +323,7 @@ public class Level extends Screen {
 			character.act(platforms);
 			if (character instanceof Monster) {
 				Monster monster = (Monster) character;
-				if (monster.kill(player))
+				if (monster.isDrawn() && monster.kill(player))
 					reset();
 				if(monster instanceof Teleporter) {
 					if(clock % 2 == 0) {
@@ -364,7 +367,7 @@ public class Level extends Screen {
 				BoostPlatform boostPlatform = (BoostPlatform) platform;
 				boostPlatform.boost(player);
 			}
-			if(platform instanceof FallingPlatform && player.standing(platforms) instanceof FallingPlatform) {
+			if(platform instanceof FallingPlatform && player.standing(platforms) != null && player.standing(platforms).equals(platform)) {
 				FallingPlatform fallingPlatform = (FallingPlatform) platform;
 				fallingPlatform.fall(player);
 			}

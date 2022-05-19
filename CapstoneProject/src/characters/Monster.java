@@ -42,7 +42,7 @@ public class Monster extends Person {
 
 	
 	public boolean kill(Player p) {
-		if (this.intersects(p)) {
+		if (intersects(p)) {
 			p.disappear();
 			return true;
 		}

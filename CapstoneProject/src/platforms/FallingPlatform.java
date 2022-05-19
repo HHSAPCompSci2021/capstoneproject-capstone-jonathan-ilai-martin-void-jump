@@ -11,5 +11,6 @@ public class FallingPlatform extends Platform{
 
 	public void fall(Player player) {
 		setY(getY() + 5);
+		player.setFalling(true);
 	}
 }

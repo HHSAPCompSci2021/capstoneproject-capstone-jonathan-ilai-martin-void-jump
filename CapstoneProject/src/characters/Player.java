@@ -43,4 +43,6 @@ public class Player extends Person {
 		super.reset();
 		hasKey = false;
 	}
+
+	
 }

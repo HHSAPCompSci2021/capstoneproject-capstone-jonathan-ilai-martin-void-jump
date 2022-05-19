@@ -24,7 +24,7 @@ public class Person extends Rectangle2D.Double {
 	private double xSpeed, ySpeed;
 	private PImage image;
 	private final double GRAVITY = 0.1;
-	private boolean jumping, drawn;
+	private boolean jumping, drawn, falling;
 	
 	/**
 	 * Construct a new person at a given position with a given size.
@@ -151,13 +151,14 @@ public class Person extends Rectangle2D.Double {
 	public void jump(ArrayList<Platform> platforms) {
 		if (!jumping) {
 			Platform platform = standing(platforms);
-			if (platform instanceof FallingPlatform) {
-				ySpeed -= 9;
-				jumping = true;
-			} else if (platform != null) {
+			if (platform != null) {
 				ySpeed -= 4;
 				jumping = true;
 			}
+		}
+		if (falling) {
+			ySpeed -= 4;
+			falling = false;
 		}
 	}
 	
@@ -173,6 +174,7 @@ public class Person extends Rectangle2D.Double {
 			y += ySpeed;
 		} else xSpeed = 0;
 		
+		//System.out.println(jumping);
 		
 		if (standing(platforms) == null) {
 			ySpeed += GRAVITY;
@@ -198,7 +200,8 @@ public class Person extends Rectangle2D.Double {
 					return platform;
 				}
 			}
-			
+			if (platform instanceof FallingPlatform && Math.abs(platform.getY() - (y + Player.HEIGHT)) < 10 && x > platform.getX() && x + Player.WIDTH < platform.getX() + platform.getWidth())
+				return platform;
 		}
 		return null;
 	}
@@ -231,6 +234,10 @@ public class Person extends Rectangle2D.Double {
 			
 		}
 		return null;
+	}
+	
+	public void setFalling(boolean falling) {
+		this.falling = falling;
 	}
 	
 	/**
