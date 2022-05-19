@@ -272,7 +272,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX, startY, 150, 30));
 			platforms.add(new BoostPlatform(rightBoostPlatform, 300, startY, 160, 30, true));
 			platforms.add(new Platform(platform, 460, startY, 40, 30));
-			platforms.add(new ForceBarrier(clouds, 495, 0, 5, 300));
+			platforms.add(new ForceBarrier(clouds, 495, 0, 50, 300));
 			platforms.add(new Platform(platform, 500, 130, 200, 30));
 			platforms.add(new Platform(platform, 500, 300, 200, 30));
 			platforms.add(new BoostPlatform(leftBoostPlatform, 350, 300, 150, 30, false));
