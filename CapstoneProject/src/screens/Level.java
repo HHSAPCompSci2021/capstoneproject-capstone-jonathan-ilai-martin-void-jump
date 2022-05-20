@@ -24,7 +24,8 @@ import processing.core.PConstants;
 import processing.core.PImage;
 
 /**
- * 
+ * This class is a general class for all levels. Some of the methods in this class are made for specific 
+ * levels.
  * @author Ilai Tamari
  */
 public class Level extends Screen {
@@ -43,6 +44,11 @@ public class Level extends Screen {
 	 private ArrayList<Person> characters;
 	 private ArrayList<Lazer> lazers;
 	 
+	 /**
+	  * Create a new level using level number
+	  * @param level	Level number
+	  * @param surface	Surface on which level is drawn
+	  */
 	 public Level(int level, DrawingSurface surface) {
 		 super(800, 600, surface);
 		 this.level = level;
@@ -155,23 +161,21 @@ public class Level extends Screen {
 		}
 	}
 	 
+	/**
+	 * Return characters to their original location and reset platforms and portals
+	 */
 	public void reset() {
 		keyTaken = false;
 		for (Person character : characters) 
 			character.reset();
-		//moveTo(startX, startY - Player.HEIGHT);
-
-//		for(Person p: characters) {
-//			if(p instanceof Monster) {
-//				Monster m = (Monster) p;
-//				m.moveTo(m.getStartX(), m.getStartY());
-//			}
-//		}
 		for (Portal portal : portals) portal.setDrawn(false);
 		platforms = new ArrayList<Platform>();
 		addPlatforms();
 	}
 
+	/**
+	 * Set up levels, images, and add players and portals
+	 */
 	public void setup() {
 		loadImages();
 		initializeLevel();
@@ -218,13 +222,10 @@ public class Level extends Screen {
 		 
 	}
 
-	protected void addPlatforms() {
+	private void addPlatforms() {
 		platform.resize(100, 30);
 		spikes.resize(500, 70);
-
-		
-		
-		 if (level == 1) {
+		if (level == 1) {
 			platforms.add(new Platform(platform, startX, startY, 100, 30));
 			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, gate.width * 2, 30));
 		} else if (level == 2) {
@@ -309,12 +310,16 @@ public class Level extends Screen {
 		}
 		 
 
-		 for (int i = 0 ;i < 4 ; i++) {
-				platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
-			}
-	 }
+		for (int i = 0 ;i < 4 ; i++) {
+			platforms.add(new Spikes(spikes, i * 250, DRAWING_HEIGHT - 70, 250, 70));
+		}
+	}
 		
-	 public void draw() {
+	/**
+	 * Draw items and characters and manage the flow of them game including killing characters and reacting 
+	 * to platforms and portals
+	 */
+	public void draw() {
         // Draw items
 		clock++;
 		surface.background(225);
@@ -464,9 +469,11 @@ public class Level extends Screen {
 		return true;
 	}
 
+	/**
+	 * Go to the manu screen when return button is pressed. Also, add portals when clicking on the screen,
+	 * but only where portals can be drawn
+	 */
 	public void mousePressed() {
-			
-		
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 		if (returnButton.contains(p)) {
 			reset();
@@ -565,6 +572,11 @@ public class Level extends Screen {
 		}
 	 }
 
+	/**
+	 * Check if a level has been completed
+	 * @param level	Level number
+	 * @return true if the level has been completed
+	 */
 	 public static boolean isCompleted(int level) {
 		 return completed[level];
 	 }
