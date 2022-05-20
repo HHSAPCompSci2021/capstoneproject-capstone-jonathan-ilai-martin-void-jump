@@ -129,8 +129,10 @@ public class Level extends Screen {
 			keyY = 225;
 			gateX = 600;
 			gateY = 400;
-			Monster monster = new Monster(zombie, 200, 150, true);
-			characters.add(monster);
+			Monster monster1 = new Monster(zombie, 520, 20, true);
+			Monster monster2 = new Monster(zombie, 200, 150, true);
+			characters.add(monster1);
+			characters.add(monster2);
 		} else if (level == 9) {
 			startX = 400;
 			startY = 250;
@@ -278,13 +280,15 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, startX, startY, 150, 30));
 			platforms.add(new BoostPlatform(rightBoostPlatform, 300, startY, 160, 30, true));
 			platforms.add(new Platform(platform, 460, startY, 40, 30));
-			platforms.add(new ForceBarrier(clouds, 495, 0, 50, 300));
+			platforms.add(new ForceBarrier(clouds, 350, 0, 50, 100));
+			platforms.add(new ForceBarrier(clouds, 495, 100, 50, 200));
 			platforms.add(new Platform(platform, 500, 130, 200, 30));
 			platforms.add(new Platform(platform, 500, 300, 200, 30));
 			platforms.add(new BoostPlatform(leftBoostPlatform, 355, 300, 145, 30, false));
 			platforms.add(new Platform(platform, 170, 300, 180, 30));
 			platforms.add(new Wall(wall, 140, 130, 30, 200));
-			platforms.add(new Platform(platform, gateX - gate.width / 2, gateY + gate.height, 200, 30));
+			platforms.add(new Platform(platform, 400, gateY + gate.height, 400, 30));
+			platforms.add(new Wall(wall, 400, 330, 30, 200));
 			
 		} else if (level == 9) {
 			platforms.add(new Platform(platform, startX - 50, startY, 150, 30));
@@ -392,9 +396,11 @@ public class Level extends Screen {
 		 if (level == 6 && keyTaken && platforms.size() == 9) {
 			 platforms.add(new Platform(platform, 10, 200, 100, 30));
 		 }
-		 if (level == 8 && keyTaken && !(platforms.get(7) instanceof FallingPlatform)) {
+//		 if (level == 8 && keyTaken && !(platforms.get(7) instanceof FallingPlatform)) {
+		 if (level == 8 && keyTaken) {
 			 //System.out.println(platforms.size() + ", " + platforms.indexOf(characters.get(0).standing(platforms)));
-			 platforms.set(7, new FallingPlatform(platform, 170, 300, 180, 30));
+//			 platforms.set(7, new FallingPlatform(platform, 170, 300, 180, 30));
+			 platforms.set(7, new BoostPlatform(rightBoostPlatform, 355, 300, 145, 30, true));
 		 }
 		 if (level == 9 && !keyTaken && characters.get(0).isDrawn()) {
 			 keyX = characters.get(0).getX();
