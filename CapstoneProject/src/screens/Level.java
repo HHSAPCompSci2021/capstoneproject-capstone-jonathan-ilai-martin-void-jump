@@ -338,8 +338,8 @@ public class Level extends Screen {
 		
 		// Draw characters and kill player if possible
 		for (Person character : characters) {
+			character.draw(surface);
 			if (!(character instanceof Teleporter)) {
-				character.draw(surface);
 				character.act(platforms);
 			}
 			if (character instanceof Monster) {
