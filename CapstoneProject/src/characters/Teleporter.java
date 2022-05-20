@@ -1,8 +1,5 @@
 package characters;
 
-import java.util.ArrayList;
-
-import platforms.Platform;
 import processing.core.PImage;
 /**
  * This class represents a special type of monster that does not act like a person and teleports around
