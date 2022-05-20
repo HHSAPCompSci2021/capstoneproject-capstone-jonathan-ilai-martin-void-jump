@@ -16,23 +16,23 @@ import ilaitm12.shapes.Line;
 import platforms.BoostPlatform;
 import platforms.FallingPlatform;
 import platforms.ForceBarrier;
-//import ilaitm12.shapes.Line;
 import platforms.Platform;
-//import portals.LineIlai;
 import portals.Portal;
 import platforms.Spikes;
 import platforms.Wall;
 import processing.core.PConstants;
 import processing.core.PImage;
 
-
-
+/**
+ * 
+ * @author Ilai Tamari
+ */
 public class Level extends Screen {
 	
-	 protected double startX, startY, keyX, keyY, gateX, gateY, clock;
-	 protected ArrayList<Platform> platforms;
-	 protected PImage returnIcon, gate, key, dungeon, lazerIcon, clouds, teleporter;
-	 protected Ellipse2D returnButton;
+	 private double startX, startY, keyX, keyY, gateX, gateY, clock;
+	 private ArrayList<Platform> platforms;
+	 private PImage returnIcon, gate, key, dungeon, lazerIcon, clouds, teleporter;
+	 private Ellipse2D returnButton;
 	 private ArrayList<Ellipse2D> noPortalZone;
 	 private Player player;
 	 private int level;
