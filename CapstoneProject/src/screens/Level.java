@@ -112,9 +112,7 @@ public class Level extends Screen {
 			lazers.add(new Lazer(lazerIcon, 450, 415, 250));
 			Monster monster = new Monster(zombie, 300, 300, true);
 			characters.add(monster);
-		}
-		
-		else if (level == 7) {
+		} else if (level == 7) {
 			startX = 50;
 			startY = 300;
 			keyX = 375;
@@ -142,9 +140,7 @@ public class Level extends Screen {
 			gateY = 150;
 			Monster monster = new Monster(zombie, keyX, 350, true);
 			characters.add(monster);
-		}
-		
-		else if(level == 10) {
+		} else if(level == 10) {
 			startX = 400;
 			startY = 100;
 			keyX = 400;
@@ -295,7 +291,7 @@ public class Level extends Screen {
 			platforms.add(new Platform(platform, 100, 450, 200, 30));
 			platforms.add(new Wall(wall, startX - 50, startY - 100, 30, 100));
 			platforms.add(new Wall(wall, startX + 100, startY - player.height * 2, 30, player.height * 2 + 30));
-			platforms.add(new BoostPlatform(leftBoostPlatform, startX - 150, startY - 100, 100, 30, false));
+			platforms.add(new BoostPlatform(rightBoostPlatform, startX - 225, startY - 100, 100, 30, true));
 			platforms.add(new FallingPlatform(platform, 350, 450, 100, 30));
 			platforms.add(new FallingPlatform(platform, 500, 450, 100, 30));
 			platforms.add(new FallingPlatform(platform, 650, 450, 100, 30));
@@ -337,8 +333,10 @@ public class Level extends Screen {
 		
 		// Draw characters and kill player if possible
 		for (Person character : characters) {
-			character.draw(surface);
-			character.act(platforms);
+			if (!(character instanceof Teleporter)) {
+				character.draw(surface);
+				character.act(platforms);
+			}
 			if (character instanceof Monster) {
 				Monster monster = (Monster) character;
 				if (monster.isDrawn() && monster.kill(player))
@@ -346,7 +344,7 @@ public class Level extends Screen {
 				if(monster instanceof Teleporter) {
 					if(clock % 25 == 0) {
 						Teleporter t = (Teleporter) monster;
-						t.teleport();
+						t.act();
 					}
 				}
 			}
@@ -475,10 +473,10 @@ public class Level extends Screen {
 			surface.switchScreen(ScreenSwitcher.MENU_SCREEN);
 		}
 		
-		Point upRight = new Point((int) (surface.mouseX - Portal.WIDTH / 4), (int) (surface.mouseY - Portal.WIDTH / 4));
-		Point upLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 4), (int) (surface.mouseY - Portal.WIDTH / 4));
-		Point downRight = new Point((int) (surface.mouseX - Portal.WIDTH / 4), (int) (surface.mouseY + Portal.WIDTH / 4));
-		Point downLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 4), (int) (surface.mouseY + Portal.WIDTH / 4));
+		Point upRight = new Point((int) (surface.mouseX - Portal.WIDTH / 5), (int) (surface.mouseY - Portal.WIDTH / 5));
+		Point upLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 5), (int) (surface.mouseY - Portal.WIDTH / 5));
+		Point downRight = new Point((int) (surface.mouseX - Portal.WIDTH / 5), (int) (surface.mouseY + Portal.WIDTH / 5));
+		Point downLeft = new Point((int) (surface.mouseX + Portal.WIDTH / 5), (int) (surface.mouseY + Portal.WIDTH / 5));
 		for (Platform platform : platforms) {
 			Rectangle2D body = platform.getPlatform();
 			if (body.contains(upLeft) || body.contains(upRight) || body.contains(downLeft) || body.contains(downRight))

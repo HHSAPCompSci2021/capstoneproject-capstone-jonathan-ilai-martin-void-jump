@@ -56,7 +56,8 @@ public class Monster extends Person {
 	}
 	
 	/**
-	 * Acts like a person, gravity applies and continues to walk forvever 
+	 * Acts like a person, gravity applies and continues to walk forever 
+	 * @param platforms	All platforms in the game
 	 */
 	public void act(ArrayList<Platform> platforms) {
 		super.act(platforms);
