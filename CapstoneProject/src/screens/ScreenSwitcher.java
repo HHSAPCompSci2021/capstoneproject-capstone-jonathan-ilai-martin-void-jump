@@ -1,6 +1,9 @@
 package screens;
 
-
+/**
+ * An interface that represents certain screens with specific numbers that are used in other classes
+ * @author Ilai Tamari
+ */
 public interface ScreenSwitcher {
 	public static final int BEGINNING_SCREEN = 0;
 	public static final int MENU_SCREEN = 1;

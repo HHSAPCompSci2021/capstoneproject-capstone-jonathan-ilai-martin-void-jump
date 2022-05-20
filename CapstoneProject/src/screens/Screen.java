@@ -2,40 +2,31 @@ package screens;
 
 import core.DrawingSurface;
 
+/**
+ * This class represents a general screen that can appear on the drawing surface
+ * @author Ilai Tamari
+ */
 public abstract class Screen {
 
 	public final int DRAWING_WIDTH, DRAWING_HEIGHT;
 	protected DrawingSurface surface;
 	
+	/**
+	 * Create a new screen with givens width and height
+	 * @param width		Width of screen
+	 * @param height	Height of screen
+	 * @param surface	Surface on which screen is drawn
+	 */
 	public Screen(int width, int height, DrawingSurface surface) {
 		this.surface = surface;
 		this.DRAWING_WIDTH = width;
 		this.DRAWING_HEIGHT = height;
 	}
 	
-	public void setup() {
-	}
+	abstract public void setup();
 	
-	public void draw() {
-		
-	}
+	abstract public void draw();
 	
-	public void mousePressed() {
-		
-	}
-	
-	public void mouseMoved() {
-		
-	}
-	
-	public void mouseDragged() {
-		
-	}
-	
-	public void mouseReleased() {
-		
-	}
-	
-	
+	abstract public void mousePressed();	
 	
 }
