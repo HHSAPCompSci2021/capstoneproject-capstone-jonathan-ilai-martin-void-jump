@@ -7,7 +7,7 @@ import processing.core.PImage;
 /**
  * This class represents a special type of monster that does not act like a person and teleports around
  * trying to kill the player.
- * @author jonjo
+ * @author Jonathan Levi
  *
  */
 public class Teleporter extends Monster {
