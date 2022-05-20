@@ -333,8 +333,10 @@ public class Level extends Screen {
 		
 		// Draw characters and kill player if possible
 		for (Person character : characters) {
-			character.draw(surface);
-			character.act(platforms);
+			if (!(character instanceof Teleporter)) {
+				character.draw(surface);
+				character.act(platforms);
+			}
 			if (character instanceof Monster) {
 				Monster monster = (Monster) character;
 				if (monster.isDrawn() && monster.kill(player))
@@ -342,7 +344,7 @@ public class Level extends Screen {
 				if(monster instanceof Teleporter) {
 					if(clock % 25 == 0) {
 						Teleporter t = (Teleporter) monster;
-						t.teleport();
+						t.act();
 					}
 				}
 			}

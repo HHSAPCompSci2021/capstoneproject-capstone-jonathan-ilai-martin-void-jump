@@ -190,6 +190,12 @@ public class Person extends Rectangle2D.Double {
 		}
 	}
 	
+	/**
+	 * Check if a person is standing on a platform by checking for each individual platform if the person
+	 * intersects it.
+	 * @param platforms	All platforms in the game
+	 * @return the platform on which the person stands, or null if person is in the air
+	 */
 	public Platform standing(ArrayList<Platform> platforms) {
 		for (Platform platform : platforms) {
 			if (!(platform instanceof ForceBarrier)) {

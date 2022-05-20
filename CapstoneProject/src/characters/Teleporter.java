@@ -47,7 +47,7 @@ public class Teleporter extends Monster {
 	/**
 	 * Moves the teleporter to a random location inside of the teleporting bounds
 	 */
-	public void teleport() {
+	public void act() {
 		double rHeight = Math.random() * height + 1;
 		rHeight += startY;
 		double rWidth = Math.random() * width + 1;
@@ -58,26 +58,4 @@ public class Teleporter extends Monster {
 		}
 		
 	}
-	
-	/**
-	 * Overrides Person's act method so that gravity has no effect on the 
-	 * teleporter 
-	 */
-	public void act(ArrayList<Platform> platforms) {
-		
-		
-		//System.out.println(jumping);
-		
-//		if (standing(platforms) == null) {
-//			ySpeed += GRAVITY;
-//			xSpeed *= 0.9;
-//		} else {
-//			jumping = false;
-//			ySpeed = 0;
-//			xSpeed *= 0.6;
-//		}
-	}
-	
-	
-
 }
