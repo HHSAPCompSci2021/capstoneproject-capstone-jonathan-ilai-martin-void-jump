@@ -103,7 +103,7 @@ public class Person extends Rectangle2D.Double {
 	
 	/**
 	 * Draw the person's icon where needed
-	 * @param surface
+	 * @param surface	Surface on which person is drawn
 	 */
 	public void draw(PApplet surface) {
 		if (drawn && image != null) surface.image(image, (float) x, (float) y, (float)width,(float)height);
@@ -169,7 +169,7 @@ public class Person extends Rectangle2D.Double {
 	/**
 	 * If possible, change location according to speed. Then, obey to gavity and reduce
 	 * horizontal speed if moving on platform.
-	 * @param platforms
+	 * @param platforms	All platforms in the game
 	 */
 	public void act(ArrayList<Platform> platforms) {
 		//inside = false;
@@ -246,6 +246,11 @@ public class Person extends Rectangle2D.Double {
 		return null;
 	}
 	
+	/**
+	 * Change the value of falling, the field that checks if the player is currently falling on a
+	 * falling platform
+	 * @param falling	New value
+	 */
 	public void setFalling(boolean falling) {
 		this.falling = falling;
 	}

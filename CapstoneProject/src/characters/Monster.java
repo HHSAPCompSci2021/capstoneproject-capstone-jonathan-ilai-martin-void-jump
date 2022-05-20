@@ -12,7 +12,9 @@ import processing.core.PImage;
  */
 public class Monster extends Person {
 	
-
+	/**
+	 * Width and height are final for monsters
+	 */
 	public static double WIDTH = 50, HEIGHT = 100;
 	private boolean turnRight;
 	/**
